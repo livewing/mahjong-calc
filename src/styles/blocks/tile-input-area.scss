@@ -1,0 +1,71 @@
+$tile-width: 48px;
+
+.tile-input-area {
+  &__piece {
+    $this: &;
+    img {
+      width: calc(100vw / 13 - 0.15rem);
+      max-width: $tile-width;
+    }
+    &--empty {
+      @extend #{$this};
+      opacity: 0.2;
+    }
+  }
+
+  &__hand {
+    $this: &;
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+
+  &__legal {
+    $this: &;
+    display: inline-flex;
+    &--focus {
+      @extend #{$this};
+      border: 3px var(--primary-color) solid;
+      border-radius: 0.2rem;
+      margin: -3px;
+    }
+  }
+
+  &__melds {
+    $this: &;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-grow: 2;
+    flex-wrap: wrap;
+    align-self: flex-end;
+    &--focus {
+      @extend #{$this};
+      border: 3px var(--primary-color) solid;
+      border-radius: 0.2rem;
+      margin: -3px;
+    }
+  }
+
+  &__meld {
+    $this: &;
+    display: flex;
+    margin-left: 0.5rem;
+
+    &--focus {
+      @extend #{$this};
+      border: 3px var(--primary-color) solid;
+      border-radius: 0.2rem;
+      margin: -3px;
+      margin-left: calc(-3px + 0.5rem);
+    }
+  }
+
+  &__buttons {
+    $this: &;
+    display: flex;
+    margin-top: 1rem;
+
+    & .button:not(:first-child) {
+      margin-left: 0.5rem;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.config {
+  &__table {
+    $this: &;
+    width: 100%;
+    border-spacing: 0.5rem;
+  }
+}

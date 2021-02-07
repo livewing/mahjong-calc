@@ -1,0 +1,46 @@
+.stepper {
+  display: inline-block;
+
+  &__wrapper {
+    $this: &;
+    display: flex;
+    border: 1px var(--container-border-color) solid;
+    border-radius: 0.2rem;
+    &--disabled {
+      @extend #{$this};
+      opacity: 0.5;
+    }
+  }
+  &__reset {
+    $this: &;
+    padding: 0.5rem;
+    background: var(--container-color);
+    cursor: pointer;
+    &--disabled {
+      @extend #{$this};
+      cursor: not-allowed;
+    }
+  }
+  &__step {
+    $this: &;
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    &--disabled {
+      @extend #{$this};
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  &__value {
+    $this: &;
+    padding: 0.5rem 1rem;
+    width: 2rem;
+    text-align: center;
+    &--disabled {
+      @extend #{$this};
+      opacity: 0.5;
+    }
+  }
+}

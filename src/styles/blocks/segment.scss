@@ -1,0 +1,39 @@
+.segment {
+  &__wrapper {
+    $this: &;
+    display: flex;
+    border: 1px var(--primary-color) solid;
+    border-radius: 0.2rem;
+    &--disabled {
+      @extend #{$this};
+      border: 1px var(--secondary-color) solid;
+      opacity: 0.5;
+    }
+  }
+  &__element {
+    $this: &;
+    padding: 0.5rem;
+    list-style: none;
+    flex-grow: 1;
+    text-align: center;
+    cursor: pointer;
+    &:not(:first-child) {
+      border-left: 1px var(--primary-color) solid;
+    }
+
+    &--active {
+      @extend #{$this};
+      background: var(--primary-color);
+      color: white;
+      cursor: default;
+    }
+
+    &--disabled {
+      @extend #{$this};
+      cursor: not-allowed;
+      &:not(:first-child) {
+        border-left: 1px var(--secondary-color) solid;
+      }
+    }
+  }
+}

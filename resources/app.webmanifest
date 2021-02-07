@@ -1,0 +1,25 @@
+{
+  "name": "麻雀得点計算機",
+  "short_name": "得点計算",
+  "categories": ["utilities"],
+  "description": "麻雀の手牌を入力して、待ち牌と得点を計算します。",
+  "dir": "ltr",
+  "lang": "ja-JP",
+  "start_url": ".",
+  "theme_color": "#2ac79b",
+  "background_color": "white",
+  "orientation": "portrait",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

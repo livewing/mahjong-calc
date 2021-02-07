@@ -1,0 +1,22 @@
+$tile-width: 48px;
+
+.tile-keyboard {
+  &__row {
+    $this: &;
+    display: flex;
+  }
+
+  &__tile {
+    $this: &;
+    cursor: pointer;
+    img {
+      width: calc(100vw / 9 - 2px);
+      max-width: $tile-width;
+    }
+    &--disabled {
+      @extend #{$this};
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+}

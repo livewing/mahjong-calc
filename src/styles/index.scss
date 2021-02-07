@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  touch-action: manipulation;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  text-size-adjust: 100%;
+}
+
+img {
+  vertical-align: bottom;
+}
+
+@import "variables.scss";
+
+@import "blocks/button.scss";
+@import "blocks/config.scss";
+@import "blocks/container.scss";
+@import "blocks/footer.scss";
+@import "blocks/header.scss";
+@import "blocks/hora-item.scss";
+@import "blocks/notify-update.scss";
+@import "blocks/segment.scss";
+@import "blocks/stepper.scss";
+@import "blocks/tile-input.scss";
+@import "blocks/tile-input-area.scss";
+@import "blocks/tile-keyboard.scss";
