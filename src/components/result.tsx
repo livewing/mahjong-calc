@@ -44,13 +44,18 @@ export const Result: FC<ResultProps> = ({
       </Container>
     );
   }
+  if (result.hora.length === 0) {
+    return (
+      <Container header="結果: 不聴" modifier="warning">
+        <div>和了牌無し</div>
+      </Container>
+    );
+  }
   return (
     <Container header="結果: 聴牌" modifier="primary">
-      {result.hora.length === 0 && <div>和了牌無し</div>}
-      {result.hora.length > 0 &&
-        result.hora.map((h, i) => (
-          <HoraItem key={i} hora={h} tableConfig={tableConfig} />
-        ))}
+      {result.hora.map((h, i) => (
+        <HoraItem key={i} hora={h} tableConfig={tableConfig} />
+      ))}
     </Container>
   );
 };
