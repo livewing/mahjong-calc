@@ -4,7 +4,8 @@ import type { Hora } from '../lib/yaku';
 import type { HoraWithPoint } from '../lib/result';
 import { TileImage } from './tile-image';
 import { BEM } from '../lib/bem';
-import type { TableConfig } from '../lib/config';
+import type { RuleConfig, TableConfig } from '../lib/config';
+import { FuDetail } from './fu-detail';
 
 const bem = BEM('hora-item');
 
@@ -189,9 +190,14 @@ const ScoreBadge: FC<ScoreBadge> = ({ basicPoint }) => {
 interface HoraItemProps {
   hora: HoraWithPoint;
   tableConfig: TableConfig;
+  ruleConfig: RuleConfig;
 }
 
-export const HoraItem: FC<HoraItemProps> = ({ hora, tableConfig }) => {
+export const HoraItem: FC<HoraItemProps> = ({
+  hora,
+  tableConfig,
+  ruleConfig
+}) => {
   const detailedScore = detailed_score(hora, tableConfig);
   const totalPoint = total_point(detailedScore);
   const plusPoint = tableConfig.continue * 300 + tableConfig.deposit * 1000;
@@ -264,29 +270,48 @@ export const HoraItem: FC<HoraItemProps> = ({ hora, tableConfig }) => {
           )}
         </div>
       </summary>
-      {hora.hora.yaku.map((y, i) => (
-        <div key={i} className={bem('yaku')}>
-          <div className={bem('yaku-name')}>{yaku_names(y)}</div>
-          <div>
-            {hora.pointSet.type === 'yakuman'
-              ? yakuman_tuple(y.point)
-              : `${y.point} 飜`}
-          </div>
-        </div>
-      ))}
-      {hora.pointSet.type !== 'yakuman' && (
-        <div className={bem('point-set')}>
-          {hora.pointSet.fu} 符 {hora.pointSet.han} 飜
-          {hora.pointSet.type === 'normal' && hora.pointSet.han > 0 && (
-            <span className={bem('basic-point')}>
-              {' '}
-              (基本点 {hora.basicPoint} 点)
-            </span>
-          )}
-        </div>
+      {hora.hora.form !== 'kokushi' && (
+        <div className={bem('detail-header')}>符</div>
       )}
+      <FuDetail
+        hora={hora.hora}
+        tableConfig={tableConfig}
+        ruleConfig={ruleConfig}
+      />
+      {!noYaku && (
+        <>
+          <div className={bem('detail-header')}>役</div>
+          <div className={bem('yaku-names')}>
+            {hora.hora.yaku.map((y, i) => (
+              <div key={i} className={bem('yaku')}>
+                <div className={bem('yaku-name')}>{yaku_names(y)}</div>
+                <div>
+                  {hora.pointSet.type === 'yakuman'
+                    ? yakuman_tuple(y.point)
+                    : `${y.point} 飜`}
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+      {hora.pointSet.type !== 'yakuman' && (
+        <>
+          <div className={bem('detail-header')}>符 &middot; 飜数</div>
+          <div className={bem('point-set')}>
+            {hora.pointSet.fu} 符 {hora.pointSet.han} 飜
+            {hora.pointSet.type === 'normal' && hora.pointSet.han > 0 && (
+              <span className={bem('basic-point')}>
+                {' '}
+                (基本点 {hora.basicPoint} 点)
+              </span>
+            )}
+          </div>
+        </>
+      )}
+      {!noYaku && <div className={bem('detail-header')}>点差</div>}
       {!noYaku && scoreDiff.type === 'single' && (
-        <div className={bem('score-diff')}>点差: {scoreDiff.diff} 点</div>
+        <div className={bem('score-diff')}>{scoreDiff.diff} 点</div>
       )}
       {!noYaku && scoreDiff.type === 'tsumo' && (
         <>

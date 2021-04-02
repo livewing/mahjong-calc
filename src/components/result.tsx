@@ -54,7 +54,12 @@ export const Result: FC<ResultProps> = ({
   return (
     <Container header="結果: 聴牌" modifier="primary">
       {result.hora.map((h, i) => (
-        <HoraItem key={i} hora={h} tableConfig={tableConfig} />
+        <HoraItem
+          key={i}
+          hora={h}
+          tableConfig={tableConfig}
+          ruleConfig={ruleConfig}
+        />
       ))}
     </Container>
   );

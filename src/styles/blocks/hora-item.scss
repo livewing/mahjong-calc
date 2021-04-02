@@ -75,12 +75,33 @@
     }
   }
 
+  &__detail-header {
+    $this: &;
+    display: flex;
+    margin-top: 0.5rem;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+    &:before {
+      content: "";
+      margin-right: 1rem;
+      border-bottom: 1px var(--container-border-color) solid;
+      flex-grow: 1;
+    }
+    &:after {
+      content: "";
+      margin-left: 1rem;
+      border-bottom: 1px var(--container-border-color) solid;
+      flex-grow: 1;
+    }
+  }
+
   &__yaku {
     $this: &;
     display: flex;
     justify-content: space-between;
     &:not(:last-child) {
-      border-bottom: 1px var(--container-border-color) solid;
+      border-bottom: 1px var(--container-border-color) dashed;
     }
   }
 
