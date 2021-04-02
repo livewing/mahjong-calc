@@ -119,7 +119,7 @@
 
 ### 聴牌時
 
-<img src="https://user-images.githubusercontent.com/7447366/106908374-9a59a200-6742-11eb-848f-b18a737971a4.png" width="428" alt="Tempai" />
+<img src="https://user-images.githubusercontent.com/7447366/113403289-58b34380-93e1-11eb-83f7-9458985fa2c1.png" width="852" alt="Tempai" />
 
 聴牌の場合は、待ち牌と点数のリストが表示されます。
 
