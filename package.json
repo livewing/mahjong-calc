@@ -54,7 +54,7 @@
     "lint-staged": "^11.0.0",
     "postcss": "^8.2.14",
     "postcss-loader": "^5.2.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.0",
     "sass": "^1.32.12",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
