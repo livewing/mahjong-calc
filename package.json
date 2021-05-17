@@ -52,7 +52,7 @@
     "html-webpack-plugin": "^5.3.1",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
-    "postcss": "^8.2.14",
+    "postcss": "^8.2.15",
     "postcss-loader": "^5.2.0",
     "prettier": "^2.2.1",
     "sass": "^1.32.12",
