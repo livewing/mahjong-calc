@@ -421,11 +421,9 @@ const deconstructureKotsu = (
 ): DeconstructureResult<Mentsu>[] => {
   const results: DeconstructureResult<Mentsu>[] = [];
   const counts = count_tiles(legal.filter(t => t.type === type));
-  const kotsuCandidates = (Object.keys(
-    counts
-  ) as (keyof typeof counts)[]).filter(
-    k => typeof counts[k] !== 'undefined' && (counts[k] as number) >= 3
-  );
+  const kotsuCandidates = (
+    Object.keys(counts) as (keyof typeof counts)[]
+  ).filter(k => typeof counts[k] !== 'undefined' && (counts[k] as number) >= 3);
 
   if (kotsuCandidates.length === 0) {
     return [{ rest: legal, parts: [] }];
@@ -471,9 +469,9 @@ const deconstructureShuntsu = (
   const counts = count_tiles(
     legal.filter(t => t.type === type && t.number <= 7)
   );
-  const shuntsuCandidates = (Object.keys(
-    counts
-  ) as (keyof typeof counts)[]).filter(
+  const shuntsuCandidates = (
+    Object.keys(counts) as (keyof typeof counts)[]
+  ).filter(
     k =>
       typeof counts[k] !== 'undefined' &&
       has_shuntsu(legal, string_to_tile(k) as Shuntsu['first'])
@@ -524,11 +522,9 @@ const deconstructureToitsu = (
 ): DeconstructureResult<Tatsu>[] => {
   const results: DeconstructureResult<Tatsu>[] = [];
   const counts = count_tiles(legal.filter(t => t.type === type));
-  const toitsuCandidates = (Object.keys(
-    counts
-  ) as (keyof typeof counts)[]).filter(
-    k => typeof counts[k] !== 'undefined' && (counts[k] as number) >= 2
-  );
+  const toitsuCandidates = (
+    Object.keys(counts) as (keyof typeof counts)[]
+  ).filter(k => typeof counts[k] !== 'undefined' && (counts[k] as number) >= 2);
 
   if (recurse === 0 || toitsuCandidates.length === 0) {
     return [{ rest: legal, parts: [] }];
@@ -590,9 +586,9 @@ const deconstructureRyammenAndPenchan = (
   const counts = count_tiles(
     legal.filter(t => t.type === type && t.number <= 8)
   );
-  const ryammenAndPenchanCandidates = (Object.keys(
-    counts
-  ) as (keyof typeof counts)[]).filter(
+  const ryammenAndPenchanCandidates = (
+    Object.keys(counts) as (keyof typeof counts)[]
+  ).filter(
     k =>
       typeof counts[k] !== 'undefined' &&
       has_first_next(legal, string_to_tile(k) as (Ryammen | Penchan)['first'])
@@ -666,9 +662,9 @@ const deconstructureKanchan = (
   const counts = count_tiles(
     legal.filter(t => t.type === type && t.number <= 7)
   );
-  const kanchanCandidates = (Object.keys(
-    counts
-  ) as (keyof typeof counts)[]).filter(
+  const kanchanCandidates = (
+    Object.keys(counts) as (keyof typeof counts)[]
+  ).filter(
     k =>
       typeof counts[k] !== 'undefined' &&
       has_first_next_plus_one(legal, string_to_tile(k) as Kanchan['first'])
@@ -769,11 +765,9 @@ const deconstructureWindAndDragonToitsu = (
 const deconstructureMentsuAndTatsu = (
   legal: Tile[]
 ): DeconstructureResult<Parts>[] => {
-  const [character, dots, bamboo] = ([
-    'character',
-    'dots',
-    'bamboo'
-  ] as const).map(type =>
+  const [character, dots, bamboo] = (
+    ['character', 'dots', 'bamboo'] as const
+  ).map(type =>
     dedupe_deconstructure_results([
       ...deconstructureKotsu(legal, type),
       ...deconstructureShuntsu(legal, type)
@@ -812,11 +806,9 @@ const deconstructureHeadAndMentsu = (
 ): DeconstructureResult<Parts>[] => {
   const results: DeconstructureResult<Parts>[] = [];
   const counts = count_tiles(legal);
-  const headCandidates = (Object.keys(
-    counts
-  ) as (keyof typeof counts)[]).filter(
-    k => typeof counts[k] !== 'undefined' && (counts[k] as number) >= 2
-  );
+  const headCandidates = (
+    Object.keys(counts) as (keyof typeof counts)[]
+  ).filter(k => typeof counts[k] !== 'undefined' && (counts[k] as number) >= 2);
 
   for (const head of headCandidates) {
     const headTile = string_to_tile(head);
@@ -841,9 +833,11 @@ const deconstructureHeadAndMentsu = (
 const deconstructure = (
   legal: Hand['legal']
 ): DeconstructureResult<Parts>[] => {
-  const { rest, parts: isolatedParts, isolatedTiles } = deconstructureIsolated(
-    legal
-  );
+  const {
+    rest,
+    parts: isolatedParts,
+    isolatedTiles
+  } = deconstructureIsolated(legal);
   return dedupe_deconstructure_results(
     deconstructureHeadAndMentsu(rest).map(({ rest, parts }) => ({
       rest: [...rest, ...isolatedTiles].sort(compare_tile),

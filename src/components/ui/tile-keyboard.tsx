@@ -58,15 +58,9 @@ export const TileKeyboard: FC<TileKeyboardProps> = ({ onInput, disabled }) => (
       </div>
     ))}
     <div className={bem('row')}>
-      {([
-        'east',
-        'south',
-        'west',
-        'north',
-        'white',
-        'green',
-        'red'
-      ] as const).map(t => (
+      {(
+        ['east', 'south', 'west', 'north', 'white', 'green', 'red'] as const
+      ).map(t => (
         <TileButton
           key={t}
           tile={{ type: t }}
