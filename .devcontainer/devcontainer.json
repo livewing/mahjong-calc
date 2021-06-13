@@ -1,0 +1,22 @@
+{
+  "name": "Node.js",
+  "image": "node:latest",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+      "bash": {
+        "path": "bash"
+      }
+    }
+  },
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "EditorConfig.EditorConfig",
+    "eg2.vscode-npm-script",
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint"
+  ],
+  "forwardPorts": [8080],
+  "postCreateCommand": "npm i",
+  "remoteUser": "node"
+}
