@@ -10,7 +10,7 @@ export const Header: FC = () => (
     <div className={bem('link-list')}>
       <a
         className={bem('link')}
-        href="https://github.com/gssequence/mahjong-calc/blob/main/doc/how-to-use.md"
+        href="https://github.com/livewing/mahjong-calc/blob/main/doc/how-to-use.md"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -18,7 +18,7 @@ export const Header: FC = () => (
       </a>
       <a
         className={bem('link')}
-        href="https://github.com/gssequence/mahjong-calc"
+        href="https://github.com/livewing/mahjong-calc"
         target="_blank"
         rel="noopener noreferrer"
       >

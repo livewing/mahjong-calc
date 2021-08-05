@@ -21,7 +21,7 @@ export const Footer: FC = () => (
       この Web アプリケーションは{' '}
       <a
         className={bem('link')}
-        href="https://github.com/gssequence/mahjong-calc/blob/main/LICENSE"
+        href="https://github.com/livewing/mahjong-calc/blob/main/LICENSE"
         target="_blank"
         rel="noopener noreferrer"
       >

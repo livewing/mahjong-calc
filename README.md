@@ -1,7 +1,7 @@
 # mahjong-calc
 
-[![CI](https://github.com/gssequence/mahjong-calc/workflows/CI/badge.svg)](https://github.com/gssequence/mahjong-calc/actions?query=workflow%3ACI)
-[![LICENSE](https://img.shields.io/github/license/gssequence/mahjong-calc)](./LICENSE)
+[![CI](https://github.com/livewing/mahjong-calc/workflows/CI/badge.svg)](https://github.com/livewing/mahjong-calc/actions?query=workflow%3ACI)
+[![LICENSE](https://img.shields.io/github/license/livewing/mahjong-calc)](./LICENSE)
 
 ![Screenshot](https://user-images.githubusercontent.com/7447366/113402396-e42bd500-93df-11eb-9f9b-aa83f90f8eff.png)
 
@@ -24,7 +24,7 @@
 ### clone と実行
 
 ```
-$ git clone https://github.com/gssequence/mahjong-calc.git
+$ git clone https://github.com/livewing/mahjong-calc.git
 $ cd mahjong-calc
 $ npm i
 $ npm start

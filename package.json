@@ -16,10 +16,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gssequence/mahjong-calc.git"
+    "url": "https://github.com/livewing/mahjong-calc.git"
   },
   "bugs": {
-    "url": "https://github.com/gssequence/mahjong-calc/issues"
+    "url": "https://github.com/livewing/mahjong-calc/issues"
   },
   "private": true,
   "lint-staged": {
