@@ -50,6 +50,11 @@ const config: Configuration = {
         ]
       },
       {
+        test: /\.ya?ml$/,
+        type: 'json',
+        use: 'yaml-loader'
+      },
+      {
         test: /\.png$/,
         type: 'asset/inline'
       }

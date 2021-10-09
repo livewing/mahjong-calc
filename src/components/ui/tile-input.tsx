@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import type { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Container } from './container';
 import { TileInputArea } from './tile-input-area';
-import type { TileInputAreaFocus } from './tile-input-area';
 import { TileKeyboard } from './tile-keyboard';
 import { BEM } from '../../lib/bem';
 import { EMPTY_INPUT, input_to_tiles, sort_input } from '../../lib/hand';
-import type { HandInput } from '../../lib/hand';
 import { count_tiles, string_to_tile, tile_to_string } from '../../lib/tile';
+import type { FC } from 'react';
+import type { TileInputAreaFocus } from './tile-input-area';
+import type { HandInput } from '../../lib/hand';
 import type { Tile, TileString } from '../../lib/tile';
 
 const bem = BEM('tile-input');
@@ -19,6 +20,7 @@ interface TileInputProps {
 export const TileInput: FC<TileInputProps> = ({ onChange }) => {
   const [focus, setFocus] = useState<TileInputAreaFocus>({ type: 'legal' });
   const [value, setValue] = useState(EMPTY_INPUT);
+  const { t } = useTranslation();
   const onSetValue = (newValue: HandInput) => {
     const si = sort_input(newValue);
     setValue(si);
@@ -130,7 +132,7 @@ export const TileInput: FC<TileInputProps> = ({ onChange }) => {
     return a;
   })();
   return (
-    <Container header="手牌">
+    <Container header={t('tile-input.title')}>
       <TileInputArea
         value={value}
         onFocusChange={setFocus}

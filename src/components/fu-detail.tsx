@@ -1,5 +1,4 @@
 import React from 'react';
-import type { FC } from 'react';
 import { Hora } from '../lib/yaku';
 import { BEM } from '../lib/bem';
 import { TileImage } from './tile-image';
@@ -9,8 +8,10 @@ import {
   is_tanyao_tile,
   is_tile
 } from '../lib/tile';
-import type { RuleConfig, TableConfig } from '../lib/config';
 import { Toitsu } from '../lib/deconstructure';
+import type { FC } from 'react';
+import type { RuleConfig, TableConfig } from '../lib/config';
+import { useTranslation } from 'react-i18next';
 
 const bem = BEM('fu-detail');
 
@@ -24,32 +25,162 @@ export const FuDetail: FC<FuDetailProps> = ({
   hora,
   tableConfig,
   ruleConfig
-}) => (
-  <>
-    {hora.form === 'mentsu' && (
-      <div className={bem()}>
-        <div className={bem('fu-items')}>
-          <div className={bem('fu-item')}>
-            <div></div>
-            <div className={bem('fu-item-detail')}>副底 &mdash; 20 符</div>
-          </div>
-          {hora.parts
-            .sort((a, b) => {
-              const [c, d] = [a, b].map(h =>
-                h.type === 'kotsu' || h.type === 'toitsu' ? h.tile : h.first
-              );
-              return compare_tile(c, d);
-            })
-            .map((part, i) => (
+}) => {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      {hora.form === 'mentsu' && (
+        <div className={bem()}>
+          <div className={bem('fu-items')}>
+            <div className={bem('fu-item')}>
+              <div></div>
+              <div className={bem('fu-item-detail')}>
+                {t('fu-detail.futei')} &mdash;{' '}
+                {t('fu-detail.fu', { count: 20 })}
+              </div>
+            </div>
+            {hora.parts
+              .sort((a, b) => {
+                const [c, d] = [a, b].map(h =>
+                  h.type === 'kotsu' || h.type === 'toitsu' ? h.tile : h.first
+                );
+                return compare_tile(c, d);
+              })
+              .map((part, i) => (
+                <div key={i} className={bem('fu-item')}>
+                  {part.type === 'shuntsu' && (
+                    <>
+                      <div className={bem('fu-item-tiles')}>
+                        <TileImage tile={part.first} />
+                        <TileImage
+                          tile={{
+                            type: part.first.type,
+                            number: (part.first.number + 1) as
+                              | 2
+                              | 3
+                              | 4
+                              | 5
+                              | 6
+                              | 7
+                              | 8
+                          }}
+                        />
+                        <TileImage
+                          tile={{
+                            type: part.first.type,
+                            number: (part.first.number + 2) as
+                              | 3
+                              | 4
+                              | 5
+                              | 6
+                              | 7
+                              | 8
+                              | 9
+                          }}
+                        />
+                      </div>
+                      <div className={bem('fu-item-detail')}>
+                        {t('fu-detail.shuntsu')} &mdash;{' '}
+                        {t('fu-detail.fu', { count: 0 })}
+                      </div>
+                    </>
+                  )}
+                  {part.type === 'kotsu' && (
+                    <>
+                      <div className={bem('fu-item-tiles')}>
+                        <TileImage tile={part.tile} />
+                        <TileImage tile={part.tile} />
+                        <TileImage tile={part.tile} />
+                      </div>
+                      <div className={bem('fu-item-detail')}>
+                        {is_tanyao_tile(part.tile) ? (
+                          <>
+                            {t('fu-detail.chunchan-anko')} &mdash;{' '}
+                            {t('fu-detail.fu', { count: 4 })}
+                          </>
+                        ) : (
+                          <>
+                            {t('fu-detail.yaochu-anko')} &mdash;{' '}
+                            {t('fu-detail.fu', { count: 8 })}
+                          </>
+                        )}
+                      </div>
+                    </>
+                  )}
+                  {part.type === 'toitsu' && (
+                    <>
+                      <div className={bem('fu-item-tiles')}>
+                        <TileImage tile={part.tile} />
+                        <TileImage tile={part.tile} />
+                      </div>
+                      <div className={bem('fu-item-detail')}>
+                        {part.tile.type === tableConfig.round &&
+                        tableConfig.seat === part.tile.type ? (
+                          <>
+                            {t('fu-detail.double-wind-head')} &mdash;{' '}
+                            {t('fu-detail.fu', {
+                              count: ruleConfig.doubleWindFu
+                            })}
+                          </>
+                        ) : part.tile.type === tableConfig.round ? (
+                          <>
+                            {t('fu-detail.field-wind-head')} &mdash;{' '}
+                            {t('fu-detail.fu', { count: 2 })}
+                          </>
+                        ) : part.tile.type === tableConfig.seat ? (
+                          <>
+                            {t('fu-detail.seat-wind-head')} &mdash;{' '}
+                            {t('fu-detail.fu', { count: 2 })}
+                          </>
+                        ) : is_dragon_tile(part.tile) ? (
+                          <>
+                            {t('fu-detail.dragon-head')} &mdash;{' '}
+                            {t('fu-detail.fu', { count: 2 })}
+                          </>
+                        ) : (
+                          <>
+                            {t('fu-detail.head')} &mdash;{' '}
+                            {t('fu-detail.fu', { count: 0 })}
+                          </>
+                        )}
+                      </div>
+                    </>
+                  )}
+                </div>
+              ))}
+            {hora.melds.map((meld, i) => (
               <div key={i} className={bem('fu-item')}>
-                {part.type === 'shuntsu' && (
+                {meld.type === 'pong' && (
                   <>
                     <div className={bem('fu-item-tiles')}>
-                      <TileImage tile={part.first} />
+                      <TileImage tile={meld.tile} />
+                      <TileImage tile={meld.tile} />
+                      <TileImage tile={meld.tile} />
+                    </div>
+                    <div className={bem('fu-item-detail')}>
+                      {is_tanyao_tile(meld.tile) ? (
+                        <>
+                          {t('fu-detail.chunchan-minko')} &mdash;{' '}
+                          {t('fu-detail.fu', { count: 2 })}
+                        </>
+                      ) : (
+                        <>
+                          {t('fu-detail.yaochu-minko')} &mdash;{' '}
+                          {t('fu-detail.fu', { count: 4 })}
+                        </>
+                      )}
+                    </div>
+                  </>
+                )}
+                {meld.type === 'chow' && (
+                  <>
+                    <div className={bem('fu-item-tiles')}>
+                      <TileImage tile={meld.first} />
                       <TileImage
                         tile={{
-                          type: part.first.type,
-                          number: (part.first.number + 1) as
+                          type: meld.first.type,
+                          number: (meld.first.number + 1) as
                             | 2
                             | 3
                             | 4
@@ -61,8 +192,8 @@ export const FuDetail: FC<FuDetailProps> = ({
                       />
                       <TileImage
                         tile={{
-                          type: part.first.type,
-                          number: (part.first.number + 2) as
+                          type: meld.first.type,
+                          number: (meld.first.number + 2) as
                             | 3
                             | 4
                             | 5
@@ -74,76 +205,61 @@ export const FuDetail: FC<FuDetailProps> = ({
                       />
                     </div>
                     <div className={bem('fu-item-detail')}>
-                      順子 &mdash; 0 符
+                      {t('fu-detail.shuntsu')} &mdash;{' '}
+                      {t('fu-detail.fu', { count: 0 })}
                     </div>
                   </>
                 )}
-                {part.type === 'kotsu' && (
+                {meld.type === 'kong' && (
                   <>
                     <div className={bem('fu-item-tiles')}>
-                      <TileImage tile={part.tile} />
-                      <TileImage tile={part.tile} />
-                      <TileImage tile={part.tile} />
+                      <TileImage
+                        tile={meld.concealed ? { type: 'back' } : meld.tile}
+                      />
+                      <TileImage tile={meld.tile} />
+                      <TileImage tile={meld.tile} />
+                      <TileImage
+                        tile={meld.concealed ? { type: 'back' } : meld.tile}
+                      />
                     </div>
                     <div className={bem('fu-item-detail')}>
-                      {is_tanyao_tile(part.tile) ? (
-                        <>中張牌暗刻 &mdash; 4 符</>
+                      {is_tanyao_tile(meld.tile) ? (
+                        meld.concealed ? (
+                          <>
+                            {t('fu-detail.chunchan-ankan')} &mdash;{' '}
+                            {t('fu-detail.fu', { count: 16 })}
+                          </>
+                        ) : (
+                          <>
+                            {t('fu-detail.chunchan-minkan')} &mdash;{' '}
+                            {t('fu-detail.fu', { count: 8 })}
+                          </>
+                        )
+                      ) : meld.concealed ? (
+                        <>
+                          {t('fu-detail.yaochu-ankan')} &mdash;{' '}
+                          {t('fu-detail.fu', { count: 32 })}
+                        </>
                       ) : (
-                        <>么九牌暗刻 &mdash; 8 符</>
-                      )}
-                    </div>
-                  </>
-                )}
-                {part.type === 'toitsu' && (
-                  <>
-                    <div className={bem('fu-item-tiles')}>
-                      <TileImage tile={part.tile} />
-                      <TileImage tile={part.tile} />
-                    </div>
-                    <div className={bem('fu-item-detail')}>
-                      {part.tile.type === tableConfig.round &&
-                      tableConfig.seat === part.tile.type ? (
-                        <>連風牌雀頭 &mdash; {ruleConfig.doubleWindFu} 符</>
-                      ) : part.tile.type === tableConfig.round ? (
-                        <>場風牌雀頭 &mdash; 2 符</>
-                      ) : part.tile.type === tableConfig.seat ? (
-                        <>自風牌雀頭 &mdash; 2 符</>
-                      ) : is_dragon_tile(part.tile) ? (
-                        <>三元牌雀頭 &mdash; 2 符</>
-                      ) : (
-                        <>雀頭 &mdash; 0 符</>
+                        <>
+                          {t('fu-detail.yaochu-minkan')} &mdash;{' '}
+                          {t('fu-detail.fu', { count: 16 })}
+                        </>
                       )}
                     </div>
                   </>
                 )}
               </div>
             ))}
-          {hora.melds.map((meld, i) => (
-            <div key={i} className={bem('fu-item')}>
-              {meld.type === 'pong' && (
-                <>
+            {hora.tatsu.type === 'ryammen' && (
+              <>
+                <div className={bem('fu-item')}>
                   <div className={bem('fu-item-tiles')}>
-                    <TileImage tile={meld.tile} />
-                    <TileImage tile={meld.tile} />
-                    <TileImage tile={meld.tile} />
-                  </div>
-                  <div className={bem('fu-item-detail')}>
-                    {is_tanyao_tile(meld.tile) ? (
-                      <>中張牌明刻 &mdash; 2 符</>
-                    ) : (
-                      <>么九牌明刻 &mdash; 4 符</>
-                    )}
-                  </div>
-                </>
-              )}
-              {meld.type === 'chow' && (
-                <>
-                  <div className={bem('fu-item-tiles')}>
-                    <TileImage tile={meld.first} />
+                    <TileImage tile={hora.tatsu.first} />
                     <TileImage
                       tile={{
-                        type: meld.first.type,
-                        number: (meld.first.number + 1) as
+                        type: hora.tatsu.first.type,
+                        number: (hora.tatsu.first.number + 1) as
                           | 2
                           | 3
                           | 4
@@ -153,10 +269,29 @@ export const FuDetail: FC<FuDetailProps> = ({
                           | 8
                       }}
                     />
+                  </div>
+                  <div className={bem('fu-item-detail')}>
+                    <div className={bem('fu-item-detail-item')}>
+                      {t('fu-detail.ryammen')} &mdash;{' '}
+                      {t('fu-detail.fu', { count: 0 })}
+                    </div>
+                    <div className={bem('fu-item-detail-item')}>
+                      {t('fu-detail.shuntsu')} &mdash;{' '}
+                      {t('fu-detail.fu', { count: 0 })}
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+            {hora.tatsu.type === 'kanchan' && (
+              <>
+                <div className={bem('fu-item')}>
+                  <div className={bem('fu-item-tiles')}>
+                    <TileImage tile={hora.tatsu.first} />
                     <TileImage
                       tile={{
-                        type: meld.first.type,
-                        number: (meld.first.number + 2) as
+                        type: hora.tatsu.first.type,
+                        number: (hora.tatsu.first.number + 2) as
                           | 3
                           | 4
                           | 5
@@ -167,237 +302,201 @@ export const FuDetail: FC<FuDetailProps> = ({
                       }}
                     />
                   </div>
-                  <div className={bem('fu-item-detail')}>順子 &mdash; 0 符</div>
-                </>
-              )}
-              {meld.type === 'kong' && (
-                <>
+                  <div className={bem('fu-item-detail')}>
+                    <div className={bem('fu-item-detail-item')}>
+                      {t('fu-detail.kanchan')} &mdash;{' '}
+                      {t('fu-detail.fu', { count: 2 })}
+                    </div>
+                    <div className={bem('fu-item-detail-item')}>
+                      {t('fu-detail.shuntsu')} &mdash;{' '}
+                      {t('fu-detail.fu', { count: 0 })}
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+            {hora.tatsu.type === 'penchan' && (
+              <>
+                <div className={bem('fu-item')}>
                   <div className={bem('fu-item-tiles')}>
+                    <TileImage tile={hora.tatsu.first} />
                     <TileImage
-                      tile={meld.concealed ? { type: 'back' } : meld.tile}
-                    />
-                    <TileImage tile={meld.tile} />
-                    <TileImage tile={meld.tile} />
-                    <TileImage
-                      tile={meld.concealed ? { type: 'back' } : meld.tile}
+                      tile={{
+                        type: hora.tatsu.first.type,
+                        number: (hora.tatsu.first.number + 1) as
+                          | 2
+                          | 3
+                          | 4
+                          | 5
+                          | 6
+                          | 7
+                          | 8
+                      }}
                     />
                   </div>
                   <div className={bem('fu-item-detail')}>
-                    {is_tanyao_tile(meld.tile) ? (
-                      meld.concealed ? (
-                        <>中張牌暗槓 &mdash; 16 符</>
-                      ) : (
-                        <>中張牌明槓 &mdash; 8 符</>
-                      )
-                    ) : meld.concealed ? (
-                      <>么九牌暗槓 &mdash; 32 符</>
-                    ) : (
-                      <>么九牌明槓 &mdash; 16 符</>
-                    )}
+                    <div className={bem('fu-item-detail-item')}>
+                      {t('fu-detail.penchan')} &mdash;{' '}
+                      {t('fu-detail.fu', { count: 2 })}
+                    </div>
+                    <div className={bem('fu-item-detail-item')}>
+                      {t('fu-detail.shuntsu')} &mdash;{' '}
+                      {t('fu-detail.fu', { count: 0 })}
+                    </div>
                   </div>
-                </>
+                </div>
+              </>
+            )}
+            {hora.tatsu.type === 'toitsu' && (
+              <>
+                <div className={bem('fu-item')}>
+                  <div className={bem('fu-item-tiles')}>
+                    <TileImage tile={hora.tatsu.tile} />
+                    <TileImage tile={hora.tatsu.tile} />
+                  </div>
+                  <div className={bem('fu-item-detail')}>
+                    <div className={bem('fu-item-detail-item')}>
+                      {t('fu-detail.shampon')} &mdash;{' '}
+                      {t('fu-detail.fu', { count: 0 })}
+                    </div>
+                    <div className={bem('fu-item-detail-item')}>
+                      {is_tanyao_tile(hora.tatsu.tile) ? (
+                        hora.type === 'tsumo' ? (
+                          <>
+                            {t('fu-detail.chunchan-anko')} &mdash;{' '}
+                            {t('fu-detail.fu', { count: 4 })}
+                          </>
+                        ) : (
+                          <>
+                            {t('fu-detail.chunchan-minko')} &mdash;{' '}
+                            {t('fu-detail.fu', { count: 2 })}
+                          </>
+                        )
+                      ) : hora.type === 'tsumo' ? (
+                        <>
+                          {t('fu-detail.yaochu-anko')} &mdash;{' '}
+                          {t('fu-detail.fu', { count: 8 })}
+                        </>
+                      ) : (
+                        <>
+                          {t('fu-detail.yaochu-minko')} &mdash;{' '}
+                          {t('fu-detail.fu', { count: 4 })}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+            {is_tile(hora.tatsu) && (
+              <>
+                <div className={bem('fu-item')}>
+                  <div className={bem('fu-item-tiles')}>
+                    <TileImage tile={hora.tatsu} />
+                  </div>
+                  <div className={bem('fu-item-detail')}>
+                    <div className={bem('fu-item-detail-item')}>
+                      {t('fu-detail.tanki')} &mdash;{' '}
+                      {t('fu-detail.fu', { count: 2 })}
+                    </div>
+                    <div className={bem('fu-item-detail-item')}>
+                      {hora.tatsu.type === tableConfig.round &&
+                      tableConfig.seat === hora.tatsu.type ? (
+                        <>
+                          {t('fu-detail.double-wind-head')} &mdash;{' '}
+                          {t('fu-detail.fu', {
+                            count: ruleConfig.doubleWindFu
+                          })}
+                        </>
+                      ) : hora.tatsu.type === tableConfig.round ? (
+                        <>
+                          {t('fu-detail.field-wind-head')} &mdash;{' '}
+                          {t('fu-detail.fu', { count: 2 })}
+                        </>
+                      ) : hora.tatsu.type === tableConfig.seat ? (
+                        <>
+                          {t('fu-detail.seat-wind-head')} &mdash;{' '}
+                          {t('fu-detail.fu', { count: 2 })}
+                        </>
+                      ) : is_dragon_tile(hora.tile) ? (
+                        <>
+                          {t('fu-detail.dragon-head')} &mdash;{' '}
+                          {t('fu-detail.fu', { count: 2 })}
+                        </>
+                      ) : (
+                        <>
+                          {t('fu-detail.head')} &mdash;{' '}
+                          {t('fu-detail.fu', { count: 0 })}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+            {hora.melds.every(m => m.type === 'kong' && m.concealed) &&
+              hora.type === 'ron' && (
+                <div className={bem('fu-item')}>
+                  <div></div>
+                  <div className={bem('fu-item-detail')}>
+                    {t('fu-detail.menzen-ron')} &mdash;{' '}
+                    {t('fu-detail.fu', { count: 10 })}
+                  </div>
+                </div>
               )}
-            </div>
-          ))}
-          {hora.tatsu.type === 'ryammen' && (
-            <>
-              <div className={bem('fu-item')}>
-                <div className={bem('fu-item-tiles')}>
-                  <TileImage tile={hora.tatsu.first} />
-                  <TileImage
-                    tile={{
-                      type: hora.tatsu.first.type,
-                      number: (hora.tatsu.first.number + 1) as
-                        | 2
-                        | 3
-                        | 4
-                        | 5
-                        | 6
-                        | 7
-                        | 8
-                    }}
-                  />
-                </div>
-                <div className={bem('fu-item-detail')}>
-                  <div className={bem('fu-item-detail-item')}>
-                    両面待ち &mdash; 0 符
-                  </div>
-                  <div className={bem('fu-item-detail-item')}>
-                    順子 &mdash; 0 符
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-          {hora.tatsu.type === 'kanchan' && (
-            <>
-              <div className={bem('fu-item')}>
-                <div className={bem('fu-item-tiles')}>
-                  <TileImage tile={hora.tatsu.first} />
-                  <TileImage
-                    tile={{
-                      type: hora.tatsu.first.type,
-                      number: (hora.tatsu.first.number + 2) as
-                        | 3
-                        | 4
-                        | 5
-                        | 6
-                        | 7
-                        | 8
-                        | 9
-                    }}
-                  />
-                </div>
-                <div className={bem('fu-item-detail')}>
-                  <div className={bem('fu-item-detail-item')}>
-                    嵌張待ち &mdash; 2 符
-                  </div>
-                  <div className={bem('fu-item-detail-item')}>
-                    順子 &mdash; 0 符
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-          {hora.tatsu.type === 'penchan' && (
-            <>
-              <div className={bem('fu-item')}>
-                <div className={bem('fu-item-tiles')}>
-                  <TileImage tile={hora.tatsu.first} />
-                  <TileImage
-                    tile={{
-                      type: hora.tatsu.first.type,
-                      number: (hora.tatsu.first.number + 1) as
-                        | 2
-                        | 3
-                        | 4
-                        | 5
-                        | 6
-                        | 7
-                        | 8
-                    }}
-                  />
-                </div>
-                <div className={bem('fu-item-detail')}>
-                  <div className={bem('fu-item-detail-item')}>
-                    辺張待ち &mdash; 2 符
-                  </div>
-                  <div className={bem('fu-item-detail-item')}>
-                    順子 &mdash; 0 符
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-          {hora.tatsu.type === 'toitsu' && (
-            <>
-              <div className={bem('fu-item')}>
-                <div className={bem('fu-item-tiles')}>
-                  <TileImage tile={hora.tatsu.tile} />
-                  <TileImage tile={hora.tatsu.tile} />
-                </div>
-                <div className={bem('fu-item-detail')}>
-                  <div className={bem('fu-item-detail-item')}>
-                    双碰待ち &mdash; 0 符
-                  </div>
-                  <div className={bem('fu-item-detail-item')}>
-                    {is_tanyao_tile(hora.tatsu.tile) ? (
-                      hora.type === 'tsumo' ? (
-                        <>中張牌暗刻 &mdash; 4 符</>
-                      ) : (
-                        <>中張牌明刻 &mdash; 2 符</>
-                      )
-                    ) : hora.type === 'tsumo' ? (
-                      <>么九牌暗刻 &mdash; 8 符</>
-                    ) : (
-                      <>么九牌明刻 &mdash; 4 符</>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-          {is_tile(hora.tatsu) && (
-            <>
-              <div className={bem('fu-item')}>
-                <div className={bem('fu-item-tiles')}>
-                  <TileImage tile={hora.tatsu} />
-                </div>
-                <div className={bem('fu-item-detail')}>
-                  <div className={bem('fu-item-detail-item')}>
-                    単騎待ち &mdash; 2 符
-                  </div>
-                  <div className={bem('fu-item-detail-item')}>
-                    {hora.tatsu.type === tableConfig.round &&
-                    tableConfig.seat === hora.tatsu.type ? (
-                      <>連風牌雀頭 &mdash; {ruleConfig.doubleWindFu} 符</>
-                    ) : hora.tatsu.type === tableConfig.round ? (
-                      <>場風牌雀頭 &mdash; 2 符</>
-                    ) : hora.tatsu.type === tableConfig.seat ? (
-                      <>自風牌雀頭 &mdash; 2 符</>
-                    ) : is_dragon_tile(hora.tile) ? (
-                      <>三元牌雀頭 &mdash; 2 符</>
-                    ) : (
-                      <>雀頭 &mdash; 0 符</>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-          {hora.melds.every(m => m.type === 'kong' && m.concealed) &&
-            hora.type === 'ron' && (
+            {hora.type === 'tsumo' && (
               <div className={bem('fu-item')}>
                 <div></div>
-                <div className={bem('fu-item-detail')}>
-                  門前ロン &mdash; 10 符
-                </div>
+                {hora.yaku.some(y => y.name === 'pinfu') ? (
+                  <div className={bem('fu-item-detail')}>
+                    {t('fu-detail.pinfu-tsumo')} &mdash;{' '}
+                    {t('fu-detail.fu', { count: 0 })}
+                  </div>
+                ) : (
+                  <div className={bem('fu-item-detail')}>
+                    {t('fu-detail.tsumo')} &mdash;{' '}
+                    {t('fu-detail.fu', { count: 2 })}
+                  </div>
+                )}
               </div>
             )}
-          {hora.type === 'tsumo' && (
-            <div className={bem('fu-item')}>
-              <div></div>
-              {hora.yaku.some(y => y.name === 'pinfu') ? (
-                <div className={bem('fu-item-detail')}>
-                  平和ツモ &mdash; 0 符
+            {hora.type === 'ron' &&
+              hora.melds.length > 0 &&
+              hora.melds.every(m => m.type === 'chow') &&
+              hora.tatsu.type === 'ryammen' &&
+              hora.parts.every(p => p.type !== 'kotsu') &&
+              !hora.parts
+                .filter((p): p is Toitsu => p.type === 'toitsu')
+                .every(
+                  t =>
+                    t.tile.type === tableConfig.round ||
+                    t.tile.type === tableConfig.seat ||
+                    is_dragon_tile(t.tile)
+                ) && (
+                <div className={bem('fu-item')}>
+                  <div></div>
+                  <div className={bem('fu-item-detail')}>
+                    {t('fu-detail.kuipinfu-ron')} &mdash;{' '}
+                    {t('fu-detail.fu', { count: 10 })}
+                  </div>
                 </div>
-              ) : (
-                <div className={bem('fu-item-detail')}>ツモ &mdash; 2 符</div>
               )}
-            </div>
-          )}
-          {hora.type === 'ron' &&
-            hora.melds.length > 0 &&
-            hora.melds.every(m => m.type === 'chow') &&
-            hora.tatsu.type === 'ryammen' &&
-            hora.parts.every(p => p.type !== 'kotsu') &&
-            !hora.parts
-              .filter((p): p is Toitsu => p.type === 'toitsu')
-              .every(
-                t =>
-                  t.tile.type === tableConfig.round ||
-                  t.tile.type === tableConfig.seat ||
-                  is_dragon_tile(t.tile)
-              ) && (
-              <div className={bem('fu-item')}>
-                <div></div>
-                <div className={bem('fu-item-detail')}>
-                  食い平和ロン &mdash; 10 符
-                </div>
-              </div>
-            )}
-        </div>
-      </div>
-    )}
-    {hora.form === 'chitoitsu' && (
-      <div className={bem()}>
-        <div className={bem('fu-items')}>
-          <div className={bem('fu-item')}>
-            <div></div>
-            <div className={bem('fu-item-detail')}>七対子 &mdash; 25 符</div>
           </div>
         </div>
-      </div>
-    )}
-  </>
-);
+      )}
+      {hora.form === 'chitoitsu' && (
+        <div className={bem()}>
+          <div className={bem('fu-items')}>
+            <div className={bem('fu-item')}>
+              <div></div>
+              <div className={bem('fu-item-detail')}>
+                {t('fu-detail.chitoitsu')} &mdash;{' '}
+                {t('fu-detail.fu', { count: 25 })}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};

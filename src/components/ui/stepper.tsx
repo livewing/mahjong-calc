@@ -1,6 +1,7 @@
 import React from 'react';
-import type { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BEM } from '../../lib/bem';
+import type { FC } from 'react';
 
 const bem = BEM('stepper');
 
@@ -21,6 +22,8 @@ export const Stepper: FC<StepperProps> = ({
   defaultValue,
   onChanged
 }) => {
+  const { t } = useTranslation();
+
   const onClick = (after: number) => () => {
     if (disabled) return;
     if (value === after) return;
@@ -34,7 +37,7 @@ export const Stepper: FC<StepperProps> = ({
           className={bem('reset', disabled ? 'disabled' : void 0)}
           onClick={onClick(defaultValue)}
         >
-          Reset
+          {t('ui.reset')}
         </div>
         <div
           className={bem(

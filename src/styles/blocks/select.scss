@@ -1,0 +1,12 @@
+.select {
+  &__select {
+    $this: &;
+    padding: 0.5rem;
+    border: 1px var(--primary-color) solid;
+    border-radius: 0.2rem;
+    width: 100%;
+    color: unset;
+    background: unset;
+    cursor: pointer;
+  }
+}

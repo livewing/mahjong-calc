@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BEM } from '../../../lib/bem';
 import {
   add_meld,
@@ -8,10 +8,11 @@ import {
   remove_meld,
   sort_input
 } from '../../../lib/hand';
-import type { HandInput, MeldInput, SingleLegalInput } from '../../../lib/hand';
 import { Button } from '../button';
 import { Piece } from './piece';
 import { MeldPiece } from './meld-piece';
+import type { FC } from 'react';
+import type { HandInput, MeldInput, SingleLegalInput } from '../../../lib/hand';
 
 const bem = BEM('tile-input-area');
 
@@ -37,6 +38,7 @@ export const TileInputArea: FC<TileInputAreaProps> = ({
 }) => {
   const sortedValue = sort_input(value);
   const [focus, setFocus] = useState<TileInputAreaFocus>({ type: 'legal' });
+  const { t } = useTranslation();
 
   const onSetFocus = (newFocus: TileInputAreaFocus) => {
     if (newFocus.type === 'legal' && focus.type === 'legal') return;
@@ -144,7 +146,7 @@ export const TileInputArea: FC<TileInputAreaProps> = ({
       </div>
       <div className={bem('buttons')}>
         <Button modifier="danger" onClick={() => onSetValue(EMPTY_INPUT)}>
-          クリア
+          {t('tile-input.clear')}
         </Button>
         <Button
           disabled={!canMeld}
@@ -152,7 +154,7 @@ export const TileInputArea: FC<TileInputAreaProps> = ({
             addMeld({ type: 'pong' });
           }}
         >
-          ポン
+          {t('tile-input.pon')}
         </Button>
         <Button
           disabled={!canMeld}
@@ -160,7 +162,7 @@ export const TileInputArea: FC<TileInputAreaProps> = ({
             addMeld({ type: 'chow' });
           }}
         >
-          チー
+          {t('tile-input.chii')}
         </Button>
         <Button
           disabled={!canMeld}
@@ -168,7 +170,7 @@ export const TileInputArea: FC<TileInputAreaProps> = ({
             addMeld({ type: 'kong', concealed: false });
           }}
         >
-          明槓
+          {t('tile-input.minkan')}
         </Button>
         <Button
           disabled={!canMeld}
@@ -176,7 +178,7 @@ export const TileInputArea: FC<TileInputAreaProps> = ({
             addMeld({ type: 'kong', concealed: true });
           }}
         >
-          暗槓
+          {t('tile-input.ankan')}
         </Button>
       </div>
     </div>

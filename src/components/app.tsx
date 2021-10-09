@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import type { FC } from 'react';
-import { TileInput } from './ui/tile-input';
 import { BEM } from '../lib/bem';
-import type { HandConfig, RuleConfig, TableConfig } from '../lib/config';
+import { EMPTY_INPUT } from '../lib/hand';
+import { Header } from './header';
+import { Footer } from './footer';
 import { NotifyUpdate } from './notify-update';
 import { TableConfigPanel } from './table-config';
+import { TileInput } from './ui/tile-input';
 import { HandConfigPanel } from './hand-config';
 import { Result } from './result';
 import { RuleConfigPanel } from './rule-config';
-import { EMPTY_INPUT } from '../lib/hand';
+import { AppConfigPanel } from './app-config';
+import type { FC } from 'react';
+import type { HandConfig, RuleConfig, TableConfig } from '../lib/config';
 import type { HandInput } from '../lib/hand';
 import '../styles/index.scss';
-import { Header } from './header';
-import { Footer } from './footer';
 
 const bem = BEM('app');
 
@@ -64,6 +65,7 @@ export const App: FC = () => {
           ruleConfig={ruleConfig}
         />
         <RuleConfigPanel value={ruleConfig} onChange={setRuleConfig} />
+        <AppConfigPanel />
       </div>
       <Footer />
     </>

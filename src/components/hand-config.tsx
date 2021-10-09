@@ -1,9 +1,10 @@
 import React from 'react';
-import type { FC } from 'react';
-import type { HandConfig, TableConfig } from '../lib/config';
+import { useTranslation } from 'react-i18next';
 import { Config, ConfigRow } from './ui/config';
 import { Segment } from './ui/segment';
 import { Stepper } from './ui/stepper';
+import type { FC } from 'react';
+import type { HandConfig, TableConfig } from '../lib/config';
 
 interface HandConfigPanelProps {
   value: HandConfig;
@@ -20,9 +21,11 @@ export const HandConfigPanel: FC<HandConfigPanelProps> = ({
   onChange,
   onReset
 }) => {
+  const { t } = useTranslation();
+
   return (
-    <Config header="手牌・役の設定" onReset={onReset}>
-      <ConfigRow name="ドラ">
+    <Config header={t('hand-config.title')} onReset={onReset}>
+      <ConfigRow name={t('hand-config.dora')}>
         <Stepper
           min={0}
           max={Number.MAX_SAFE_INTEGER}
@@ -31,46 +34,61 @@ export const HandConfigPanel: FC<HandConfigPanelProps> = ({
           onChanged={v => onChange && onChange({ ...value, dora: v })}
         />
       </ConfigRow>
-      <ConfigRow name="立直">
+      <ConfigRow name={t('hand-config.riichi')}>
         <Segment
-          items={['なし', '立直', 'ダブル立直']}
+          items={[
+            t('hand-config.none'),
+            t('hand-config.riichi'),
+            t('hand-config.double-riichi')
+          ]}
           index={riichiOpts.indexOf(value.riichi)}
           onChanged={v =>
             onChange && onChange({ ...value, riichi: riichiOpts[v] })
           }
         />
       </ConfigRow>
-      <ConfigRow name="一発">
+      <ConfigRow name={t('hand-config.ippatsu')}>
         <Segment
-          items={['なし', '一発']}
+          items={[t('hand-config.none'), t('hand-config.ippatsu')]}
           index={value.ippatsu ? 1 : 0}
           onChanged={v => onChange && onChange({ ...value, ippatsu: v === 1 })}
         />
       </ConfigRow>
-      <ConfigRow name="嶺上開花">
+      <ConfigRow name={t('hand-config.rinshan')}>
         <Segment
-          items={['なし', '嶺上開花']}
+          items={[t('hand-config.none'), t('hand-config.rinshan')]}
           index={value.rinshan ? 1 : 0}
           onChanged={v => onChange && onChange({ ...value, rinshan: v === 1 })}
         />
       </ConfigRow>
-      <ConfigRow name="搶槓">
+      <ConfigRow name={t('hand-config.chankan')}>
         <Segment
-          items={['なし', '搶槓']}
+          items={[t('hand-config.none'), t('hand-config.chankan')]}
           index={value.chankan ? 1 : 0}
           onChanged={v => onChange && onChange({ ...value, chankan: v === 1 })}
         />
       </ConfigRow>
-      <ConfigRow name="海底 / 河底">
+      <ConfigRow name={t('hand-config.haitei-hotei')}>
         <Segment
-          items={['なし', '海底 / 河底']}
+          items={[t('hand-config.none'), t('hand-config.haitei-hotei')]}
           index={value.last ? 1 : 0}
           onChanged={v => onChange && onChange({ ...value, last: v === 1 })}
         />
       </ConfigRow>
-      <ConfigRow name={tableConfig.seat === 'east' ? '天和' : '地和'}>
+      <ConfigRow
+        name={
+          tableConfig.seat === 'east'
+            ? t('hand-config.tenho')
+            : t('hand-config.chiho')
+        }
+      >
         <Segment
-          items={['なし', tableConfig.seat === 'east' ? '天和' : '地和']}
+          items={[
+            t('hand-config.none'),
+            tableConfig.seat === 'east'
+              ? t('hand-config.tenho')
+              : t('hand-config.chiho')
+          ]}
           index={value.blessing ? 1 : 0}
           onChanged={v => onChange && onChange({ ...value, blessing: v === 1 })}
         />

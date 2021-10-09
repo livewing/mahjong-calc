@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { initI18n } from './lib/i18n';
 import { App } from './components/app';
 
 if ('serviceWorker' in navigator) {
@@ -8,4 +9,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+initI18n().then(() => {
+  ReactDOM.render(<App />, document.getElementById('app'));
+});

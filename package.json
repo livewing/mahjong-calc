@@ -27,8 +27,11 @@
     "*.scss": "stylelint --fix"
   },
   "dependencies": {
+    "i18next": "^21.2.4",
+    "i18next-browser-languagedetector": "^6.1.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-i18next": "^11.12.0"
   },
   "devDependencies": {
     "@types/copy-webpack-plugin": "^8.0.1",
@@ -36,6 +39,7 @@
     "@types/react": "^17.0.27",
     "@types/react-dom": "^17.0.9",
     "@types/webpack": "^5.28.0",
+    "@types/webpack-env": "^1.16.2",
     "@types/workbox-webpack-plugin": "^5.1.8",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
@@ -70,6 +74,7 @@
     "webpack-cli": "^4.9.0",
     "webpack-dev-server": "^4.3.1",
     "workbox-sw": "^6.3.0",
-    "workbox-webpack-plugin": "^6.3.0"
+    "workbox-webpack-plugin": "^6.3.0",
+    "yaml-loader": "^0.6.0"
   }
 }

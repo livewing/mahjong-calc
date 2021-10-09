@@ -1,11 +1,12 @@
 import React from 'react';
-import type { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { is_complete_input } from '../lib/hand';
-import type { HandInput } from '../lib/hand';
 import { Container } from './ui/container';
-import type { HandConfig, RuleConfig, TableConfig } from '../lib/config';
 import { generate_result } from '../lib/result';
 import { HoraItem } from './hora-item';
+import type { FC } from 'react';
+import type { HandInput } from '../lib/hand';
+import type { HandConfig, RuleConfig, TableConfig } from '../lib/config';
 
 interface ResultProps {
   tableConfig: TableConfig;
@@ -20,39 +21,62 @@ export const Result: FC<ResultProps> = ({
   handConfig,
   ruleConfig
 }) => {
+  const { t } = useTranslation();
+
   const result = is_complete_input(handInput)
     ? generate_result(handInput, tableConfig, handConfig, ruleConfig)
     : void 0;
 
   if (typeof result === 'undefined') {
     return (
-      <Container header="結果: 手牌未入力" modifier="danger">
-        <p>牌を入力してください。</p>
+      <Container
+        header={`${t('result.result')}: ${t('result.no-input')}`}
+        modifier="danger"
+      >
+        <p>{t('result.no-input-message')}</p>
       </Container>
     );
   }
   if (!result.tempai) {
     return (
-      <Container header="結果: 不聴" modifier="warning">
-        <p>面子手: {result.shanten} 向聴</p>
+      <Container
+        header={`${t('result.result')}: ${t('result.noten')}`}
+        modifier="warning"
+      >
+        <p>
+          {t('result.mentsu-hand')}:{' '}
+          {t('result.shanten', { count: result.shanten })}
+        </p>
         {typeof result.shantenChitoitsu === 'number' && (
-          <p>七対子: {result.shantenChitoitsu} 向聴</p>
+          <p>
+            {t('result.chitoitsu-hand')}:{' '}
+            {t('result.shanten', { count: result.shantenChitoitsu })}
+          </p>
         )}
         {typeof result.shantenKokushi === 'number' && (
-          <p>国士無双: {result.shantenKokushi} 向聴</p>
+          <p>
+            {t('result.kokushi-hand')}:{' '}
+            {t('result.shanten', { count: result.shantenKokushi })}
+          </p>
         )}
       </Container>
     );
   }
   if (result.hora.length === 0) {
     return (
-      <Container header="結果: 不聴" modifier="warning">
-        <div>和了牌無し</div>
+      <Container
+        header={`${t('result.result')}: ${t('result.noten')}`}
+        modifier="warning"
+      >
+        <div>{t('result.no-hora-tiles')}</div>
       </Container>
     );
   }
   return (
-    <Container header="結果: 聴牌" modifier="primary">
+    <Container
+      header={`${t('result.result')}: ${t('result.tempai')}`}
+      modifier="primary"
+    >
       {result.hora.map((h, i) => (
         <HoraItem
           key={i}
