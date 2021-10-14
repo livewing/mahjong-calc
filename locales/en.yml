@@ -8,7 +8,7 @@ translation:
     how-to-use: How-to
   notify-update:
     title: Update
-    message: アップデートがあります。再読み込みすると、アップデートが適用されます。
+    message: Updates are available. Reload to apply them.
     reload: Reload
     close: Close
   table-config:
@@ -169,7 +169,7 @@ translation:
     on: On
     off: Off
     counted-yakuman: Accumulated Yakuman
-    gte-han: ">= {{count}} Han"
+    gte-han: "≥ {{count}} Han"
     multiple-yakuman: Multiple Yakuman
     round-up-mangan: Round-up Mangan
     round-up-basic-point: "Base Points: {{count}}"
@@ -185,5 +185,5 @@ translation:
     title: App Config
     language: Language
   footer:
-    license: この Web アプリケーションは <1>The MIT License</1> の下でライセンスされています。本アプリケーションの作者は、本アプリケーションに関しての責任を負わないものとします。
-    credit: 麻雀牌の画像は <1>無料素材倶楽部</1> のものを使用しています。
+    license: This app is licensed under <1>The MIT License</1>. We assume no liability for this app.
+    credit: The mahjong tile images are from <1>無料素材倶楽部</1>.
