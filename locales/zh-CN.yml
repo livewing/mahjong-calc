@@ -8,7 +8,7 @@ translation:
     how-to-use: 使用方法
   notify-update:
     title: 更新
-    message: アップデートがあります。再読み込みすると、アップデートが適用されます。
+    message: 有更新可用。重新加载后生效。
     reload: 重新加载
     close: 关闭
   table-config:
@@ -185,5 +185,5 @@ translation:
     title: APP 设定
     language: 语言
   footer:
-    license: この Web アプリケーションは <1>The MIT License</1> の下でライセンスされています。本アプリケーションの作者は、本アプリケーションに関しての責任を負わないものとします。
-    credit: 麻雀牌の画像は <1>無料素材倶楽部</1> のものを使用しています。
+    license: 这个 APP 使用了 <1>The MIT License</1>。由这个 APP 引起的纠纷和造成的一切后果，其责任与本作者无关。
+    credit: 麻将牌的图像属于 <1>無料素材倶楽部</1>。
