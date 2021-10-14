@@ -1,0 +1,189 @@
+locale:
+  name: English
+translation:
+  ui:
+    reset: Reset
+  header:
+    title: 麻雀得点計算機 (Mahjong Score Calculator)
+    how-to-use: How-to
+  notify-update:
+    title: Update
+    message: Updates are available. Reload to apply them.
+    reload: Reload
+    close: Close
+  table-config:
+    title: Table Config
+    field-wind: Round Wind
+    seat-wind: Seat Wind
+    continue: Honba
+    deposit: Riichi Bets
+    east: East
+    south: South
+    west: West
+    north: North
+  tile-input:
+    title: Hand Tiles
+    clear: Clear
+    pon: Pon
+    chii: Chii
+    minkan: Open Kan
+    ankan: Closed Kan
+  hand-config:
+    title: Hand & Yaku Config
+    none: None
+    dora: Dora
+    riichi: Riichi
+    double-riichi: Double Riichi
+    ippatsu: Ippatsu
+    rinshan: After a Kan
+    chankan: Robbing a Kan
+    haitei-hotei: Under the Sea/Under the River
+    tenho: Blessing of Heaven
+    chiho: Blessing of Earth
+  result:
+    result: Result
+    no-input: No input of hand tiles
+    noten: Not Tempai
+    tempai: Tempai
+    no-input-message: Please input your hand tiles.
+    mentsu-hand: Mentsu Hand
+    chitoitsu-hand: 7 Pairs Hand
+    kokushi-hand: 13 Orphans Hand
+    shanten: "{{count}} to Tempai"
+    no-hora-tiles: No Hora tile
+  hora-item:
+    tsumo: Tsumo
+    ron: Ron
+    no-yaku: No Yaku
+    points: Points
+    mangan: Mangan
+    haneman: Haneman
+    baiman: Baiman
+    sambaiman: Sambaiman
+    yakuman: Yakuman
+    double-yakuman: Double Yakuman
+    triple-yakuman: Triple Yakuman
+    quadruple-yakuman: Quadruple Yakuman
+    quintuple-yakuman: Quintuple Yakuman
+    sextuple-yakuman: Sextuple Yakuman
+    septuple-yakuman: Septuple Yakuman
+    octuple-yakuman: Octuple Yakuman
+    nonuple-yakuman: Nonuple Yakuman
+    decuple-yakuman: Decuple Yakuman
+    more-yakuman: More Yakuman
+    ron-detail: "{{a}} - {{b}}"
+    tsumo-east-detail: "{{count}} All"
+    tsumo-east-continue-detail: "{{a}} - {{b}} All"
+    tsumo-other-detail: "{{a}}/{{b}}"
+    tsumo-other-continue-detail: "{{a}}/{{b}} - {{c}}/{{d}}"
+  fu-detail:
+    title: Fu
+    fu: "{{count}} Fu"
+    futei: Base Fu
+    head: Head
+    double-wind-head: Double Wind Head
+    field-wind-head: Round Wind Head
+    seat-wind-head: Seat Wind Head
+    dragon-head: Dragon Head
+    shuntsu: Sequence
+    chunchan-minko: Open Triplet of Simples
+    chunchan-anko: Closed Triplet of Simples
+    chunchan-minkan: Open Kan of Simples
+    chunchan-ankan: Closed Kan of Simples
+    yaochu-minko: Open Triplet of Terminals
+    yaochu-anko: Closed Triplet of Terminals
+    yaochu-minkan: Open Kan of Terminals
+    yaochu-ankan: Closed Kan of Terminals
+    ryammen: Double Sided Wait
+    kanchan: Middle Wait
+    penchan: End Wait
+    shampon: Double Pair Wait
+    tanki: Single Wait
+    menzen-ron: Menzenchin Ron
+    kuipinfu-ron: Pinfu Ron with an Open Hand
+    tsumo: Tsumo
+    pinfu-tsumo: Pinfu Tsumo
+    chitoitsu: 7 Pairs
+  yaku:
+    riichi: Riichi
+    ippatsu: Ippatsu
+    tsumo: Menzenchin Tsumo
+    tanyao: Tanyao
+    pinfu: Pinfu
+    iipeko: Pure Double Sequence
+    field-wind: Round Wind
+    seat-wind: Seat Wind
+    white: Dragon White
+    green: Dragon Green
+    red: Dragon Red
+    rinshan: After a Kan
+    chankan: Robbing a Kan
+    haitei: Under the Sea
+    hotei: Under the River
+    sanshoku-dojun: Mixed Triple Sequence
+    sanshoku-doko: Triple Triplets
+    ittsu: Pure Straight
+    chanta: Half Outside Hand
+    chitoitsu: 7 Pairs
+    toitoi: All Triplets
+    sananko: 3 Concealed Triplets
+    honroto: All Terminals & Honors
+    sankantsu: 3 Quads
+    shosangen: Little 3 Dragons
+    double-riichi: Double Riichi
+    honitsu: Half Flush
+    junchan: Fully Outside Hand
+    ryampeko: Twice Pure Double Sequence
+    chinitsu: Full Flush
+    dora: Dora
+    kokushi: 13 Orphans
+    kokushi-13: 13-wait 13 Orphans
+    suanko: 4 Concealed Triplets
+    suanko-tanki: Single-wait 4 Concealed Triplets
+    daisangen: Big 3 Dragons
+    tsuiso: All Honors
+    shosushi: 4 Little Winds
+    daisushi: 4 Big Winds
+    ryuiso: All Green
+    chinroto: All Terminals
+    sukantsu: 4 Quads
+    churen: 9 Gates
+    pure-churen: True 9 Gates
+    tenho: Blessing of Heaven
+    chiho: Blessing of Earth
+  yaku-detail:
+    title: Yaku
+    han: "{{count}} Han"
+  score-detail:
+    title: Fu & Han
+    fu: "{{count}} Fu"
+    han: "{{count}} Han"
+    basic-point: "Base Points: {{count}}"
+  diff-detail:
+    title: Point Difference
+    point: "{{count}}"
+    east-diff: "Point difference from the Dealer: {{count}}"
+    other-diff: "Point difference from Non-dealers: {{count}}"
+  rule-config:
+    title: Rule Config
+    on: On
+    off: Off
+    counted-yakuman: Accumulated Yakuman
+    gte-han: "≥ {{count}} Han"
+    multiple-yakuman: Multiple Yakuman
+    round-up-mangan: Round-up Mangan
+    round-up-basic-point: "Base Points: {{count}}"
+    double-wind-fu: Double Wind Fu
+    fu: "{{count}} Fu"
+    kokushi-13: 13-wait 13 Orphans
+    suanko-tanki: Single-wait 4 Concealed Triplets
+    daisushi: 4 Big Winds
+    pure-churen: True 9 Gates
+    yakuman: Yakuman
+    double-yakuman: Double Yakuman
+  app-config:
+    title: App Config
+    language: Language
+  footer:
+    license: This app is licensed under <1>The MIT License</1>. We assume no liability for this app.
+    credit: The mahjong tile images are from <1>無料素材倶楽部</1>.
