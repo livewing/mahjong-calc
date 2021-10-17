@@ -5,6 +5,7 @@ translation:
     reset: Reset
   header:
     title: 麻雀得点計算機 (Mahjong Score Calculator)
+    language: Language
     how-to-use: How-to
   notify-update:
     title: Update
@@ -181,9 +182,6 @@ translation:
     pure-churen: True 9 Gates
     yakuman: Yakuman
     double-yakuman: Double Yakuman
-  app-config:
-    title: App Config
-    language: Language
   footer:
     license: This app is licensed under <1>The MIT License</1>. We assume no liability for this app.
     credit: The mahjong tile images are from <1>無料素材倶楽部</1>.

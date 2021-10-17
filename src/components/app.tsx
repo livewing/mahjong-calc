@@ -9,7 +9,6 @@ import { TileInput } from './ui/tile-input';
 import { HandConfigPanel } from './hand-config';
 import { Result } from './result';
 import { RuleConfigPanel } from './rule-config';
-import { AppConfigPanel } from './app-config';
 import type { FC } from 'react';
 import type { HandConfig, RuleConfig, TableConfig } from '../lib/config';
 import type { HandInput } from '../lib/hand';
@@ -65,7 +64,6 @@ export const App: FC = () => {
           ruleConfig={ruleConfig}
         />
         <RuleConfigPanel value={ruleConfig} onChange={setRuleConfig} />
-        <AppConfigPanel />
       </div>
       <Footer />
     </>

@@ -1,15 +1,4 @@
 .segment {
-  &__wrapper {
-    $this: &;
-    display: flex;
-    border: 1px var(--primary-color) solid;
-    border-radius: 0.2rem;
-    &--disabled {
-      @extend #{$this};
-      border: 1px var(--secondary-color) solid;
-      opacity: 0.5;
-    }
-  }
   &__element {
     $this: &;
     padding: 0.5rem;
@@ -27,12 +16,21 @@
       color: white;
       cursor: default;
     }
+  }
 
-    &--disabled {
+  &__wrapper {
+    $this: &;
+    display: flex;
+    border: 1px var(--primary-color) solid;
+    border-radius: 0.2rem;
+
+    &--vertical {
       @extend #{$this};
-      cursor: not-allowed;
-      &:not(:first-child) {
-        border-left: 1px var(--secondary-color) solid;
+      flex-direction: column;
+
+      & .segment__element:not(:first-child) {
+        border-left: 0;
+        border-top: 1px var(--primary-color) solid;
       }
     }
   }

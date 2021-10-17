@@ -27,11 +27,14 @@
     "*.scss": "stylelint --fix"
   },
   "dependencies": {
+    "@popperjs/core": "^2.10.2",
     "i18next": "^21.2.4",
     "i18next-browser-languagedetector": "^6.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-i18next": "^11.12.0"
+    "react-i18next": "^11.12.0",
+    "react-icons": "^4.3.1",
+    "react-popper": "^2.2.5"
   },
   "devDependencies": {
     "@types/copy-webpack-plugin": "^8.0.1",

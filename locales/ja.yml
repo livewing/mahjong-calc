@@ -5,6 +5,7 @@ translation:
     reset: リセット
   header:
     title: 麻雀得点計算機
+    language: 言語
     how-to-use: 使用方法
   notify-update:
     title: アップデート
@@ -181,9 +182,6 @@ translation:
     pure-churen: 純正九蓮宝燈
     yakuman: 役満
     double-yakuman: ダブル役満
-  app-config:
-    title: アプリケーションの設定
-    language: 言語
   footer:
     license: この Web アプリケーションは <1>The MIT License</1> の下でライセンスされています。本アプリケーションの作者は、本アプリケーションに関しての責任を負わないものとします。
     credit: 麻雀牌の画像は <1>無料素材倶楽部</1> のものを使用しています。

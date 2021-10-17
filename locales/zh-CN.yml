@@ -5,6 +5,7 @@ translation:
     reset: 重置
   header:
     title: 麻雀得点計算機
+    language: 语言
     how-to-use: 使用方法
   notify-update:
     title: 更新
@@ -181,9 +182,6 @@ translation:
     pure-churen: 纯正九莲宝灯
     yakuman: 役满
     double-yakuman: 双倍役满
-  app-config:
-    title: APP 设定
-    language: 语言
   footer:
     license: 这个 APP 使用了 <1>The MIT License</1>。由这个 APP 引起的纠纷和造成的一切后果，其责任与本作者无关。
     credit: 麻将牌的图像属于 <1>無料素材倶楽部</1>。
