@@ -1,6 +1,6 @@
 {
   "name": "mahjong-calc",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Mahjong score calculator",
   "scripts": {
     "build": "cross-env NODE_ENV='production' TS_NODE_PROJECT='tsconfig.webpack.json' webpack",
