@@ -19,19 +19,19 @@ img {
   vertical-align: bottom;
 }
 
-@import "variables.scss";
+@import "variables";
 
-@import "blocks/button.scss";
-@import "blocks/config.scss";
-@import "blocks/container.scss";
-@import "blocks/dropdown.scss";
-@import "blocks/footer.scss";
-@import "blocks/fu-detail.scss";
-@import "blocks/header.scss";
-@import "blocks/hora-item.scss";
-@import "blocks/notify-update.scss";
-@import "blocks/segment.scss";
-@import "blocks/stepper.scss";
-@import "blocks/tile-input.scss";
-@import "blocks/tile-input-area.scss";
-@import "blocks/tile-keyboard.scss";
+@import "blocks/button";
+@import "blocks/config";
+@import "blocks/container";
+@import "blocks/dropdown";
+@import "blocks/footer";
+@import "blocks/fu-detail";
+@import "blocks/header";
+@import "blocks/hora-item";
+@import "blocks/notify-update";
+@import "blocks/segment";
+@import "blocks/stepper";
+@import "blocks/tile-input";
+@import "blocks/tile-input-area";
+@import "blocks/tile-keyboard";
