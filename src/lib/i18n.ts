@@ -1,4 +1,4 @@
-import i18next from 'i18next';
+import { use } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import type { TFunction } from 'i18next';
@@ -11,8 +11,7 @@ const resources = localesContext.keys().reduce((acc, cur) => {
 }, {});
 
 export const initI18n = (): Promise<TFunction> =>
-  i18next
-    .use(LanguageDetector)
+  use(LanguageDetector)
     .use(initReactI18next)
     .init({
       resources,
