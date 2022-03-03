@@ -37,7 +37,7 @@
     "react-popper": "^2.2.5"
   },
   "devDependencies": {
-    "@types/copy-webpack-plugin": "^8.0.1",
+    "@types/copy-webpack-plugin": "^10.1.0",
     "@types/html-webpack-plugin": "^3.2.6",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.13",
