@@ -1,7 +1,7 @@
 import { resolve } from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import CopyPlugin from 'copy-webpack-plugin';
-import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin'; // eslint-disable-line import/default
+import { GenerateSW } from 'workbox-webpack-plugin';
 import type { Configuration } from 'webpack';
 
 const NODE_ENV =
@@ -70,7 +70,7 @@ const config: Configuration = {
     new CopyPlugin({ patterns: ['resources'] }),
     ...(NODE_ENV === 'production'
       ? [
-          new WorkboxWebpackPlugin.GenerateSW({
+          new GenerateSW({
             swDest: resolve(distPath, 'sw.js'),
             skipWaiting: true,
             clientsClaim: true,
