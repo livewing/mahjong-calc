@@ -6,8 +6,8 @@
   "dir": "ltr",
   "lang": "ja-JP",
   "start_url": ".",
-  "theme_color": "#2ac79b",
-  "background_color": "white",
+  "theme_color": "#2563eb",
+  "background_color": "black",
   "orientation": "portrait",
   "display": "standalone",
   "icons": [

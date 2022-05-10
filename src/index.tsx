@@ -1,7 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { App } from './components/App';
+import { StoreProvider } from './contexts/store';
 import { initI18n } from './lib/i18n';
-import { App } from './components/app';
+import './style.css';
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
@@ -10,5 +12,13 @@ if ('serviceWorker' in navigator) {
 }
 
 initI18n().then(() => {
-  ReactDOM.render(<App />, document.getElementById('app'));
+  const el = document.getElementById('app');
+  if (el === null) throw new Error('#app is not found');
+  createRoot(el).render(
+    <React.StrictMode>
+      <StoreProvider>
+        <App />
+      </StoreProvider>
+    </React.StrictMode>
+  );
 });

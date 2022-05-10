@@ -1,38 +1,35 @@
 locale:
   name: English
 translation:
-  ui:
-    reset: Reset
   header:
-    title: 麻雀得点計算機 (Mahjong Score Calculator)
-    language: Language
-    how-to-use: How-to
-  notify-update:
-    title: Update
-    message: Updates are available. Reload to apply them.
-    reload: Reload
-    close: Close
-  table-config:
-    title: Table Config
-    field-wind: Round Wind
+    title: Mahjong Score Calculator
+    update: Update
+    help: Help
+    scoring-table: Scoring Table
+    settings: Settings
+  table-settings:
+    round-wind: Round Wind
     seat-wind: Seat Wind
-    continue: Honba
-    deposit: Riichi Bets
     east: East
     south: South
     west: West
     north: North
+    deposit: Riichi Bets
+    continue: Honba
   tile-input:
-    title: Hand Tiles
-    clear: Clear
+    dora-indicators: Dora Indicators
+    hand: Hand
+    clear-inputs: Clear Inputs
+    random: "Random {{count}} Tiles"
+    random-chinitsu: Random Full Flush
+    copy-hand-as-mpsz: Copy Hand as MPSZ Format
     pon: Pon
     chii: Chii
     minkan: Open Kan
     ankan: Closed Kan
-  hand-config:
-    title: Hand & Yaku Config
+    toggle-red: Toggle Red
+  hand-options:
     none: None
-    dora: Dora
     riichi: Riichi
     double-riichi: Double Riichi
     ippatsu: Ippatsu
@@ -41,18 +38,19 @@ translation:
     haitei-hotei: Under the Sea/Under the River
     tenho: Blessing of Heaven
     chiho: Blessing of Earth
+  input-glance:
+    round-east: East Round
+    round-south: South Round
+    round-west: West Round
+    round-north: North Round
+    seat-east: East Seat
+    seat-south: South Seat
+    seat-west: West Seat
+    seat-north: North Seat
   result:
-    result: Result
-    no-input: No input of hand tiles
-    noten: Not Tempai
-    tempai: Tempai
-    no-input-message: Please input your hand tiles.
-    mentsu-hand: Mentsu Hand
-    chitoitsu-hand: 7 Pairs Hand
-    kokushi-hand: 13 Orphans Hand
-    shanten: "{{count}} to Tempai"
+    input-message: Please input your hand tiles.
+    hora: Win. Input more hand tiles to calculate the score.
     no-hora-tiles: No Hora tile
-  hora-item:
     tsumo: Tsumo
     ron: Ron
     no-yaku: No Yaku
@@ -77,13 +75,40 @@ translation:
     tsumo-east-continue-detail: "{{a}} - {{b}} All"
     tsumo-other-detail: "{{a}}/{{b}}"
     tsumo-other-continue-detail: "{{a}}/{{b}} - {{c}}/{{d}}"
-  fu-detail:
+    han: "{{count}} Han"
+    fu-han: "{{a}} Fu {{b}} Han"
+    score: Score
+    base-point: Base Points
+    fu-var: Fu
+    han-var: Han
+    dealer-pays: Dealer Pays
+    non-dealer-pay: Non-dealer Pay
+    change-in-score: Change in score
+    plus-han: "+{{count}} Han"
+    plus-han-2: "+{{a}}, +{{b}} Han"
+    plus-han-range: "+{{a}} - +{{b}} Han"
+    plus-gte-han: "+ ≥ {{count}} Han"
+    point-diff: Point Difference
+    point: "{{count}} Points"
+    dealer-diff: "Point difference from the Dealer: {{count}}"
+    non-dealer-diff: "Point difference from Non-dealers: {{count}}"
+    shanten: "{{count}} to Tempai"
+    type_one: "{{count}} Type"
+    type_other: "{{count}} Types"
+    tile_one: "{{count}} Tile"
+    tile_other: "{{count}} Tiles"
+    tempai: Tempai
+    discard: Discard
+    waiting: Waiting
+    acceptance: Acceptance
+    point-range: "{{a}} - {{b}} Points"
+  fu:
     title: Fu
     fu: "{{count}} Fu"
     futei: Base Fu
     head: Head
     double-wind-head: Double Wind Head
-    field-wind-head: Round Wind Head
+    round-wind-head: Round Wind Head
     seat-wind-head: Seat Wind Head
     dragon-head: Dragon Head
     shuntsu: Sequence
@@ -101,11 +126,12 @@ translation:
     shampon: Double Pair Wait
     tanki: Single Wait
     menzen-ron: Menzenchin Ron
-    kuipinfu-ron: Pinfu Ron with an Open Hand
+    kui-pinfu: Pinfu Ron with an Open Hand
     tsumo: Tsumo
     pinfu-tsumo: Pinfu Tsumo
     chitoitsu: 7 Pairs
   yaku:
+    yaku: Yaku
     riichi: Riichi
     ippatsu: Ippatsu
     tsumo: Menzenchin Tsumo
@@ -137,6 +163,7 @@ translation:
     ryampeko: Twice Pure Double Sequence
     chinitsu: Full Flush
     dora: Dora
+    red-dora: Red Dora
     kokushi: 13 Orphans
     kokushi-13: 13-wait 13 Orphans
     suanko: 4 Concealed Triplets
@@ -152,36 +179,65 @@ translation:
     pure-churen: True 9 Gates
     tenho: Blessing of Heaven
     chiho: Blessing of Earth
-  yaku-detail:
-    title: Yaku
-    han: "{{count}} Han"
-  score-detail:
-    title: Fu & Han
+    bazoro: Bazoro
+  scoring-table:
+    dealer: Dealer
+    non-dealer: Non-dealer
+    score: Score
+    diff: Difference
     fu: "{{count}} Fu"
     han: "{{count}} Han"
-    basic-point: "Base Points: {{count}}"
-  diff-detail:
-    title: Point Difference
-    point: "{{count}}"
-    east-diff: "Point difference from the Dealer: {{count}}"
-    other-diff: "Point difference from Non-dealers: {{count}}"
-  rule-config:
-    title: Rule Config
+    han-2: "{{a}}, {{b}} Han"
+    han-range: "{{a}} - {{b}} Han"
+    gte-han: "≥ {{count}} Han"
+    gte-han-yakuman: "≥ {{count}} Han, Yakuman"
+    yakuman: Yakuman
+    pinfu-tsumo: Pinfu Tsumo
+    chitoitsu: 7 Pairs
+    ron-with-bonus: "{{a}} - {{b}}"
+    tsumo-with-bonus-dealer: "{{a}} - {{b}} All"
+    tsumo-with-bonus-non-dealer: "{{a}}/{{b}} - {{c}}/{{d}}"
+    tsumo-dealer: "{{count}} All"
+    tsumo-non-dealer: "{{a}}/{{b}}"
+    tsumo-non-dealer-diff: "{{a}}/{{b}}"
+  settings:
+    rule: Rule
+    empty: Empty
+    save-as: Save as
+    overwrite-save: Overwrite save
+    name: Name
+    untitled-rule: Untitled Rule
     on: On
     off: Off
-    counted-yakuman: Accumulated Yakuman
-    gte-han: "≥ {{count}} Han"
-    multiple-yakuman: Multiple Yakuman
-    round-up-mangan: Round-up Mangan
+    red-m: Red 5m
+    red-p: Red 5p
+    red-s: Red 5s
+    honba-bonus: Honba Bonus
+    point: "{{count}} Points"
+    rounded-mangan: Rounded Mangan
     round-up-basic-point: "Base Points: {{count}}"
     double-wind-fu: Double Wind Fu
     fu: "{{count}} Fu"
+    accumlated-yakuman: Accumulated Yakuman
+    gte-han: "≥ {{count}} Han"
+    multiple-yakuman: Multiple Yakuman
     kokushi-13: 13-wait 13 Orphans
     suanko-tanki: Single-wait 4 Concealed Triplets
     daisushi: 4 Big Winds
     pure-churen: True 9 Gates
     yakuman: Yakuman
     double-yakuman: Double Yakuman
+    appearance: Appearance
+    language: Language
+    theme: Theme
+    auto: Auto
+    light: Light
+    dark: Dark
+    tile-color: Tile Color
+    auto-inverted: Auto (Inverted)
+    score: Score
+    show-bazoro: Show Bazoro
+    about: About
   footer:
     license: This app is licensed under <1>The MIT License</1>. We assume no liability for this app.
-    credit: The mahjong tile images are from <1>無料素材倶楽部</1>.
+    credit: The mahjong tile images are from <1>FluffyStuff/riichi-mahjong-tiles</1> (<2>CC BY</2>).

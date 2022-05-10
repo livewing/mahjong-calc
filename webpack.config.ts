@@ -1,8 +1,10 @@
+import { execFileSync } from 'child_process';
 import { resolve } from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin'; // eslint-disable-line import/default
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { DefinePlugin, type Configuration } from 'webpack';
 import { GenerateSW } from 'workbox-webpack-plugin';
-import type { Configuration } from 'webpack';
 
 const NODE_ENV =
   process.env.NODE_ENV === 'production' ? 'production' : 'development';
@@ -22,41 +24,46 @@ const config: Configuration = {
         use: 'ts-loader'
       },
       {
-        test: /\.scss$/,
+        test: /\.svg$/,
         use: [
-          'style-loader',
           {
-            loader: 'css-loader',
+            loader: '@svgr/webpack',
             options: {
-              url: false,
-              sourceMap: NODE_ENV === 'development',
-              importLoaders: 2
+              svgo: {
+                plugins: [{ removeViewBox: false }]
+              }
             }
-          },
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: [['autoprefixer', { grid: true }]]
+                plugins: {
+                  tailwindcss: {
+                    config: './tailwind.config.ts'
+                  },
+                  autoprefixer: {},
+                  ...(NODE_ENV === 'production' ? { cssnano: {} } : {})
+                }
               }
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: NODE_ENV === 'development'
             }
           }
         ]
       },
       {
         test: /\.ya?ml$/,
-        type: 'json',
         use: 'yaml-loader'
       },
       {
-        test: /\.png$/,
-        type: 'asset/inline'
+        test: /\.wasm$/,
+        type: 'webassembly/async'
       }
     ]
   },
@@ -67,6 +74,7 @@ const config: Configuration = {
     new HtmlWebpackPlugin({
       template: resolve(__dirname, 'src', 'index.html')
     }),
+    new MiniCssExtractPlugin(),
     new CopyPlugin({ patterns: ['resources'] }),
     ...(NODE_ENV === 'production'
       ? [
@@ -77,8 +85,19 @@ const config: Configuration = {
             cleanupOutdatedCaches: true
           })
         ]
-      : [])
+      : []),
+    new DefinePlugin({
+      COMMIT_HASH: JSON.stringify(
+        execFileSync('git', ['rev-parse', 'HEAD'], {
+          encoding: 'utf-8'
+        }).trim()
+      )
+    })
   ],
-  devtool: NODE_ENV === 'development' ? 'inline-source-map' : void 0
+  devtool: NODE_ENV === 'development' ? 'inline-source-map' : void 0,
+  experiments: {
+    asyncWebAssembly: true,
+    topLevelAwait: true
+  }
 };
 export default config;
