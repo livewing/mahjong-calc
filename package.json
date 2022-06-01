@@ -51,7 +51,7 @@
     "@types/react-dom": "^18.0.3",
     "@types/tailwindcss": "^3.0.10",
     "@types/webpack": "^5.28.0",
-    "@types/webpack-env": "^1.16.4",
+    "@types/webpack-env": "^1.17.0",
     "@types/workbox-webpack-plugin": "^5.1.8",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
