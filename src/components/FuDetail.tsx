@@ -1,4 +1,3 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineArrowForward } from 'react-icons/md';
 import { useStore } from '../contexts/store';
@@ -13,23 +12,27 @@ import { groupBy } from '../lib/util';
 import { Tile } from './tile';
 import type { Fu } from '../lib/fu';
 import type { TileCountsIndex } from '../lib/tile';
+import type { FC } from 'react';
+import type React from 'react';
 
 interface FuBadgeProps {
   l?: React.ReactNode;
   r?: React.ReactNode;
 }
 const FuBadge: FC<FuBadgeProps> = ({ l, r }) => (
-  <div className="flex border border-neutral-100 dark:border-neutral-800 rounded-full overflow-hidden">
-    <div className="flex bg-neutral-200 dark:bg-neutral-700 px-2 items-center text-center">
+  <div className="flex overflow-hidden rounded-full border border-neutral-100 dark:border-neutral-800">
+    <div className="flex items-center px-2 text-center bg-neutral-200 dark:bg-neutral-700">
       {l}
     </div>
-    <div className="flex bg-neutral-300 dark:bg-neutral-600 px-2 items-center text-center">
+    <div className="flex items-center px-2 text-center bg-neutral-300 dark:bg-neutral-600">
       {r}
     </div>
   </div>
 );
 
-const HandBlockTile: FC<{ tile?: TileCountsIndex }> = ({ tile }) => (
+const HandBlockTile: FC<{ tile?: TileCountsIndex | undefined }> = ({
+  tile
+}) => (
   <div className="w-6">
     <Tile
       tile={
@@ -139,7 +142,7 @@ const HandBlock: FC<{ fu: Fu }> = ({ fu }) => {
 
   if (fu.type === 'waiting') {
     return (
-      <div className="flex flex-col items-center gap-px">
+      <div className="flex flex-col gap-px items-center">
         <HandBlockTiles fu={fu.block} />
         <HandBlockFuBadge fu={fu.block} />
         <FuBadge
@@ -151,7 +154,7 @@ const HandBlock: FC<{ fu: Fu }> = ({ fu }) => {
   }
 
   return (
-    <div className="flex flex-col items-center gap-px">
+    <div className="flex flex-col gap-px items-center">
       <HandBlockTiles fu={fu} />
       <HandBlockFuBadge fu={fu} />
     </div>
@@ -159,7 +162,7 @@ const HandBlock: FC<{ fu: Fu }> = ({ fu }) => {
 };
 
 interface FuDetailProps {
-  fu?: Fu[] | 'chitoitsu';
+  fu?: Fu[] | 'chitoitsu' | undefined;
 }
 export const FuDetail: FC<FuDetailProps> = ({ fu }) => {
   const { t } = useTranslation();
@@ -168,7 +171,7 @@ export const FuDetail: FC<FuDetailProps> = ({ fu }) => {
   if (fu === 'chitoitsu')
     return (
       <div className="flex flex-col gap-2 p-2">
-        <div className="font-bold text-xl">
+        <div className="text-xl font-bold">
           {t('fu.title')} &middot; {t('fu.fu', { count: 25 })}
         </div>
         <div className="flex flex-wrap gap-2">
@@ -189,7 +192,7 @@ export const FuDetail: FC<FuDetailProps> = ({ fu }) => {
 
   return (
     <div className="flex flex-col gap-2 p-2">
-      <div className="flex items-center font-bold text-xl">
+      <div className="flex items-center text-xl font-bold">
         {t('fu.title')} &middot; {t('fu.fu', { count: total })}
         {total % 10 !== 0 && (
           <>

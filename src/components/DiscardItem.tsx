@@ -1,4 +1,3 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
 import { sumOfFu } from '../lib/fu';
@@ -8,6 +7,7 @@ import { countBy, sumBy, uniqueSorted } from '../lib/util';
 import { TileButton } from './ui/TileButton';
 import type { Hora } from '../lib/hora';
 import type { Discard } from '../lib/result';
+import type { FC } from 'react';
 
 const HoraSummary: FC<{ hora: Hora[] }> = ({ hora }) => {
   const [
@@ -118,7 +118,7 @@ export const DiscardItem: FC<DiscardItemProps> = ({ discard }) => {
     <div className="flex gap-2">
       <div className="flex flex-col items-center">
         <div className="text-sm font-bold">{t('result.discard')}</div>
-        <div className="w-12 shrink-0">
+        <div className="shrink-0 w-12">
           <TileButton
             tile={discard.tile}
             onClick={() => {

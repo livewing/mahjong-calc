@@ -1,4 +1,3 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { compareTiles } from '../lib/tile';
 import { sumBy } from '../lib/util';
@@ -7,9 +6,11 @@ import { HoraItem } from './HoraItem';
 import { Shanten } from './Shanten';
 import { Tempai } from './Tempai';
 import type { Result as ResultType } from '../lib/result';
+import type React from 'react';
+import type { FC } from 'react';
 
 const Message: FC<{ children?: React.ReactNode }> = ({ children }) => (
-  <div className="flex justify-center text-neutral-700 dark:text-neutral-300 py-4">
+  <div className="flex justify-center py-4 text-neutral-700 dark:text-neutral-300">
     {children}
   </div>
 );

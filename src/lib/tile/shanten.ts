@@ -1,5 +1,10 @@
 import { countBy, groupBy, memoize, uniqueSorted } from '../util';
-import { tileCountsFirstIndex, type TileCounts, type TileCountsIndex } from '.';
+import {
+  tileCountsFirstIndex,
+  type TileCount,
+  type TileCounts,
+  type TileCountsIndex
+} from '.';
 import type { Block } from './block';
 const decomposer = await import('decomposer');
 
@@ -36,7 +41,7 @@ export const minShanten = memoize(
     meldCount: MeldCount
   ): { shanten: number; results: DecomposeResult[] } =>
     decomposer.decompose_from_counts(Uint8Array.from(counts), meldCount),
-  (counts, meldCount) => counts.join('') + '/' + meldCount
+  (counts, meldCount) => `${counts.join('')}/${meldCount}`
 );
 
 export const waitingTiles = (
@@ -146,7 +151,7 @@ export const shantenTiles = (
             ret[tile] = true;
           }
         });
-        ret[toitsu[0].tile] = true;
+        ret[(toitsu[0] as Block).tile] = true;
       }
     }
     if (toitsu.length >= 2) {
@@ -172,7 +177,7 @@ export const shantenTiles = (
     }
   });
   return ret.flatMap((a, i) =>
-    a && handAndMeldsCounts[i] < 4 ? [i] : []
+    a && (handAndMeldsCounts[i] as TileCount) < 4 ? [i] : []
   ) as TileCountsIndex[];
 };
 

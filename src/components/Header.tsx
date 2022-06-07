@@ -1,4 +1,4 @@
-import React, { useEffect, useState, type FC } from 'react';
+import { useEffect, useState, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdHelp, MdSettings, MdTableView, MdUpdate } from 'react-icons/md';
 import { useStore } from '../contexts/store';
@@ -24,7 +24,7 @@ export const Header: FC = () => {
     })();
   }, []);
   return (
-    <header className="sticky top-0 h-12 flex justify-between items-center bg-blue-600 text-white p-2 pl-[max(0.5rem,env(safe-area-inset-left))] pr-[max(0.5rem,env(safe-area-inset-right))] z-30">
+    <header className="flex sticky top-0 z-30 justify-between items-center p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pl-[max(0.5rem,env(safe-area-inset-left))] h-12 text-white bg-blue-600">
       <button
         disabled={currentScreen === 'main'}
         className="overflow-hidden"
@@ -37,7 +37,7 @@ export const Header: FC = () => {
       <div className="flex gap-1 items-center">
         {showUpdateButton && (
           <button
-            className="flex items-center gap-1 p-1 bg-emerald-600 hover:bg-emerald-500 rounded transition"
+            className="flex gap-1 items-center p-1 bg-emerald-600 hover:bg-emerald-500 rounded transition"
             onClick={() => location.reload()}
           >
             <MdUpdate size="1.8rem" />

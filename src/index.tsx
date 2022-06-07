@@ -6,9 +6,9 @@ import { initI18n } from './lib/i18n';
 import './style.css';
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', async () => {
-    navigator.serviceWorker.register('/sw.js');
-  });
+  window.addEventListener('load', () =>
+    navigator.serviceWorker.register('/sw.js')
+  );
 }
 
 initI18n().then(() => {

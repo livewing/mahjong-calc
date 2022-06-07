@@ -7,7 +7,10 @@ export const getResources = (): Resource => {
   return localesContext.keys().reduce((acc, cur) => {
     const m = cur.match(/([^/]*)(?:\.([^.]+$))/);
     if (m === null) throw new Error(`Invalid import path: ${cur}`);
-    return { ...acc, [m[1]]: localesContext(cur).default };
+    return {
+      ...acc,
+      [m[1] as RegExpMatchArray[number]]: localesContext(cur).default
+    };
   }, {});
 };
 
@@ -18,10 +21,22 @@ type InitI18nParams = Partial<{
 export const initI18n = (params?: InitI18nParams): Promise<TFunction> =>
   (params?.useDetector ?? true ? use(LanguageDetector) : i18next)
     .use(initReactI18next)
-    .init({
-      resources: getResources(),
-      lng: params?.lng,
-      fallbackLng: 'en',
-      interpolation: { escapeValue: false },
-      debug: process.env.NODE_ENV === 'development'
-    });
+    .init(
+      (() => {
+        const lng = params?.lng;
+        return typeof lng === 'undefined'
+          ? {
+              resources: getResources(),
+              fallbackLng: 'en',
+              interpolation: { escapeValue: false },
+              debug: process.env.NODE_ENV === 'development'
+            }
+          : {
+              resources: getResources(),
+              lng,
+              fallbackLng: 'en',
+              interpolation: { escapeValue: false },
+              debug: process.env.NODE_ENV === 'development'
+            };
+      })()
+    );

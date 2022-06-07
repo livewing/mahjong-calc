@@ -1,0 +1,4 @@
+root: true
+extends:
+  - "@livewing/eslint-config/react"
+  - plugin:tailwindcss/recommended

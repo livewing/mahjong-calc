@@ -1,7 +1,8 @@
-import React, { type FC } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa';
 import packageJSON from '../../package.json';
+import type { FC } from 'react';
+import type React from 'react';
 
 declare global {
   const COMMIT_HASH: string;
@@ -31,14 +32,14 @@ export const About: FC = () => {
           <h2 className="text-xl text-neutral-700 dark:text-neutral-300">
             {packageJSON.version}
           </h2>
-          <h3 className="text-sm font-mono truncate text-neutral-600 dark:text-neutral-400">
+          <h3 className="font-mono text-sm text-neutral-600 dark:text-neutral-400 truncate">
             {COMMIT_HASH}
           </h3>
         </div>
       </div>
       <div className="flex">
         <Link href="https://github.com/livewing/mahjong-calc">
-          <div className="flex items-center gap-2">
+          <div className="flex gap-2 items-center">
             <FaGithub size="1.8rem" />
             GitHub
           </div>

@@ -1,4 +1,4 @@
-import React, { useState, type FC } from 'react';
+import { useState, type FC } from 'react';
 import { FuDetail } from './FuDetail';
 import { HoraItemSummary } from './HoraItemSummary';
 import { PointDiff } from './PointDiff';
@@ -21,7 +21,7 @@ export const HoraItem: FC<HoraItemProps> = ({ info }) => {
       </button>
       {open && (
         <>
-          <div className="border-t border-neutral-200 dark:border-neutral-800 mx-2 peer-hover:opacity-0 transition" />
+          <div className="mx-2 border-t border-neutral-200 dark:border-neutral-800 peer-hover:opacity-0 transition" />
           <FuDetail
             fu={
               info.type === 'mentsu'

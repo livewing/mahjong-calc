@@ -1,10 +1,10 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
 import { sumOfFu } from '../lib/fu';
 import { calculateBasePoint, ceil100 } from '../lib/score';
 import { sumBy } from '../lib/util';
 import type { Hora } from '../lib/hora';
+import type { FC } from 'react';
 
 interface PointDiffProps {
   info: Hora;
@@ -46,7 +46,7 @@ export const PointDiff: FC<PointDiffProps> = ({ info }) => {
 
   return (
     <div className="flex flex-col gap-2 p-2">
-      <div className="font-bold text-xl">{t('result.point-diff')}</div>
+      <div className="text-xl font-bold">{t('result.point-diff')}</div>
       {info.by === 'ron' && (
         <div>
           {t('result.point', {

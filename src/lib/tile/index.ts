@@ -112,14 +112,15 @@ export const isAvailableTiles = (
         : {
             ...acc,
             [cur.type]: cur.red
-              ? [acc[cur.type][0], acc[cur.type][1] + 1]
-              : [acc[cur.type][0] + 1, acc[cur.type][1]]
+              ? [acc[cur.type][0], (acc[cur.type][1] as number) + 1]
+              : [(acc[cur.type][0] as number) + 1, acc[cur.type][1]]
           },
     { m: [0, 0], p: [0, 0], s: [0, 0] }
   );
   return (['m', 'p', 's'] as const).every(
     type =>
-      fiveCounts[type][0] <= 4 - red[type] && fiveCounts[type][1] <= red[type]
+      (fiveCounts[type][0] as number) <= 4 - red[type] &&
+      (fiveCounts[type][1] as number) <= red[type]
   );
 };
 

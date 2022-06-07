@@ -1,16 +1,16 @@
-import React, { type FC } from 'react';
 import { useStore } from '../../contexts/store';
 import { usePrefersColorScheme } from '../../hooks/dom';
 import { Tile as TileImage } from '../tile';
 import type { TileOrBack } from '../../lib/tile';
+import type { FC } from 'react';
 
 interface TileButtonProps {
-  tile?: TileOrBack;
-  dim?: boolean;
-  disabled?: boolean;
-  focusIndicator?: boolean;
-  tsumoIndicator?: boolean;
-  onClick?: () => void;
+  tile?: TileOrBack | undefined;
+  dim?: boolean | undefined;
+  disabled?: boolean | undefined;
+  focusIndicator?: boolean | undefined;
+  tsumoIndicator?: boolean | undefined;
+  onClick?: () => void | undefined;
 }
 
 export const TileButton: FC<TileButtonProps> = ({
@@ -32,7 +32,7 @@ export const TileButton: FC<TileButtonProps> = ({
   return (
     <button
       disabled={disabled}
-      className="relative flex w-full drop-shadow focus:drop-shadow-md disabled:focus:drop-shadow disabled:cursor-not-allowed transition"
+      className="flex relative w-full drop-shadow focus:drop-shadow-md disabled:focus:drop-shadow transition disabled:cursor-not-allowed"
       onClick={onClick}
     >
       <TileImage
@@ -50,8 +50,8 @@ export const TileButton: FC<TileButtonProps> = ({
         <div className="absolute inset-x-0 -bottom-1 border-b-2 border-blue-500 animate-pulse" />
       )}
       {tsumoIndicator && (
-        <div className="absolute flex justify-center items-center -top-1.5 w-full">
-          <div className="bg-blue-500 rounded-full w-1 h-1" />
+        <div className="flex absolute -top-1.5 justify-center items-center w-full">
+          <div className="w-1 h-1 bg-blue-500 rounded-full" />
         </div>
       )}
     </button>

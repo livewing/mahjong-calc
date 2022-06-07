@@ -28,8 +28,8 @@ export const TileKeyboard: FC = () => {
         input.hand.length >= 14 - input.melds.length * 3
       : inputFocus.type === 'dora'
       ? !isAvailableTiles(red, allInputTiles, [tile]) || input.dora.length >= 10
-      : input.melds[inputFocus.i].tile !== null ||
-        (input.melds[inputFocus.i].type === 'chii'
+      : input.melds[inputFocus.i]?.tile !== null ||
+        (input.melds[inputFocus.i]?.type === 'chii'
           ? tile.type === 'z' ||
             tile.n >= 8 ||
             !isAvailableTiles(
@@ -37,13 +37,13 @@ export const TileKeyboard: FC = () => {
               allInputTiles,
               instantiateMeld({ type: 'chii', tile, includeRed: false }, red)
             )
-          : input.melds[inputFocus.i].type === 'pon'
+          : input.melds[inputFocus.i]?.type === 'pon'
           ? !isAvailableTiles(
               red,
               allInputTiles,
               instantiateMeld({ type: 'pon', tile }, red)
             )
-          : input.melds[inputFocus.i].type === 'kan'
+          : input.melds[inputFocus.i]?.type === 'kan'
           ? !isAvailableTiles(
               red,
               allInputTiles,

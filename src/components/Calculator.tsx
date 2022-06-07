@@ -1,4 +1,3 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdNavigateNext } from 'react-icons/md';
 import { useStore } from '../contexts/store';
@@ -13,6 +12,7 @@ import { TableSettings } from './TableSettings';
 import { Button } from './ui/Button';
 import { ConfigItem } from './ui/ConfigItem';
 import { TileInput } from './ui/TileInput';
+import type { FC } from 'react';
 
 export const Calculator: FC = () => {
   const [ruleRef, ruleRect] = useBoundingClientRect<HTMLDivElement>();
@@ -32,8 +32,8 @@ export const Calculator: FC = () => {
 
   return (
     <>
-      <div className="p-2 pl-[max(0.5rem,env(safe-area-inset-left))] pr-[max(0.5rem,env(safe-area-inset-right))] flex gap-2 flex-col md:flex-row lg:container md:mx-auto md:gap-8">
-        <div className="flex flex-col md:basis-1/2 lg:basis-2/5 gap-2">
+      <div className="flex flex-col gap-2 p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pl-[max(0.5rem,env(safe-area-inset-left))] md:flex-row md:gap-8 md:mx-auto lg:container">
+        <div className="flex flex-col gap-2 md:basis-1/2 lg:basis-2/5">
           <ConfigItem label={t('settings.rule')}>
             <Button
               onClick={() => {
@@ -41,7 +41,7 @@ export const Calculator: FC = () => {
                 dispatch({ type: 'set-current-screen', payload: 'settings' });
               }}
             >
-              <div className="flex flex-1 justify items-center justify-between">
+              <div className="flex flex-1 justify-between items-center">
                 <div className="flex-1">{ruleName}</div>
                 <MdNavigateNext />
               </div>

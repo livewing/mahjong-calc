@@ -1,4 +1,3 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdRadioButtonChecked, MdRadioButtonUnchecked } from 'react-icons/md';
 import { useStore } from '../../contexts/store';
@@ -7,6 +6,8 @@ import Auto from '../../images/tile-color/auto.svg';
 import Dark from '../../images/tile-color/dark.svg';
 import Light from '../../images/tile-color/light.svg';
 import type { AppConfig } from '../../lib/config';
+import type React from 'react';
+import type { FC } from 'react';
 
 const themeItems: {
   id: AppConfig['tileColor'];
@@ -27,7 +28,7 @@ export const TileColorSwitcher: FC = () => {
       {themeItems.map(item => (
         <button
           key={item.id}
-          className="flex flex-col flex-1 border border-neutral-300 dark:border-neutral-700 divide-y divide-neutral-300 dark:divide-neutral-700 bg-white dark:bg-black hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-md shadow overflow-hidden select-none select-none focus:outline-none focus:ring-2 transition"
+          className="flex overflow-hidden flex-col flex-1 bg-white hover:bg-neutral-200 dark:bg-black dark:hover:bg-neutral-800 rounded-md border border-neutral-300 dark:border-neutral-700 divide-y divide-neutral-300 dark:divide-neutral-700 focus:outline-none focus:ring-2 shadow transition select-none"
           onClick={() =>
             dispatch({
               type: 'set-app-config',
@@ -36,7 +37,7 @@ export const TileColorSwitcher: FC = () => {
           }
         >
           <item.image />
-          <div className="flex items-center w-full p-2 gap-1">
+          <div className="flex gap-1 items-center p-2 w-full">
             <div className="basis-4">
               {appConfig.tileColor === item.id && (
                 <MdRadioButtonChecked className="text-blue-600 dark:text-blue-400" />

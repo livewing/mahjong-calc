@@ -1,9 +1,9 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../../contexts/store';
 import { ConfigItem } from './ConfigItem';
 import { Segment } from './Segment';
 import type { Rule } from '../../lib/rule';
+import type { FC } from 'react';
 
 interface RuleEditorProps {
   rule: Rule;
@@ -21,7 +21,7 @@ export const RuleEditor: FC<RuleEditorProps> = ({
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col sm:flex-row flex-1 gap-4 sm:gap-8">
+    <div className="flex flex-col flex-1 gap-4 sm:flex-row sm:gap-8">
       <div className="flex flex-col flex-1 gap-4">
         <ConfigItem label={t('settings.red-m')}>
           <Segment

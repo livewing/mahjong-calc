@@ -1,4 +1,3 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdArrowForward } from 'react-icons/md';
 import { useStore } from '../contexts/store';
@@ -11,6 +10,7 @@ import {
 } from '../lib/score';
 import { sumBy } from '../lib/util';
 import type { Hora } from '../lib/hora';
+import type { FC } from 'react';
 
 const limitTextKey = (base: number) =>
   base < 3000
@@ -59,7 +59,7 @@ export const Score: FC<ScoreProps> = ({ info }) => {
 
   return (
     <div className="flex flex-col gap-2 p-2">
-      <div className="font-bold text-xl">{t('result.score')}</div>
+      <div className="text-xl font-bold">{t('result.score')}</div>
       <div>
         {t('result.base-point')}
         {base < 2000 && (

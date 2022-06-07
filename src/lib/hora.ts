@@ -16,6 +16,7 @@ import {
   tileCountsFirstIndex,
   tilesToCounts,
   tileToCountsIndex,
+  type NumberTileCounts,
   type Tile,
   type TileCounts,
   type TileCountsIndex
@@ -199,9 +200,11 @@ export const generateHora = (
           }
         }
         if (
-          allTilesCounts[tileCountsFirstIndex.z + 4] >= 3 &&
-          allTilesCounts[tileCountsFirstIndex.z + 5] >= 3 &&
-          allTilesCounts[tileCountsFirstIndex.z + 6] >= 3
+          allTilesCounts[(tileCountsFirstIndex.z + 4) as TileCountsIndex] >=
+            3 &&
+          allTilesCounts[(tileCountsFirstIndex.z + 5) as TileCountsIndex] >=
+            3 &&
+          allTilesCounts[(tileCountsFirstIndex.z + 6) as TileCountsIndex] >= 3
         ) {
           yakuman.push({
             yakuman: { type: 'yakuman', name: 'daisangen', point: 1 },
@@ -221,10 +224,13 @@ export const generateHora = (
           });
         }
         if (
-          allTilesCounts[tileCountsFirstIndex.z + 0] >= 3 &&
-          allTilesCounts[tileCountsFirstIndex.z + 1] >= 3 &&
-          allTilesCounts[tileCountsFirstIndex.z + 2] >= 3 &&
-          allTilesCounts[tileCountsFirstIndex.z + 3] >= 3
+          allTilesCounts[(tileCountsFirstIndex.z + 0) as TileCountsIndex] >=
+            3 &&
+          allTilesCounts[(tileCountsFirstIndex.z + 1) as TileCountsIndex] >=
+            3 &&
+          allTilesCounts[(tileCountsFirstIndex.z + 2) as TileCountsIndex] >=
+            3 &&
+          allTilesCounts[(tileCountsFirstIndex.z + 3) as TileCountsIndex] >= 3
         ) {
           yakuman.push({
             yakuman: {
@@ -236,10 +242,13 @@ export const generateHora = (
             tsumo: true
           });
         } else if (
-          allTilesCounts[tileCountsFirstIndex.z + 0] >= 2 &&
-          allTilesCounts[tileCountsFirstIndex.z + 1] >= 2 &&
-          allTilesCounts[tileCountsFirstIndex.z + 2] >= 2 &&
-          allTilesCounts[tileCountsFirstIndex.z + 3] >= 2
+          allTilesCounts[(tileCountsFirstIndex.z + 0) as TileCountsIndex] >=
+            2 &&
+          allTilesCounts[(tileCountsFirstIndex.z + 1) as TileCountsIndex] >=
+            2 &&
+          allTilesCounts[(tileCountsFirstIndex.z + 2) as TileCountsIndex] >=
+            2 &&
+          allTilesCounts[(tileCountsFirstIndex.z + 3) as TileCountsIndex] >= 2
         ) {
           yakuman.push({
             yakuman: { type: 'yakuman', name: 'shosushi', point: 1 },
@@ -279,7 +288,7 @@ export const generateHora = (
           const cc = allTilesCounts.slice(
             tileCountsFirstIndex[chinitsu],
             tileCountsFirstIndex[chinitsu] + 9
-          );
+          ) as NumberTileCounts;
           if (
             cc[0] >= 3 &&
             cc[1] >= 1 &&
@@ -431,8 +440,10 @@ export const generateHora = (
         }
         if (
           allTilesCounts[
-            tileCountsFirstIndex.z +
-              ['east', 'south', 'west', 'north'].indexOf(table.round)
+            (tileCountsFirstIndex.z +
+              ['east', 'south', 'west', 'north'].indexOf(
+                table.round
+              )) as TileCountsIndex
           ] >= 3
         ) {
           yaku.push({
@@ -443,8 +454,10 @@ export const generateHora = (
         }
         if (
           allTilesCounts[
-            tileCountsFirstIndex.z +
-              ['east', 'south', 'west', 'north'].indexOf(table.seat)
+            (tileCountsFirstIndex.z +
+              ['east', 'south', 'west', 'north'].indexOf(
+                table.seat
+              )) as TileCountsIndex
           ] >= 3
         ) {
           yaku.push({
@@ -455,7 +468,9 @@ export const generateHora = (
         }
         yaku.push(
           ...[0, 1, 2].flatMap(i =>
-            allTilesCounts[tileCountsFirstIndex.z + 4 + i] >= 3
+            allTilesCounts[
+              (tileCountsFirstIndex.z + 4 + i) as TileCountsIndex
+            ] >= 3
               ? [
                   {
                     yaku: {
@@ -624,9 +639,11 @@ export const generateHora = (
           });
         }
         if (
-          allTilesCounts[tileCountsFirstIndex.z + 4] >= 2 &&
-          allTilesCounts[tileCountsFirstIndex.z + 5] >= 2 &&
-          allTilesCounts[tileCountsFirstIndex.z + 6] >= 2
+          allTilesCounts[(tileCountsFirstIndex.z + 4) as TileCountsIndex] >=
+            2 &&
+          allTilesCounts[(tileCountsFirstIndex.z + 5) as TileCountsIndex] >=
+            2 &&
+          allTilesCounts[(tileCountsFirstIndex.z + 6) as TileCountsIndex] >= 2
         ) {
           yaku.push({
             yaku: { type: 'yaku', name: 'shosangen', han: 2 },
@@ -750,7 +767,7 @@ export const generateChitoitsuHora = (
   const horaTiles: Tile[] = (() => {
     const tile = counts.flatMap((c, i) =>
       c === 1 ? countsIndexToTile(i as TileCountsIndex) : []
-    )[0];
+    )[0] as Tile;
     if (tile.type !== 'z' && tile.n === 5) {
       const r = rule.red[tile.type];
       if (
@@ -936,7 +953,7 @@ export const generateKokushiHora = (
           ? [countsIndexToTile(i as TileCountsIndex)]
           : []
       )
-    : [countsIndexToTile(lack[0])];
+    : [countsIndexToTile(lack[0] as TileCountsIndex)];
 
   if (options.tenho) {
     return horaTiles.map(horaTile => ({

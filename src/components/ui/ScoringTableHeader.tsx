@@ -1,9 +1,10 @@
-import React, { useState, type FC } from 'react';
+import { useState, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../../contexts/store';
 import Stick100 from '../../images/point-stick/100.svg';
 import Stick1000 from '../../images/point-stick/1000.svg';
 import { SimpleStepper } from './SimpleStepper';
+import type React from 'react';
 
 const HeaderButton: FC<{
   children?: React.ReactNode;
@@ -30,7 +31,7 @@ export const ScoringTableHeader: FC = () => {
   const isDealer = table.seat === 'east';
 
   return (
-    <div className="sticky top-12 sm:px-2 flex justify-center items-start bg-white/80 dark:bg-neutral-800/80 backdrop-blur shadow z-20 transition">
+    <div className="flex sticky top-12 z-20 justify-center items-start bg-white/80 dark:bg-neutral-800/80 shadow backdrop-blur transition sm:px-2">
       <HeaderButton
         onClick={() =>
           dispatch({
@@ -63,7 +64,7 @@ export const ScoringTableHeader: FC = () => {
           </div>
         </HeaderButton>
         {openTableSettings && (
-          <div className="flex gap-4 px-2 py-1 bg-neutral-200 dark:bg-neutral-700">
+          <div className="flex gap-4 py-1 px-2 bg-neutral-200 dark:bg-neutral-700">
             {currentScoringTableTab === 'diff' && (
               <SimpleStepper
                 canDecrement={table.deposit > 0}

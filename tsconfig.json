@@ -1,15 +1,14 @@
 {
+  "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
     "lib": ["dom"],
-    "jsx": "react",
+    "jsx": "react-jsx",
     "sourceMap": true,
-    "strict": true,
     "moduleResolution": "node",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
-  }
+    "resolveJsonModule": true,
+    "noPropertyAccessFromIndexSignature": false
+  },
+  "include": ["./src"]
 }

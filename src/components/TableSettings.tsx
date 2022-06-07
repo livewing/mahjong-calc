@@ -1,4 +1,3 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
 import Stick100 from '../images/point-stick/100.svg';
@@ -7,6 +6,7 @@ import { ConfigItem } from './ui/ConfigItem';
 import { Segment } from './ui/Segment';
 import { Stepper } from './ui/Stepper';
 import type { Wind } from '../lib/table';
+import type { FC } from 'react';
 
 const winds: Wind[] = ['east', 'south', 'west', 'north'];
 
@@ -25,7 +25,7 @@ export const TableSettings: FC = () => {
               onChange={i =>
                 dispatch({
                   type: 'set-table',
-                  payload: { ...table, round: winds[i] }
+                  payload: { ...table, round: winds[i] as Wind }
                 })
               }
             />
@@ -39,7 +39,7 @@ export const TableSettings: FC = () => {
               onChange={i =>
                 dispatch({
                   type: 'set-table',
-                  payload: { ...table, seat: winds[i] }
+                  payload: { ...table, seat: winds[i] as Wind }
                 })
               }
             />
@@ -50,7 +50,7 @@ export const TableSettings: FC = () => {
         <div className="flex-1">
           <ConfigItem
             label={
-              <div className="flex items-center gap-2">
+              <div className="flex gap-2 items-center">
                 {t('table-settings.deposit')}
                 <Stick1000 className="w-16 drop-shadow" />
               </div>
@@ -71,7 +71,7 @@ export const TableSettings: FC = () => {
         <div className="flex-1">
           <ConfigItem
             label={
-              <div className="flex items-center gap-2">
+              <div className="flex gap-2 items-center">
                 {t('table-settings.continue')}
                 <Stick100 className="w-16 drop-shadow" />
               </div>

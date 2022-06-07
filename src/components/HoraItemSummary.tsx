@@ -1,4 +1,3 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
 import { sumOfFu } from '../lib/fu';
@@ -7,6 +6,7 @@ import { sumBy } from '../lib/util';
 import { LimitBadge } from './LimitBadge';
 import { Tile } from './tile';
 import type { Hora } from '../lib/hora';
+import type { FC } from 'react';
 
 interface HoraItemProps {
   info: Hora;
@@ -52,10 +52,10 @@ export const HoraItemSummary: FC<HoraItemProps> = ({ info }) => {
       : ceil100(base) * 2 + ceil100(base * 2);
 
   return (
-    <div className="flex items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 transition">
-      <div className="w-12 relative">
+    <div className="flex gap-2 items-center p-2 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-md transition">
+      <div className="relative w-12">
         <Tile tile={info.horaTile} />
-        <div className="absolute text-xs text-white -right-3 -top-2">
+        <div className="absolute -top-2 -right-3 text-xs text-white">
           <div
             className={
               info.by === 'tsumo'
@@ -68,13 +68,13 @@ export const HoraItemSummary: FC<HoraItemProps> = ({ info }) => {
         </div>
       </div>
       {base === 0 && (
-        <div className="text-xl text-neutral-500 italic">
+        <div className="text-xl italic text-neutral-500">
           {t('result.no-yaku')}
         </div>
       )}
       {base > 0 && (
-        <div className="flex flex-1 flex-col items-start">
-          <div className="flex items-baseline gap-1">
+        <div className="flex flex-col flex-1 items-start">
+          <div className="flex gap-1 items-baseline">
             <span className="text-2xl">{point}</span>
             {(table.continue > 0 || table.deposit > 0) && (
               <span className="text-lg">
@@ -82,7 +82,7 @@ export const HoraItemSummary: FC<HoraItemProps> = ({ info }) => {
               </span>
             )}
             <span>{t('result.points')}</span>
-            <div className="ml-1 self-center">
+            <div className="self-center ml-1">
               <LimitBadge base={base} />
             </div>
           </div>

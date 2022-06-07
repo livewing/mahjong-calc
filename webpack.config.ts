@@ -46,9 +46,7 @@ const config: Configuration = {
             options: {
               postcssOptions: {
                 plugins: {
-                  tailwindcss: {
-                    config: './tailwind.config.ts'
-                  },
+                  tailwindcss: {},
                   autoprefixer: {},
                   ...(NODE_ENV === 'production' ? { cssnano: {} } : {})
                 }
@@ -94,7 +92,7 @@ const config: Configuration = {
       )
     })
   ],
-  devtool: NODE_ENV === 'development' ? 'inline-source-map' : void 0,
+  devtool: NODE_ENV === 'development' ? 'inline-source-map' : false,
   experiments: {
     asyncWebAssembly: true,
     topLevelAwait: true

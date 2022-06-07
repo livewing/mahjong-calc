@@ -9,7 +9,7 @@ import type { AppState } from '../lib/store/state';
 import type { IconType } from 'react-icons';
 
 const Header: FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className="flex justify-center items-center text-center p-2">
+  <div className="flex justify-center items-center p-2 text-center">
     {children}
   </div>
 );
@@ -107,7 +107,7 @@ const Content: FC<ContentProps> = ({ fu, han }) => {
       : 'flex-1 px-2 py-1 flex flex-col justify-center items-center';
 
   return (
-    <div className="flex flex-col bg-neutral-200 dark:bg-neutral-800 rounded-md overflow-hidden">
+    <div className="flex overflow-hidden flex-col bg-neutral-200 dark:bg-neutral-800 rounded-md">
       <div className={className}>
         <div
           className={
@@ -149,11 +149,11 @@ export const ScoringTable: FC = () => {
   return (
     <div>
       <ScoringTableHeader />
-      <div className="p-2 pl-[max(0.5rem,env(safe-area-inset-left))] pr-[max(0.5rem,env(safe-area-inset-right))] flex gap-2 flex-col">
+      <div className="flex flex-col gap-2 p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pl-[max(0.5rem,env(safe-area-inset-left))]">
         <div className="sm:basis-1/4">
           <MenuTab
             items={tabItems.map(item => (
-              <div key={item.id} className="flex items-center gap-2">
+              <div key={item.id} className="flex gap-2 items-center">
                 <div>
                   <item.icon />
                 </div>
@@ -167,13 +167,13 @@ export const ScoringTable: FC = () => {
             onSetIndex={i =>
               dispatch({
                 type: 'set-current-scoring-table-tab',
-                payload: tabItems[i].id
+                payload: (tabItems[i] as typeof tabItems[number]).id
               })
             }
           />
         </div>
         <div className="overflow-x-auto">
-          <div className="grid grid-cols-[max-content_repeat(4,_minmax(max-content,_1fr))] mx-0 p-2 gap-px">
+          <div className="grid grid-cols-[max-content_repeat(4,_minmax(max-content,_1fr))] gap-px p-2 mx-0">
             {(
               ['head', 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 110] as const
             ).map(fu => (
@@ -219,7 +219,7 @@ export const ScoringTable: FC = () => {
               </React.Fragment>
             ))}
           </div>
-          <div className="grid grid-cols-[repeat(5,_minmax(max-content,_1fr))] mx-0 p-2 gap-px">
+          <div className="grid grid-cols-[repeat(5,_minmax(max-content,_1fr))] gap-px p-2 mx-0">
             <Header>
               <div className="font-bold">
                 {t('scoring-table.han', { count: 5 + bazoro })}

@@ -1,4 +1,3 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoMdDesktop } from 'react-icons/io';
 import { MdChecklist, MdInfo } from 'react-icons/md';
@@ -8,6 +7,7 @@ import { AppearanceSettings } from './AppearanceSettings';
 import { RuleSettings } from './RuleSettings';
 import { MenuTab } from './ui/MenuTab';
 import type { AppState } from '../lib/store/state';
+import type { FC } from 'react';
 import type { IconType } from 'react-icons';
 
 const tabItems: {
@@ -23,11 +23,11 @@ export const Settings: FC = () => {
   const [{ currentSettingsTab }, dispatch] = useStore();
   const { t } = useTranslation();
   return (
-    <div className="p-2 pl-[max(0.5rem,env(safe-area-inset-left))] pr-[max(0.5rem,env(safe-area-inset-right))] flex gap-2 flex-col sm:flex-row sm:container sm:mx-auto sm:gap-8">
+    <div className="flex flex-col gap-2 p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pl-[max(0.5rem,env(safe-area-inset-left))] sm:container sm:flex-row sm:gap-8 sm:mx-auto">
       <div className="sm:basis-1/4">
         <MenuTab
           items={tabItems.map(item => (
-            <div key={item.id} className="flex items-center gap-2">
+            <div key={item.id} className="flex gap-2 items-center">
               <div>
                 <item.icon />
               </div>
@@ -38,12 +38,12 @@ export const Settings: FC = () => {
           onSetIndex={i =>
             dispatch({
               type: 'set-current-settings-tab',
-              payload: tabItems[i].id
+              payload: (tabItems[i] as typeof tabItems[number]).id
             })
           }
         />
       </div>
-      <div className="sm:flex-1 sm:basis-3/4">
+      <div className="sm:basis-3/4 sm:flex-1">
         {currentSettingsTab === 'rule' && <RuleSettings />}
         {currentSettingsTab === 'appearance' && <AppearanceSettings />}
         {currentSettingsTab === 'about' && <About />}

@@ -128,7 +128,7 @@ const reducerImpl: Reducer<AppState, Action> = (state, { type, payload }) => {
     case 'toggle-current-meld-red': {
       if (state.inputFocus.type !== 'meld') return state;
       const meldIndex = state.inputFocus.i;
-      const meld = state.input.melds[meldIndex];
+      const meld = state.input.melds[meldIndex] as Meld;
       if (meld.tile === null) return state;
       if (meld.type === 'kan') return state;
       const toSwap: Meld | null =
@@ -201,7 +201,7 @@ const reducerImpl: Reducer<AppState, Action> = (state, { type, payload }) => {
           }
           return state;
         case 'meld': {
-          const meld = state.input.melds[state.inputFocus.i];
+          const meld = state.input.melds[state.inputFocus.i] as Meld;
           if (meld.tile === null) {
             switch (meld.type) {
               case 'pon': {
@@ -313,11 +313,6 @@ const reducerImpl: Reducer<AppState, Action> = (state, { type, payload }) => {
         ...state,
         savedRules: { ...state.savedRules, [payload]: state.currentRule }
       };
-    default: {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const _: never = type;
-      return state;
-    }
   }
 };
 

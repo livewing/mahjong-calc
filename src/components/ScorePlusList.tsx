@@ -47,7 +47,7 @@ export const ScorePlusList: FC<ScorePlusListProps> = ({ info }) => {
       (acc, { plus, base }) =>
         base === orig
           ? acc
-          : acc.length === 0 || acc[acc.length - 1].base !== base
+          : acc.length === 0 || acc[acc.length - 1]?.base !== base
           ? [...acc, { start: plus, end: plus, base }]
           : acc.flatMap((e, i) =>
               i === acc.length - 1 ? { ...e, end: plus } : e
@@ -55,11 +55,12 @@ export const ScorePlusList: FC<ScorePlusListProps> = ({ info }) => {
       [] as { start: number; end: number; base: number }[]
     );
   if (points.length === 0) return null;
-  points[points.length - 1].end = Number.POSITIVE_INFINITY;
+  (points[points.length - 1] as typeof points[number]).end =
+    Number.POSITIVE_INFINITY;
 
   return (
     <div className="flex flex-col gap-2 p-2">
-      <div className="font-bold text-xl">{t('result.change-in-score')}</div>
+      <div className="text-xl font-bold">{t('result.change-in-score')}</div>
       <div className="overflow-x-auto">
         <div className="grid grid-cols-[max-content,max-content,max-content] gap-2">
           {points.map((p, i) => (
@@ -82,10 +83,10 @@ export const ScorePlusList: FC<ScorePlusListProps> = ({ info }) => {
                   <span>{t('result.plus-gte-han', { count: p.start })}</span>
                 )}
               </div>
-              <div className="flex items-center justify-center">
+              <div className="flex justify-center items-center">
                 <MdArrowForward />
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex gap-2 items-center">
                 {info.by === 'ron' && table.continue === 0 && (
                   <div>
                     {table.seat === 'east'

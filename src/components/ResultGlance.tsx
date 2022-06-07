@@ -1,16 +1,16 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useWindowSize } from '../hooks/dom';
 import { compareTiles } from '../lib/tile';
 import { uniqueSorted } from '../lib/util';
 import { Tile } from './tile';
 import type { Result } from '../lib/result';
+import type { FC } from 'react';
 
 const scrollMargin = 48;
 
 interface ResultGlanceProps {
   result: Result;
-  handOptionsPosition?: number;
+  handOptionsPosition?: number | undefined;
 }
 export const ResultGlance: FC<ResultGlanceProps> = ({
   result,
@@ -23,7 +23,7 @@ export const ResultGlance: FC<ResultGlanceProps> = ({
     return null;
 
   return (
-    <div className="flex flex-col gap-1 fixed p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] bg-white/80 dark:bg-neutral-800/80 backdrop-blur shadow w-full bottom-0 z-20 md:hidden">
+    <div className="flex fixed bottom-0 z-20 flex-col gap-1 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] w-full bg-white/80 dark:bg-neutral-800/80 shadow backdrop-blur md:hidden">
       {result.type === 'just-hora' && <div>{t('result.hora')}</div>}
       {result.type === 'tempai' &&
         result.tileAvailabilities.every(a => a.count === 0) && (
@@ -31,8 +31,8 @@ export const ResultGlance: FC<ResultGlanceProps> = ({
         )}
       {result.type === 'tempai' &&
         result.tileAvailabilities.some(a => a.count > 0) && (
-          <div className="flex items-center gap-2">
-            <div className="font-bold shrink-0">{t('result.tempai')}</div>
+          <div className="flex gap-2 items-center">
+            <div className="shrink-0 font-bold">{t('result.tempai')}</div>
             <div className="flex flex-wrap gap-px">
               {result.tileAvailabilities
                 .filter(a => a.count > 0)
@@ -45,8 +45,8 @@ export const ResultGlance: FC<ResultGlanceProps> = ({
           </div>
         )}
       {result.type === 'discard-shanten' && (
-        <div className="flex items-center gap-2">
-          <div className="font-bold shrink-0">
+        <div className="flex gap-2 items-center">
+          <div className="shrink-0 font-bold">
             {(() => {
               const shanten = result.discards.reduce(
                 (acc, cur) =>
@@ -65,7 +65,7 @@ export const ResultGlance: FC<ResultGlanceProps> = ({
                 : t('result.shanten', { count: shanten });
             })()}
           </div>
-          <div className="text-sm shrink-0">{t('result.discard')}</div>
+          <div className="shrink-0 text-sm">{t('result.discard')}</div>
           <div className="flex flex-wrap gap-px">
             {result.discards.map((d, i) => (
               <div key={i} className="w-6">
@@ -76,11 +76,11 @@ export const ResultGlance: FC<ResultGlanceProps> = ({
         </div>
       )}
       {result.type === 'hora-shanten' && result.info.type === 'shanten' && (
-        <div className="flex items-center gap-2">
-          <div className="font-bold shrink-0">
+        <div className="flex gap-2 items-center">
+          <div className="shrink-0 font-bold">
             {t('result.shanten', { count: result.info.shanten })}
           </div>
-          <div className="text-sm shrink-0">{t('result.acceptance')}</div>
+          <div className="shrink-0 text-sm">{t('result.acceptance')}</div>
           <div className="flex flex-wrap gap-px">
             {result.info.tileAvailabilities.map((a, i) => (
               <div key={i} className="w-6">
@@ -91,9 +91,9 @@ export const ResultGlance: FC<ResultGlanceProps> = ({
         </div>
       )}
       {result.type === 'hora-shanten' && result.info.type === 'hora' && (
-        <div className="flex items-center gap-2">
-          <div className="font-bold shrink-0">{t('result.tempai')}</div>
-          <div className="text-sm shrink-0">{t('result.waiting')}</div>
+        <div className="flex gap-2 items-center">
+          <div className="shrink-0 font-bold">{t('result.tempai')}</div>
+          <div className="shrink-0 text-sm">{t('result.waiting')}</div>
           <div className="flex flex-wrap gap-px">
             {uniqueSorted(
               result.info.hora.map(h => h.horaTile),

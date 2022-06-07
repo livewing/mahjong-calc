@@ -1,11 +1,8 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
-    "baseUrl": ".",
-    "paths": {
-      "@tailwindcss/forms": ["./types/@tailwindcss/forms.d.ts"]
-    }
+    "noPropertyAccessFromIndexSignature": false
   },
-  "exclude": ["./src"]
+  "files": ["./webpack.config.ts"]
 }

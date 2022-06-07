@@ -1,9 +1,9 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
 import { tilesToCounts, type TileAvailability } from '../lib/tile';
 import { countBy, sumBy } from '../lib/util';
 import { TileButton } from './ui/TileButton';
+import type { FC } from 'react';
 
 interface ShantenProps {
   shanten: number;
@@ -20,7 +20,7 @@ export const Shanten: FC<ShantenProps> = ({ shanten, tileAvailabilities }) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex items-baseline gap-4">
+      <div className="flex gap-4 items-baseline">
         <div className="text-xl font-bold">
           {t('result.shanten', { count: shanten })}
         </div>

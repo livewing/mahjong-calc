@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useContext,
   useReducer,
@@ -8,6 +8,7 @@ import React, {
 import { reducer } from '../lib/store';
 import { defaultState, type AppState } from '../lib/store/state';
 import type { Action } from '../lib/store/action';
+import type React from 'react';
 
 export const StoreContext = createContext<[AppState, Dispatch<Action>]>([
   defaultState(),

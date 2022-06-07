@@ -1,3 +1,8 @@
+export function assertNonNullable<T>(x: T | undefined | null): asserts x is T {
+  if (typeof x === 'undefined' || x === null)
+    throw new Error('NonNullable assertion failed!');
+}
+
 export const product2 = <T, U>(a: T[], b: U[]): [T, U][] => {
   return a
     .map(a => b.map(b => [a, b]))
@@ -13,7 +18,7 @@ export const memoize = <P extends unknown[], R>(
     const serialized = serialize(...params);
     if (typeof memo[serialized] === 'undefined')
       memo[serialized] = f(...params);
-    return memo[serialized];
+    return memo[serialized] as R;
   };
 };
 
@@ -24,8 +29,10 @@ export const uniqueSorted = <T>(
   if (a.length === 0) return [];
 
   const [first, ...rest] = a;
+  assertNonNullable(first);
   return rest.reduce(
-    (acc, cur) => (compare(acc[acc.length - 1], cur) ? acc : [...acc, cur]),
+    (acc, cur) =>
+      compare(acc[acc.length - 1] as T, cur) ? acc : [...acc, cur],
     [first]
   );
 };
@@ -74,7 +81,7 @@ export const shuffle = <T>(a: T[]) => {
   const ret = [...a];
   for (let i = ret.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [ret[i], ret[j]] = [ret[j], ret[i]];
+    [ret[i], ret[j]] = [ret[j] as T, ret[i] as T];
   }
   return ret;
 };

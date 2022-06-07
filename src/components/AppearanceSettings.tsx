@@ -1,4 +1,4 @@
-import React, { useState, type FC } from 'react';
+import { useState, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdCheck } from 'react-icons/md';
 import { useStore } from '../contexts/store';
@@ -22,7 +22,7 @@ export const AppearanceSettings: FC = () => {
         <Dropdown
           id="language-button"
           label={
-            <div className="flex items-baseline gap-2">
+            <div className="flex gap-2 items-baseline">
               <div>{t('locale:name')}</div>
               <div className="text-xs text-neutral-500">{i18n.language}</div>
             </div>
@@ -34,7 +34,7 @@ export const AppearanceSettings: FC = () => {
             {languages.map(lng => (
               <button
                 key={lng}
-                className="group flex items-center gap-2 p-2 hover:bg-blue-500 hover:text-white"
+                className="group flex gap-2 items-center p-2 hover:text-white hover:bg-blue-500"
                 onClick={() => {
                   i18n.changeLanguage(lng);
                   setOpenLanguageMenu(false);
@@ -47,7 +47,7 @@ export const AppearanceSettings: FC = () => {
                       : 'invisible'
                   }
                 />
-                <div className="flex items-baseline gap-2">
+                <div className="flex gap-2 items-baseline">
                   <div>
                     {i18n.exists('locale:name', { lng, fallbackLng: [] })
                       ? `${t('locale:name', { lng })}`

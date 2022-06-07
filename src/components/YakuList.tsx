@@ -1,9 +1,10 @@
-import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
 import { yakumanTupleKey } from '../lib/score';
 import { sumBy } from '../lib/util';
 import type { Yaku } from '../lib/yaku';
+import type React from 'react';
+import type { FC } from 'react';
 
 interface YakuBadgeProps {
   l?: React.ReactNode;
@@ -11,8 +12,8 @@ interface YakuBadgeProps {
   yakuman?: boolean;
 }
 const YakuBadge: FC<YakuBadgeProps> = ({ l, r, yakuman = false }) => (
-  <div className="flex border border-neutral-100 dark:border-neutral-800 rounded-full overflow-hidden">
-    <div className="flex bg-neutral-200 dark:bg-neutral-700 px-2 items-center text-center">
+  <div className="flex overflow-hidden rounded-full border border-neutral-100 dark:border-neutral-800">
+    <div className="flex items-center px-2 text-center bg-neutral-200 dark:bg-neutral-700">
       {l}
     </div>
     <div
@@ -42,9 +43,9 @@ export const YakuList: FC<YakuListProps> = ({ yaku }) => {
 
   return (
     <div className="flex flex-col gap-2 p-2">
-      {isYakuman && <div className="font-bold text-xl">{t('yaku.yaku')}</div>}
+      {isYakuman && <div className="text-xl font-bold">{t('yaku.yaku')}</div>}
       {!isYakuman && (
-        <div className="font-bold text-xl">
+        <div className="text-xl font-bold">
           {t('yaku.yaku')} &middot;{' '}
           {t('result.han', {
             count:
@@ -73,7 +74,7 @@ export const YakuList: FC<YakuListProps> = ({ yaku }) => {
         </div>
       )}
       {!showBazoro && yaku.length === 0 && (
-        <div className="text-neutral-500 italic">{t('result.no-yaku')}</div>
+        <div className="italic text-neutral-500">{t('result.no-yaku')}</div>
       )}
     </div>
   );

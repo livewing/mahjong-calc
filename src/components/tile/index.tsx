@@ -1,4 +1,3 @@
-import React, { type FC } from 'react';
 import { useStore } from '../../contexts/store';
 import { usePrefersColorScheme } from '../../hooks/dom';
 import Back from './images/back.svg';
@@ -7,11 +6,12 @@ import DarkBG from './images/dark/bg.svg';
 import { tileImage as lightTileImage } from './images/light';
 import LightBG from './images/light/bg.svg';
 import type { TileOrBack } from '../../lib/tile';
+import type { FC } from 'react';
 
 interface TileProps {
   tile: TileOrBack;
-  color?: 'light' | 'dark';
-  dim?: boolean;
+  color?: 'light' | 'dark' | undefined;
+  dim?: boolean | undefined;
 }
 
 export const Tile: FC<TileProps> = ({ tile, color, dim = false }) => {
