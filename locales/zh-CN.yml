@@ -48,9 +48,9 @@ translation:
     seat-west: 西家
     seat-north: 北家
   result:
-    input-message: 请录入手牌。
-    hora: 和了。输入所有的瓷砖并计算分数。
-    no-hora-tiles: 没有胡牌
+    input-message: 请输入手牌。
+    hora: 和了。输入所有的牌并计算分数。
+    no-hora-tiles: 缺少和了牌
     tsumo: 自摸
     ron: 荣和
     no-yaku: 无役
@@ -81,8 +81,8 @@ translation:
     base-point: 基本点
     fu-var: 符
     han-var: 番
-    dealer-pays: 庄家支付
-    non-dealer-pay: 闲家支付
+    dealer-pays: 庄家（亲）支付
+    non-dealer-pay: 闲家（子）支付
     change-in-score: 分数变化
     plus-han: "+{{count}} 番"
     plus-han-2: "+{{a}} · +{{b}} 番"
@@ -90,8 +90,8 @@ translation:
     plus-gte-han: "+{{count}} 番以上"
     point-diff: 点差
     point: "{{count}} 点"
-    dealer-diff: "亲家点差: {{count}} 点"
-    non-dealer-diff: "子家点差: {{count}} 点"
+    dealer-diff: "庄家（亲）点差: {{count}} 点"
+    non-dealer-diff: "闲家（子）点差: {{count}} 点"
     shanten: "{{count}} 向听"
     type: "{{count}} 种"
     tile: "{{count}} 牌"
@@ -179,8 +179,8 @@ translation:
     chiho: 地和
     bazoro: 場ゾロ
   scoring-table:
-    dealer: 庄家
-    non-dealer: 闲家
+    dealer: 庄家（亲）
+    non-dealer: 闲家（子）
     score: 得分
     diff: 分差
     fu: "{{count}} 符"
@@ -225,7 +225,7 @@ translation:
     pure-churen: 纯正九莲宝灯
     yakuman: 役满
     double-yakuman: 双倍役满
-    appearance: 外貌
+    appearance: 外观
     language: 语言
     theme: 主题
     auto: 自动
