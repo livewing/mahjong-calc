@@ -32,7 +32,7 @@ export const Calculator: FC = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-2 p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pl-[max(0.5rem,env(safe-area-inset-left))] md:flex-row md:gap-8 md:mx-auto lg:container">
+      <div className="flex flex-col gap-2 p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pl-[max(0.5rem,env(safe-area-inset-left))] md:mx-auto md:flex-row md:gap-8 lg:container">
         <div className="flex flex-col gap-2 md:basis-1/2 lg:basis-2/5">
           <ConfigItem label={t('settings.rule')}>
             <Button
@@ -41,7 +41,7 @@ export const Calculator: FC = () => {
                 dispatch({ type: 'set-current-screen', payload: 'settings' });
               }}
             >
-              <div className="flex flex-1 justify-between items-center">
+              <div className="flex flex-1 items-center justify-between">
                 <div className="flex-1">{ruleName}</div>
                 <MdNavigateNext />
               </div>

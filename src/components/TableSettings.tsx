@@ -50,7 +50,7 @@ export const TableSettings: FC = () => {
         <div className="flex-1">
           <ConfigItem
             label={
-              <div className="flex gap-2 items-center">
+              <div className="flex items-center gap-2">
                 {t('table-settings.deposit')}
                 <Stick1000 className="w-16 drop-shadow" />
               </div>
@@ -71,7 +71,7 @@ export const TableSettings: FC = () => {
         <div className="flex-1">
           <ConfigItem
             label={
-              <div className="flex gap-2 items-center">
+              <div className="flex items-center gap-2">
                 {t('table-settings.continue')}
                 <Stick100 className="w-16 drop-shadow" />
               </div>

@@ -32,7 +32,7 @@ export const TileButton: FC<TileButtonProps> = ({
   return (
     <button
       disabled={disabled}
-      className="flex relative w-full drop-shadow focus:drop-shadow-md disabled:focus:drop-shadow transition disabled:cursor-not-allowed"
+      className="relative flex w-full drop-shadow transition focus:drop-shadow-md disabled:cursor-not-allowed disabled:focus:drop-shadow"
       onClick={onClick}
     >
       <TileImage
@@ -47,11 +47,11 @@ export const TileButton: FC<TileButtonProps> = ({
         dim={dim || disabled}
       />
       {focusIndicator && (
-        <div className="absolute inset-x-0 -bottom-1 border-b-2 border-blue-500 animate-pulse" />
+        <div className="absolute inset-x-0 -bottom-1 animate-pulse border-b-2 border-blue-500" />
       )}
       {tsumoIndicator && (
-        <div className="flex absolute -top-1.5 justify-center items-center w-full">
-          <div className="w-1 h-1 bg-blue-500 rounded-full" />
+        <div className="absolute -top-1.5 flex w-full items-center justify-center">
+          <div className="h-1 w-1 rounded-full bg-blue-500" />
         </div>
       )}
     </button>

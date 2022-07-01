@@ -21,8 +21,8 @@ export const RuleEditor: FC<RuleEditorProps> = ({
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col flex-1 gap-4 sm:flex-row sm:gap-8">
-      <div className="flex flex-col flex-1 gap-4">
+    <div className="flex flex-1 flex-col gap-4 sm:flex-row sm:gap-8">
+      <div className="flex flex-1 flex-col gap-4">
         <ConfigItem label={t('settings.red-m')}>
           <Segment
             items={[0, 1, 2, 3, 4]}
@@ -92,7 +92,7 @@ export const RuleEditor: FC<RuleEditorProps> = ({
           />
         </ConfigItem>
       </div>
-      <div className="flex flex-col flex-1 gap-4">
+      <div className="flex flex-1 flex-col gap-4">
         <ConfigItem label={t('settings.accumlated-yakuman')}>
           <Segment
             items={[

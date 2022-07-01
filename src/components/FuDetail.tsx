@@ -21,10 +21,10 @@ interface FuBadgeProps {
 }
 const FuBadge: FC<FuBadgeProps> = ({ l, r }) => (
   <div className="flex overflow-hidden rounded-full border border-neutral-100 dark:border-neutral-800">
-    <div className="flex items-center px-2 text-center bg-neutral-200 dark:bg-neutral-700">
+    <div className="flex items-center bg-neutral-200 px-2 text-center dark:bg-neutral-700">
       {l}
     </div>
-    <div className="flex items-center px-2 text-center bg-neutral-300 dark:bg-neutral-600">
+    <div className="flex items-center bg-neutral-300 px-2 text-center dark:bg-neutral-600">
       {r}
     </div>
   </div>
@@ -142,7 +142,7 @@ const HandBlock: FC<{ fu: Fu }> = ({ fu }) => {
 
   if (fu.type === 'waiting') {
     return (
-      <div className="flex flex-col gap-px items-center">
+      <div className="flex flex-col items-center gap-px">
         <HandBlockTiles fu={fu.block} />
         <HandBlockFuBadge fu={fu.block} />
         <FuBadge
@@ -154,7 +154,7 @@ const HandBlock: FC<{ fu: Fu }> = ({ fu }) => {
   }
 
   return (
-    <div className="flex flex-col gap-px items-center">
+    <div className="flex flex-col items-center gap-px">
       <HandBlockTiles fu={fu} />
       <HandBlockFuBadge fu={fu} />
     </div>

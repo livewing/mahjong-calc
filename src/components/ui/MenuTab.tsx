@@ -17,8 +17,8 @@ export const MenuTab: FC<MenuTabProps> = ({
   <nav
     className={
       row
-        ? 'flex gap-2 flex-row overflow-auto'
-        : 'flex gap-2 flex-row overflow-auto sm:flex-col'
+        ? 'flex flex-row gap-2 overflow-auto'
+        : 'flex flex-row gap-2 overflow-auto sm:flex-col'
     }
   >
     {items.map((item, i) => (
@@ -26,8 +26,8 @@ export const MenuTab: FC<MenuTabProps> = ({
         key={i}
         className={
           row
-            ? 'flex flex-1 p-2 rounded justify-center hover:bg-blue-100 hover:dark:bg-blue-900 disabled:font-bold disabled:bg-blue-200 disabled:text-blue-700 disabled:dark:bg-blue-800 disabled:dark:text-blue-100 transition'
-            : 'flex flex-1 p-2 rounded justify-center sm:justify-start hover:bg-blue-100 hover:dark:bg-blue-900 disabled:font-bold disabled:bg-blue-200 disabled:text-blue-700 disabled:dark:bg-blue-800 disabled:dark:text-blue-100 transition'
+            ? 'flex flex-1 justify-center rounded p-2 transition hover:bg-blue-100 disabled:bg-blue-200 disabled:font-bold disabled:text-blue-700 hover:dark:bg-blue-900 disabled:dark:bg-blue-800 disabled:dark:text-blue-100'
+            : 'flex flex-1 justify-center rounded p-2 transition hover:bg-blue-100 disabled:bg-blue-200 disabled:font-bold disabled:text-blue-700 hover:dark:bg-blue-900 disabled:dark:bg-blue-800 disabled:dark:text-blue-100 sm:justify-start'
         }
         disabled={i === index}
         onClick={() => onSetIndex(i)}

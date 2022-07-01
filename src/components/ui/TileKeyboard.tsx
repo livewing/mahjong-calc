@@ -51,7 +51,7 @@ export const TileKeyboard: FC = () => {
             )
           : true);
   return (
-    <div className="flex flex-col gap-px max-w-lg select-none">
+    <div className="flex max-w-lg select-none flex-col gap-px">
       {(['m', 'p', 's'] as const).map(type => (
         <div key={type} className="flex gap-px">
           {([1, 2, 3, 4, 5, 6, 7, 8, 9] as const).map(n => (

@@ -21,7 +21,7 @@ export const Dropdown: FC<DropdownProps> = ({
   <>
     {open && (
       <button
-        className="fixed inset-0 z-10 w-full h-full bg-transparent cursor-default"
+        className="fixed inset-0 z-10 h-full w-full cursor-default bg-transparent"
         onClick={() => onSetOpen(false)}
       />
     )}
@@ -30,8 +30,8 @@ export const Dropdown: FC<DropdownProps> = ({
         {label}
         <MdArrowDropDown />
       </Button>
-      <div className={open ? 'block absolute z-10 w-72' : 'hidden'}>
-        <div className="overflow-hidden mt-1 bg-white/80 dark:bg-neutral-800/80 rounded-md shadow backdrop-blur">
+      <div className={open ? 'absolute z-10 block w-72' : 'hidden'}>
+        <div className="mt-1 overflow-hidden rounded-md bg-white/80 shadow backdrop-blur dark:bg-neutral-800/80">
           {children}
         </div>
       </div>

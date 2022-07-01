@@ -232,7 +232,7 @@ export const TileInputArea: FC = () => {
           ))}
         </div>
       </ConfigItem>
-      <div className="flex flex-wrap gap-1 items-center">
+      <div className="flex flex-wrap items-center gap-1">
         <Dropdown
           label={
             <div className="py-1">
@@ -244,7 +244,7 @@ export const TileInputArea: FC = () => {
         >
           <div className="flex flex-col py-1">
             <button
-              className="flex overflow-hidden flex-1 gap-2 items-center p-2 hover:text-white disabled:text-neutral-500 hover:bg-red-500 disabled:hover:bg-transparent disabled:cursor-not-allowed"
+              className="flex flex-1 items-center gap-2 overflow-hidden p-2 hover:bg-red-500 hover:text-white disabled:cursor-not-allowed disabled:text-neutral-500 disabled:hover:bg-transparent"
               onClick={() => {
                 dispatch({ type: 'clear-input', payload: null });
                 setOpenTileMenu(false);
@@ -254,7 +254,7 @@ export const TileInputArea: FC = () => {
               }
             >
               <MdRefresh />
-              <div className="flex-1 text-left truncate">
+              <div className="flex-1 truncate text-left">
                 {t('tile-input.clear-inputs')}
               </div>
             </button>
@@ -262,33 +262,33 @@ export const TileInputArea: FC = () => {
             {([5, 8, 11, 14] as const).map(n => (
               <button
                 key={n}
-                className="flex overflow-hidden flex-1 gap-2 items-center p-2 hover:text-white hover:bg-blue-500"
+                className="flex flex-1 items-center gap-2 overflow-hidden p-2 hover:bg-blue-500 hover:text-white"
                 onClick={() => {
                   dispatch({ type: 'set-input-random', payload: n });
                   setOpenTileMenu(false);
                 }}
               >
                 <MdShuffle />
-                <div className="flex-1 text-left truncate">
+                <div className="flex-1 truncate text-left">
                   {t('tile-input.random', { count: n })}
                 </div>
               </button>
             ))}
             <button
-              className="flex overflow-hidden flex-1 gap-2 items-center p-2 hover:text-white hover:bg-blue-500"
+              className="flex flex-1 items-center gap-2 overflow-hidden p-2 hover:bg-blue-500 hover:text-white"
               onClick={() => {
                 dispatch({ type: 'set-input-random', payload: 'chinitsu' });
                 setOpenTileMenu(false);
               }}
             >
               <MdShuffle />
-              <div className="flex-1 text-left truncate">
+              <div className="flex-1 truncate text-left">
                 {t('tile-input.random-chinitsu')}
               </div>
             </button>
             <div className="my-1 border-t border-neutral-300 dark:border-neutral-700" />
             <button
-              className="flex overflow-hidden flex-1 gap-2 items-center p-2 hover:text-white disabled:text-neutral-500 hover:bg-blue-500 disabled:hover:bg-transparent disabled:cursor-not-allowed"
+              className="flex flex-1 items-center gap-2 overflow-hidden p-2 hover:bg-blue-500 hover:text-white disabled:cursor-not-allowed disabled:text-neutral-500 disabled:hover:bg-transparent"
               onClick={() => {
                 if (hand.length % 3 === 2) {
                   const a = [...hand];
@@ -300,7 +300,7 @@ export const TileInputArea: FC = () => {
               disabled={hand.length === 0}
             >
               <IoMdCopy />
-              <div className="flex-1 text-left truncate">
+              <div className="flex-1 truncate text-left">
                 {t('tile-input.copy-hand-as-mpsz')}
               </div>
             </button>

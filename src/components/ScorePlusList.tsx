@@ -83,10 +83,10 @@ export const ScorePlusList: FC<ScorePlusListProps> = ({ info }) => {
                   <span>{t('result.plus-gte-han', { count: p.start })}</span>
                 )}
               </div>
-              <div className="flex justify-center items-center">
+              <div className="flex items-center justify-center">
                 <MdArrowForward />
               </div>
-              <div className="flex gap-2 items-center">
+              <div className="flex items-center gap-2">
                 {info.by === 'ron' && table.continue === 0 && (
                   <div>
                     {table.seat === 'east'

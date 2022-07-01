@@ -12,32 +12,32 @@ export const LimitBadge: FC<LimitBadgeProps> = ({ base }) => {
   if (base < 2000) return null;
   if (base < 3000)
     return (
-      <div className="px-1 text-sm text-white bg-blue-600 rounded shadow">
+      <div className="rounded bg-blue-600 px-1 text-sm text-white shadow">
         {t('result.mangan')}
       </div>
     );
   if (base < 4000)
     return (
-      <div className="px-1 text-sm text-white bg-green-600 rounded shadow">
+      <div className="rounded bg-green-600 px-1 text-sm text-white shadow">
         {t('result.haneman')}
       </div>
     );
   if (base < 6000)
     return (
-      <div className="px-1 text-sm text-white bg-orange-600 rounded shadow">
+      <div className="rounded bg-orange-600 px-1 text-sm text-white shadow">
         {t('result.baiman')}
       </div>
     );
   if (base < 8000)
     return (
-      <div className="px-1 text-sm text-white bg-red-600 rounded shadow">
+      <div className="rounded bg-red-600 px-1 text-sm text-white shadow">
         {t('result.sambaiman')}
       </div>
     );
 
   const yakuman = Math.floor(base / 8000);
   return (
-    <div className="px-1 text-sm text-white bg-purple-600 rounded shadow">
+    <div className="rounded bg-purple-600 px-1 text-sm text-white shadow">
       {t(yakumanTupleKey(yakuman))}
     </div>
   );

@@ -19,7 +19,7 @@ export const Tempai: FC<TempaiProps> = ({ tileAvailabilities }) => {
       <div className="text-xl font-bold">{t('result.tempai')}</div>
       <div className="flex flex-wrap gap-x-4 gap-y-2">
         {ta.map((a, i) => (
-          <div key={i} className="flex gap-1 items-center">
+          <div key={i} className="flex items-center gap-1">
             <div className="w-10">
               <TileButton
                 tile={a.tile}

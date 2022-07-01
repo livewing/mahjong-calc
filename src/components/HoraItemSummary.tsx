@@ -52,15 +52,15 @@ export const HoraItemSummary: FC<HoraItemProps> = ({ info }) => {
       : ceil100(base) * 2 + ceil100(base * 2);
 
   return (
-    <div className="flex gap-2 items-center p-2 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-md transition">
+    <div className="flex items-center gap-2 rounded-md p-2 transition hover:bg-neutral-200 dark:hover:bg-neutral-800">
       <div className="relative w-12">
         <Tile tile={info.horaTile} />
         <div className="absolute -top-2 -right-3 text-xs text-white">
           <div
             className={
               info.by === 'tsumo'
-                ? 'rounded-full px-1 bg-red-500/80 backdrop-blur-sm'
-                : 'rounded-full px-1 bg-blue-500/80 backdrop-blur-sm'
+                ? 'rounded-full bg-red-500/80 px-1 backdrop-blur-sm'
+                : 'rounded-full bg-blue-500/80 px-1 backdrop-blur-sm'
             }
           >
             {t(`result.${info.by}`)}
@@ -73,8 +73,8 @@ export const HoraItemSummary: FC<HoraItemProps> = ({ info }) => {
         </div>
       )}
       {base > 0 && (
-        <div className="flex flex-col flex-1 items-start">
-          <div className="flex gap-1 items-baseline">
+        <div className="flex flex-1 flex-col items-start">
+          <div className="flex items-baseline gap-1">
             <span className="text-2xl">{point}</span>
             {(table.continue > 0 || table.deposit > 0) && (
               <span className="text-lg">
@@ -82,7 +82,7 @@ export const HoraItemSummary: FC<HoraItemProps> = ({ info }) => {
               </span>
             )}
             <span>{t('result.points')}</span>
-            <div className="self-center ml-1">
+            <div className="ml-1 self-center">
               <LimitBadge base={base} />
             </div>
           </div>

@@ -118,7 +118,7 @@ export const DiscardItem: FC<DiscardItemProps> = ({ discard }) => {
     <div className="flex gap-2">
       <div className="flex flex-col items-center">
         <div className="text-sm font-bold">{t('result.discard')}</div>
-        <div className="shrink-0 w-12">
+        <div className="w-12 shrink-0">
           <TileButton
             tile={discard.tile}
             onClick={() => {

@@ -23,11 +23,11 @@ export const Settings: FC = () => {
   const [{ currentSettingsTab }, dispatch] = useStore();
   const { t } = useTranslation();
   return (
-    <div className="flex flex-col gap-2 p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pl-[max(0.5rem,env(safe-area-inset-left))] sm:container sm:flex-row sm:gap-8 sm:mx-auto">
+    <div className="flex flex-col gap-2 p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pl-[max(0.5rem,env(safe-area-inset-left))] sm:container sm:mx-auto sm:flex-row sm:gap-8">
       <div className="sm:basis-1/4">
         <MenuTab
           items={tabItems.map(item => (
-            <div key={item.id} className="flex gap-2 items-center">
+            <div key={item.id} className="flex items-center gap-2">
               <div>
                 <item.icon />
               </div>
@@ -43,7 +43,7 @@ export const Settings: FC = () => {
           }
         />
       </div>
-      <div className="sm:basis-3/4 sm:flex-1">
+      <div className="sm:flex-1 sm:basis-3/4">
         {currentSettingsTab === 'rule' && <RuleSettings />}
         {currentSettingsTab === 'appearance' && <AppearanceSettings />}
         {currentSettingsTab === 'about' && <About />}

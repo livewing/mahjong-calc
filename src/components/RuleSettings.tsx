@@ -18,7 +18,7 @@ export const RuleSettings: FC = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex gap-2 items-center">
+      <div className="flex items-center gap-2">
         <Dropdown
           label={
             <div className="p-1">
@@ -30,9 +30,9 @@ export const RuleSettings: FC = () => {
         >
           <div className="flex flex-col py-1">
             {Object.keys(savedRules).length === 0 && (
-              <div className="flex gap-2 items-center p-2">
+              <div className="flex items-center gap-2 p-2">
                 <MdCheck className="invisible" />
-                <div className="text-neutral-500 select-none">
+                <div className="select-none text-neutral-500">
                   {t('settings.empty')}
                 </div>
               </div>
@@ -42,7 +42,7 @@ export const RuleSettings: FC = () => {
               .map(([name, rule]) => (
                 <div key={name} className="flex">
                   <button
-                    className="group peer flex overflow-hidden flex-1 gap-2 items-center p-2 hover:text-white hover:bg-blue-500"
+                    className="group peer flex flex-1 items-center gap-2 overflow-hidden p-2 hover:bg-blue-500 hover:text-white"
                     onClick={() => {
                       dispatch({ type: 'set-current-rule', payload: rule });
                       setOpenPresetMenu(false);
@@ -51,16 +51,16 @@ export const RuleSettings: FC = () => {
                     <MdCheck
                       className={
                         name === ruleName
-                          ? 'visible text-blue-600 dark:text-blue-400 group-hover:text-white'
+                          ? 'visible text-blue-600 group-hover:text-white dark:text-blue-400'
                           : 'invisible'
                       }
                     />
-                    <div className="flex-1 text-left truncate" title={name}>
+                    <div className="flex-1 truncate text-left" title={name}>
                       {name}
                     </div>
                   </button>
                   <button
-                    className="flex justify-center items-center px-3 hover:text-white peer-hover:text-white hover:bg-red-500 peer-hover:bg-blue-500"
+                    className="flex items-center justify-center px-3 hover:bg-red-500 hover:text-white peer-hover:bg-blue-500 peer-hover:text-white"
                     onClick={() =>
                       dispatch({ type: 'delete-saved-rule', payload: name })
                     }
@@ -72,9 +72,9 @@ export const RuleSettings: FC = () => {
             {typeof ruleName === 'undefined' && (
               <>
                 <div className="my-1 border-t border-neutral-300 dark:border-neutral-700" />
-                <div className="flex gap-2 items-center px-2">
+                <div className="flex items-center gap-2 px-2">
                   <MdCheck className="invisible" />
-                  <div className="pt-1 text-sm text-neutral-500 select-none">
+                  <div className="select-none pt-1 text-sm text-neutral-500">
                     {t(
                       typeof savedRules[newRuleName] === 'undefined'
                         ? 'settings.save-as'
@@ -82,13 +82,13 @@ export const RuleSettings: FC = () => {
                     )}
                   </div>
                 </div>
-                <div className="group flex gap-2 items-center p-2">
+                <div className="group flex items-center gap-2 p-2">
                   <MdCheck className="invisible" />
                   <input
                     type="text"
                     size={1}
                     placeholder={t('settings.name')}
-                    className="p-1 w-full bg-white dark:bg-black rounded-md border border-neutral-300 dark:border-neutral-700 transition"
+                    className="w-full rounded-md border border-neutral-300 bg-white p-1 transition dark:border-neutral-700 dark:bg-black"
                     onInput={e => setNewRuleName(e.currentTarget.value)}
                     onKeyDown={e => {
                       if (e.key === 'Enter' && newRuleName.length !== 0) {
@@ -102,7 +102,7 @@ export const RuleSettings: FC = () => {
                     }}
                   />
                   <button
-                    className="flex justify-center items-center p-2 hover:text-white disabled:hover:text-neutral-500 disabled:text-neutral-500 hover:bg-blue-500 disabled:hover:bg-transparent rounded-md"
+                    className="flex items-center justify-center rounded-md p-2 hover:bg-blue-500 hover:text-white disabled:text-neutral-500 disabled:hover:bg-transparent disabled:hover:text-neutral-500"
                     disabled={newRuleName.length === 0}
                     onClick={() => {
                       dispatch({
@@ -120,7 +120,7 @@ export const RuleSettings: FC = () => {
           </div>
         </Dropdown>
         <div
-          className="font-bold truncate"
+          className="truncate font-bold"
           title={ruleName ?? t('settings.untitled-rule')}
         >
           {ruleName ?? t('settings.untitled-rule')}

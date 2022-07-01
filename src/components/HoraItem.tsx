@@ -15,13 +15,13 @@ export const HoraItem: FC<HoraItemProps> = ({ info }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex flex-col bg-white dark:bg-black rounded-md shadow">
+    <div className="flex flex-col rounded-md bg-white shadow dark:bg-black">
       <button onClick={() => setOpen(open => !open)} className="peer ">
         <HoraItemSummary info={info} />
       </button>
       {open && (
         <>
-          <div className="mx-2 border-t border-neutral-200 dark:border-neutral-800 peer-hover:opacity-0 transition" />
+          <div className="mx-2 border-t border-neutral-200 transition peer-hover:opacity-0 dark:border-neutral-800" />
           <FuDetail
             fu={
               info.type === 'mentsu'

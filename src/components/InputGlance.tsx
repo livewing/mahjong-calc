@@ -74,13 +74,13 @@ export const InputGlance: FC<InputGlanceProps> = ({
   ].join(' · ');
 
   return (
-    <div className="flex fixed top-12 z-20 flex-col gap-1 p-2 w-full bg-white/80 dark:bg-neutral-800/80 shadow backdrop-blur md:hidden">
-      <div className="flex gap-2 justify-between">
+    <div className="fixed top-12 z-20 flex w-full flex-col gap-1 bg-white/80 p-2 shadow backdrop-blur dark:bg-neutral-800/80 md:hidden">
+      <div className="flex justify-between gap-2">
         <div className="font-bold">{t('settings.rule')}</div>
-        <div className="flex-1 text-right truncate">{ruleName}</div>
+        <div className="flex-1 truncate text-right">{ruleName}</div>
       </div>
       {tablePosition - headerHeight - scrollMargin * 2 < 0 && (
-        <div className="flex gap-2 justify-between items-center">
+        <div className="flex items-center justify-between gap-2">
           <div className="flex flex-1 gap-2">
             {t(`input-glance.round-${table.round}`)} &middot;{' '}
             {t(`input-glance.seat-${table.seat}`)}
@@ -98,7 +98,7 @@ export const InputGlance: FC<InputGlanceProps> = ({
         </div>
       )}
       {tablePosition - headerHeight < 0 && dora.length > 0 && (
-        <div className="flex flex-1 gap-px max-w-sm">
+        <div className="flex max-w-sm flex-1 gap-px">
           {[...Array(14)].map((_, i) => (
             <div key={i} className="w-full">
               {i < dora.length && <Tile key={i} tile={dora[i] as TileType} />}
@@ -108,7 +108,7 @@ export const InputGlance: FC<InputGlanceProps> = ({
       )}
       {tablePosition - headerHeight + scrollMargin < 0 &&
         (hand.length > 0 || melds.some(m => m.tile !== null)) && (
-          <div className="flex flex-1 gap-px max-w-sm">
+          <div className="flex max-w-sm flex-1 gap-px">
             {[...Array(14 - Math.min(4, melds.length) * 3)].map((_, i) => (
               <div key={i} className="w-full">
                 {i < hand.length && <Tile tile={hand[i] as TileType} />}

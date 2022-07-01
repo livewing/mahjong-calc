@@ -13,14 +13,14 @@ interface YakuBadgeProps {
 }
 const YakuBadge: FC<YakuBadgeProps> = ({ l, r, yakuman = false }) => (
   <div className="flex overflow-hidden rounded-full border border-neutral-100 dark:border-neutral-800">
-    <div className="flex items-center px-2 text-center bg-neutral-200 dark:bg-neutral-700">
+    <div className="flex items-center bg-neutral-200 px-2 text-center dark:bg-neutral-700">
       {l}
     </div>
     <div
       className={
         yakuman
-          ? 'flex bg-purple-600 text-white px-2 items-center text-center'
-          : 'flex bg-neutral-300 dark:bg-neutral-600 px-2 items-center text-center'
+          ? 'flex items-center bg-purple-600 px-2 text-center text-white'
+          : 'flex items-center bg-neutral-300 px-2 text-center dark:bg-neutral-600'
       }
     >
       {r}

@@ -15,7 +15,7 @@ const StepperButton: FC<StepperButtonProps> = ({
   <button
     disabled={disabled}
     onClick={onClick}
-    className="flex flex-1 justify-center items-center p-2 text-blue-600 disabled:text-neutral-300 dark:text-blue-400 dark:disabled:text-neutral-700 bg-white hover:bg-neutral-100 disabled:hover:bg-white dark:bg-black dark:hover:bg-neutral-800 dark:disabled:hover:bg-black transition disabled:cursor-not-allowed"
+    className="flex flex-1 items-center justify-center bg-white p-2 text-blue-600 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:text-neutral-300 disabled:hover:bg-white dark:bg-black dark:text-blue-400 dark:hover:bg-neutral-800 dark:disabled:text-neutral-700 dark:disabled:hover:bg-black"
   >
     {children}
   </button>
@@ -31,7 +31,7 @@ export const SimpleStepper: FC<SimpleStepperProps> = ({
   canIncrement = true,
   onChange = () => void 0
 }) => (
-  <div className="flex overflow-hidden flex-1 rounded-md border border-neutral-300 dark:border-neutral-700 divide-x divide-neutral-300 dark:divide-neutral-700 shadow transition select-none">
+  <div className="flex flex-1 select-none divide-x divide-neutral-300 overflow-hidden rounded-md border border-neutral-300 shadow transition dark:divide-neutral-700 dark:border-neutral-700">
     <StepperButton disabled={!canDecrement} onClick={() => onChange(-1)}>
       <MdRemove />
     </StepperButton>

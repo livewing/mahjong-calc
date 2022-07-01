@@ -25,7 +25,7 @@ export const App: FC = () => {
   return (
     <div className={isDark ? wrapperClasses.dark : wrapperClasses.light}>
       <Header />
-      <div className="relative flex-1 text-neutral-900 dark:text-neutral-100 bg-neutral-100 dark:bg-neutral-900 transition">
+      <div className="relative flex-1 bg-neutral-100 text-neutral-900 transition dark:bg-neutral-900 dark:text-neutral-100">
         {currentScreen === 'main' && <Calculator />}
         {currentScreen === 'scoring-table' && <ScoringTable />}
         {currentScreen === 'settings' && <Settings />}

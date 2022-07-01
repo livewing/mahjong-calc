@@ -9,7 +9,7 @@ import type { AppState } from '../lib/store/state';
 import type { IconType } from 'react-icons';
 
 const Header: FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className="flex justify-center items-center p-2 text-center">
+  <div className="flex items-center justify-center p-2 text-center">
     {children}
   </div>
 );
@@ -107,18 +107,18 @@ const Content: FC<ContentProps> = ({ fu, han }) => {
       : 'flex-1 px-2 py-1 flex flex-col justify-center items-center';
 
   return (
-    <div className="flex overflow-hidden flex-col bg-neutral-200 dark:bg-neutral-800 rounded-md">
+    <div className="flex flex-col overflow-hidden rounded-md bg-neutral-200 dark:bg-neutral-800">
       <div className={className}>
         <div
           className={
             ron === '-'
-              ? 'opacity-50 flex-1 text-lg font-bold'
+              ? 'flex-1 text-lg font-bold opacity-50'
               : 'flex-1 text-lg font-bold'
           }
         >
           {ron}
         </div>
-        <div className={tsumo === '-' ? 'opacity-50 flex-1' : 'flex-1'}>
+        <div className={tsumo === '-' ? 'flex-1 opacity-50' : 'flex-1'}>
           {tsumo}
         </div>
       </div>
@@ -153,7 +153,7 @@ export const ScoringTable: FC = () => {
         <div className="sm:basis-1/4">
           <MenuTab
             items={tabItems.map(item => (
-              <div key={item.id} className="flex gap-2 items-center">
+              <div key={item.id} className="flex items-center gap-2">
                 <div>
                   <item.icon />
                 </div>
@@ -173,7 +173,7 @@ export const ScoringTable: FC = () => {
           />
         </div>
         <div className="overflow-x-auto">
-          <div className="grid grid-cols-[max-content_repeat(4,_minmax(max-content,_1fr))] gap-px p-2 mx-0">
+          <div className="mx-0 grid grid-cols-[max-content_repeat(4,_minmax(max-content,_1fr))] gap-px p-2">
             {(
               ['head', 20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 110] as const
             ).map(fu => (
@@ -195,7 +195,7 @@ export const ScoringTable: FC = () => {
                 {fu !== 'head' && (
                   <>
                     <Header>
-                      <div className="flex flex-col justify-center items-center">
+                      <div className="flex flex-col items-center justify-center">
                         <div className="font-bold">
                           {t('scoring-table.fu', { count: fu })}
                         </div>
@@ -219,7 +219,7 @@ export const ScoringTable: FC = () => {
               </React.Fragment>
             ))}
           </div>
-          <div className="grid grid-cols-[repeat(5,_minmax(max-content,_1fr))] gap-px p-2 mx-0">
+          <div className="mx-0 grid grid-cols-[repeat(5,_minmax(max-content,_1fr))] gap-px p-2">
             <Header>
               <div className="font-bold">
                 {t('scoring-table.han', { count: 5 + bazoro })}

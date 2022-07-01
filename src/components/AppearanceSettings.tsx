@@ -22,7 +22,7 @@ export const AppearanceSettings: FC = () => {
         <Dropdown
           id="language-button"
           label={
-            <div className="flex gap-2 items-baseline">
+            <div className="flex items-baseline gap-2">
               <div>{t('locale:name')}</div>
               <div className="text-xs text-neutral-500">{i18n.language}</div>
             </div>
@@ -34,7 +34,7 @@ export const AppearanceSettings: FC = () => {
             {languages.map(lng => (
               <button
                 key={lng}
-                className="group flex gap-2 items-center p-2 hover:text-white hover:bg-blue-500"
+                className="group flex items-center gap-2 p-2 hover:bg-blue-500 hover:text-white"
                 onClick={() => {
                   i18n.changeLanguage(lng);
                   setOpenLanguageMenu(false);
@@ -43,11 +43,11 @@ export const AppearanceSettings: FC = () => {
                 <MdCheck
                   className={
                     lng === i18n.language
-                      ? 'visible text-blue-600 dark:text-blue-400 group-hover:text-white'
+                      ? 'visible text-blue-600 group-hover:text-white dark:text-blue-400'
                       : 'invisible'
                   }
                 />
-                <div className="flex gap-2 items-baseline">
+                <div className="flex items-baseline gap-2">
                   <div>
                     {i18n.exists('locale:name', { lng, fallbackLng: [] })
                       ? `${t('locale:name', { lng })}`

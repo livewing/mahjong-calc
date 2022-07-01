@@ -24,7 +24,7 @@ export const Header: FC = () => {
     })();
   }, []);
   return (
-    <header className="flex sticky top-0 z-30 justify-between items-center p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pl-[max(0.5rem,env(safe-area-inset-left))] h-12 text-white bg-blue-600">
+    <header className="sticky top-0 z-30 flex h-12 items-center justify-between bg-blue-600 p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pl-[max(0.5rem,env(safe-area-inset-left))] text-white">
       <button
         disabled={currentScreen === 'main'}
         className="overflow-hidden"
@@ -32,12 +32,12 @@ export const Header: FC = () => {
           dispatch({ type: 'set-current-screen', payload: 'main' })
         }
       >
-        <h1 className="text-2xl truncate">{t('header.title')}</h1>
+        <h1 className="truncate text-2xl">{t('header.title')}</h1>
       </button>
-      <div className="flex gap-1 items-center">
+      <div className="flex items-center gap-1">
         {showUpdateButton && (
           <button
-            className="flex gap-1 items-center p-1 bg-emerald-600 hover:bg-emerald-500 rounded transition"
+            className="flex items-center gap-1 rounded bg-emerald-600 p-1 transition hover:bg-emerald-500"
             onClick={() => location.reload()}
           >
             <MdUpdate size="1.8rem" />

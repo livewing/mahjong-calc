@@ -10,7 +10,7 @@ const Link: FC<{ href: string; children?: React.ReactNode }> = ({
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="text-neutral-900 hover:text-blue-700 dark:text-neutral-100 dark:hover:text-blue-300 hover:underline transition"
+    className="text-neutral-900 transition hover:text-blue-700 hover:underline dark:text-neutral-100 dark:hover:text-blue-300"
   >
     {children}
   </a>
@@ -19,7 +19,7 @@ const Link: FC<{ href: string; children?: React.ReactNode }> = ({
 export const Footer: FC = () => {
   const { i18n } = useTranslation();
   return (
-    <footer className="flex flex-col gap-2 p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pb-[max(0.5rem,env(safe-area-inset-bottom))] pl-[max(0.5rem,env(safe-area-inset-left))] text-xs text-neutral-700 dark:text-neutral-300 bg-neutral-300 dark:bg-neutral-700 transition">
+    <footer className="flex flex-col gap-2 bg-neutral-300 p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pb-[max(0.5rem,env(safe-area-inset-bottom))] pl-[max(0.5rem,env(safe-area-inset-left))] text-xs text-neutral-700 transition dark:bg-neutral-700 dark:text-neutral-300">
       <p>
         &copy; <Link href="https://livewing.net/">livewing.net</Link>
       </p>
