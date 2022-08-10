@@ -21,7 +21,7 @@ export const Dropdown: FC<DropdownProps> = ({
   <>
     {open && (
       <button
-        className="fixed inset-0 z-10 h-full w-full cursor-default bg-transparent"
+        className="fixed inset-0 z-10 h-full w-full cursor-default select-none bg-transparent [-webkit-tap-highlight-color:transparent]"
         onClick={() => onSetOpen(false)}
       />
     )}
