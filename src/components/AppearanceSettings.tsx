@@ -24,7 +24,9 @@ export const AppearanceSettings: FC = () => {
           label={
             <div className="flex items-baseline gap-2">
               <div>{t('locale:name')}</div>
-              <div className="text-xs text-neutral-500">{i18n.language}</div>
+              <div className="text-xs text-neutral-500">
+                {i18n.resolvedLanguage}
+              </div>
             </div>
           }
           open={openLanguageMenu}
@@ -42,7 +44,7 @@ export const AppearanceSettings: FC = () => {
               >
                 <MdCheck
                   className={
-                    lng === i18n.language
+                    lng === i18n.resolvedLanguage
                       ? 'visible text-blue-600 group-hover:text-white dark:text-blue-400'
                       : 'invisible'
                   }
