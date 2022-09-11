@@ -28,6 +28,8 @@ const reducerImpl: Reducer<AppState, Action> = (state, { type, payload }) => {
     }
     case 'set-table':
       return { ...state, table: payload };
+    case 'set-input':
+      return { ...state, input: payload };
     case 'set-input-random': {
       const wall = shuffle([
         ...product2(['m', 'p', 's'], [1, 2, 3, 4, 5, 6, 7, 8, 9]).flatMap(

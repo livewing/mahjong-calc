@@ -39,6 +39,7 @@
     "i18next-browser-languagedetector": "^6.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hotkeys-hook": "^3.4.7",
     "react-i18next": "^11.18.5",
     "react-icons": "^4.4.0"
   },

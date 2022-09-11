@@ -10,6 +10,7 @@ interface TileButtonProps {
   disabled?: boolean | undefined;
   focusIndicator?: boolean | undefined;
   tsumoIndicator?: boolean | undefined;
+  overlayText?: string | undefined;
   onClick?: () => void | undefined;
 }
 
@@ -19,6 +20,7 @@ export const TileButton: FC<TileButtonProps> = ({
   disabled = false,
   focusIndicator = false,
   tsumoIndicator = false,
+  overlayText = '',
   onClick
 }) => {
   const [
@@ -52,6 +54,13 @@ export const TileButton: FC<TileButtonProps> = ({
       {tsumoIndicator && (
         <div className="absolute -top-1.5 flex w-full items-center justify-center">
           <div className="h-1 w-1 rounded-full bg-blue-500" />
+        </div>
+      )}
+      {overlayText.length > 0 && (
+        <div className="absolute inset-0 flex h-full w-full select-none items-center justify-center">
+          <div className="rounded bg-white px-1 font-bold leading-none text-blue-500">
+            {overlayText}
+          </div>
         </div>
       )}
     </button>

@@ -12,6 +12,7 @@ interface ButtonProps {
   children?: React.ReactNode;
   color?: 'none' | 'danger' | undefined;
   disabled?: boolean | undefined;
+  title?: string | undefined;
   onClick?: () => void | undefined;
 }
 export const Button: FC<ButtonProps> = ({
@@ -19,12 +20,14 @@ export const Button: FC<ButtonProps> = ({
   children,
   color = 'none',
   disabled,
+  title,
   onClick = () => void 0
 }) => (
   <button
     id={id}
     className={buttonClasses[color]}
     disabled={disabled}
+    title={title}
     onClick={onClick}
   >
     {children}

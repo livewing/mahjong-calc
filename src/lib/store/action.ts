@@ -17,6 +17,7 @@ export type Action =
   | A<'set-app-config', AppConfig>
   | A<'set-current-rule', Rule>
   | A<'set-table', Table>
+  | A<'set-input', AppState['input']>
   | A<'set-input-random', 5 | 8 | 11 | 14 | 'chinitsu'>
   | A<'set-input-focus', AppState['inputFocus']>
   | A<'remove-hand-tile', number>

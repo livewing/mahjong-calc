@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { IoMdCopy } from 'react-icons/io';
 import { MdMenu, MdRefresh, MdShuffle } from 'react-icons/md';
 import { useStore } from '../../contexts/store';
+import { useTileInputAreaHotkeys } from '../../hooks/hotkeys';
 import { instantiateMeld, type Meld } from '../../lib/input';
+import { formatKeys } from '../../lib/os';
 import { isAvailableTiles, tilesToMpsz } from '../../lib/tile';
 import { Button } from './Button';
 import { ConfigItem } from './ConfigItem';
@@ -21,6 +23,7 @@ export const TileInputArea: FC = () => {
     },
     dispatch
   ] = useStore();
+  const inputString = useTileInputAreaHotkeys();
   const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-2">
@@ -32,6 +35,11 @@ export const TileInputArea: FC = () => {
                 key={i}
                 dim
                 focusIndicator={inputFocus.type === 'dora' && i === dora.length}
+                overlayText={
+                  inputFocus.type === 'dora'
+                    ? inputString[i - dora.length]
+                    : void 0
+                }
                 onClick={() =>
                   dispatch({
                     type: 'set-input-focus',
@@ -63,6 +71,11 @@ export const TileInputArea: FC = () => {
                 key={i}
                 dim
                 focusIndicator={inputFocus.type === 'hand' && i === hand.length}
+                overlayText={
+                  inputFocus.type === 'hand'
+                    ? inputString[i - hand.length]
+                    : void 0
+                }
                 onClick={() =>
                   dispatch({
                     type: 'set-input-focus',
@@ -97,6 +110,11 @@ export const TileInputArea: FC = () => {
                       focusIndicator={
                         inputFocus.type === 'meld' &&
                         inputFocus.i === melds.length - 1 - i
+                      }
+                      overlayText={
+                        inputFocus.type === 'meld' && inputFocus.i === j
+                          ? inputString[0]
+                          : void 0
                       }
                       onClick={() =>
                         dispatch(
@@ -141,6 +159,11 @@ export const TileInputArea: FC = () => {
                         inputFocus.type === 'meld' &&
                         inputFocus.i === melds.length - 1 - i &&
                         ((meld.tile === null && j === 0) || meld.tile !== null)
+                      }
+                      overlayText={
+                        inputFocus.type === 'meld' && inputFocus.i === j
+                          ? inputString[0]
+                          : void 0
                       }
                       onClick={() =>
                         dispatch(
@@ -194,6 +217,11 @@ export const TileInputArea: FC = () => {
                       focusIndicator={
                         inputFocus.type === 'meld' &&
                         inputFocus.i === melds.length - 1 - i
+                      }
+                      overlayText={
+                        inputFocus.type === 'meld' && inputFocus.i === j
+                          ? inputString[0]
+                          : void 0
                       }
                       onClick={() =>
                         dispatch(
@@ -257,6 +285,9 @@ export const TileInputArea: FC = () => {
               <div className="flex-1 truncate text-left">
                 {t('tile-input.clear-inputs')}
               </div>
+              <div className="text-sm opacity-70">
+                {formatKeys('Ctrl+Backspace', 'Cmd+Backspace')}
+              </div>
             </button>
             <div className="my-1 border-t border-neutral-300 dark:border-neutral-700" />
             {([5, 8, 11, 14] as const).map(n => (
@@ -272,6 +303,17 @@ export const TileInputArea: FC = () => {
                 <div className="flex-1 truncate text-left">
                   {t('tile-input.random', { count: n })}
                 </div>
+                <div className="text-sm opacity-70">
+                  {formatKeys(
+                    n === 5
+                      ? 'Shift+S'
+                      : n === 8
+                      ? 'Shift+D'
+                      : n === 11
+                      ? 'Shift+F'
+                      : 'Shift+G'
+                  )}
+                </div>
               </button>
             ))}
             <button
@@ -285,6 +327,7 @@ export const TileInputArea: FC = () => {
               <div className="flex-1 truncate text-left">
                 {t('tile-input.random-chinitsu')}
               </div>
+              <div className="text-sm opacity-70">{formatKeys('Shift+Z')}</div>
             </button>
             <div className="my-1 border-t border-neutral-300 dark:border-neutral-700" />
             <button
@@ -310,6 +353,7 @@ export const TileInputArea: FC = () => {
           disabled={
             melds.length >= 4 || 14 - melds.length * 3 - hand.length < 3
           }
+          title={formatKeys('Shift+P')}
           onClick={() =>
             dispatch({
               type: 'add-meld',
@@ -323,6 +367,7 @@ export const TileInputArea: FC = () => {
           disabled={
             melds.length >= 4 || 14 - melds.length * 3 - hand.length < 3
           }
+          title={formatKeys('Shift+C')}
           onClick={() =>
             dispatch({
               type: 'add-meld',
@@ -336,6 +381,7 @@ export const TileInputArea: FC = () => {
           disabled={
             melds.length >= 4 || 14 - melds.length * 3 - hand.length < 3
           }
+          title={formatKeys('Shift+M')}
           onClick={() =>
             dispatch({
               type: 'add-meld',
@@ -349,6 +395,7 @@ export const TileInputArea: FC = () => {
           disabled={
             melds.length >= 4 || 14 - melds.length * 3 - hand.length < 3
           }
+          title={formatKeys('Shift+A')}
           onClick={() =>
             dispatch({
               type: 'add-meld',
@@ -402,6 +449,7 @@ export const TileInputArea: FC = () => {
                 )
               );
             })()}
+            title={formatKeys('Shift+R')}
             onClick={() =>
               dispatch({ type: 'toggle-current-meld-red', payload: null })
             }
