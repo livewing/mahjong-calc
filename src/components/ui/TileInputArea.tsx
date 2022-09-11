@@ -122,7 +122,9 @@ export const TileInputArea: FC = () => {
                           inputFocus.i === melds.length - 1 - i
                         }
                         overlayText={
-                          inputFocus.type === 'meld' && inputFocus.i === j
+                          inputFocus.type === 'meld' &&
+                          inputFocus.i === melds.length - 1 - i &&
+                          j === 0
                             ? inputString[0]
                             : void 0
                         }
@@ -172,7 +174,9 @@ export const TileInputArea: FC = () => {
                             meld.tile !== null)
                         }
                         overlayText={
-                          inputFocus.type === 'meld' && inputFocus.i === j
+                          inputFocus.type === 'meld' &&
+                          inputFocus.i === melds.length - 1 - i &&
+                          j === 0
                             ? inputString[0]
                             : void 0
                         }
@@ -230,7 +234,9 @@ export const TileInputArea: FC = () => {
                           inputFocus.i === melds.length - 1 - i
                         }
                         overlayText={
-                          inputFocus.type === 'meld' && inputFocus.i === j
+                          inputFocus.type === 'meld' &&
+                          inputFocus.i === melds.length - 1 - i &&
+                          j === 0
                             ? inputString[0]
                             : void 0
                         }
