@@ -23,11 +23,22 @@ translation:
     random: "随机 {{count}} 牌"
     random-chinitsu: 随机 清一色
     copy-hand-as-mpsz: 以 MPSZ 格式复制手牌
+    keyboard-shortcuts: 键盘快捷键...
     pon: 碰
     chii: 吃
     minkan: 明杠
     ankan: 暗杠
     toggle-red: 切换赤牌
+  keyboard-shortcuts:
+    title: 键盘快捷键
+    switch-focus: 切换焦点
+    delete-tile: 抹去牌
+    pon: 碰
+    chii: 吃
+    minkan: 明杠
+    ankan: 暗杠
+    toggle-red: 切换赤牌
+    close: 关
   hand-options:
     none: 无
     riichi: 立直

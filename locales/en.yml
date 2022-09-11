@@ -23,11 +23,22 @@ translation:
     random: "Random {{count}} Tiles"
     random-chinitsu: Random Full Flush
     copy-hand-as-mpsz: Copy Hand as MPSZ Format
+    keyboard-shortcuts: Keyboard Shortcuts...
     pon: Pon
     chii: Chii
     minkan: Open Kan
     ankan: Closed Kan
     toggle-red: Toggle Red
+  keyboard-shortcuts:
+    title: Keyboard Shortcuts
+    switch-focus: Switch Focus
+    delete-tile: Delete Tile
+    pon: Pon
+    chii: Chii
+    minkan: Open Kan
+    ankan: Closed Kan
+    toggle-red: Toggle Red
+    close: Close
   hand-options:
     none: None
     riichi: Riichi

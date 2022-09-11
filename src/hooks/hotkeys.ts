@@ -7,6 +7,7 @@ import type { Meld } from '../lib/input';
 
 export const useTileInputAreaHotkeys = () => {
   const [inputString, setInputString] = useState('');
+  const [helpTrigger, setHelpTrigger] = useState(0);
   const [
     {
       currentRule,
@@ -206,6 +207,7 @@ export const useTileInputAreaHotkeys = () => {
   );
   useHotkeys('esc', e => {
     setInputString('');
+    setHelpTrigger(helpTrigger => Math.min(0, helpTrigger) - 1);
     e.preventDefault();
   });
   useHotkeys('shift+s', e => {
@@ -277,5 +279,9 @@ export const useTileInputAreaHotkeys = () => {
     dispatch({ type: 'toggle-current-meld-red', payload: null });
     e.preventDefault();
   });
-  return inputString;
+  useHotkeys('shift+/', e => {
+    setHelpTrigger(helpTrigger => Math.max(0, helpTrigger) + 1);
+    e.preventDefault();
+  });
+  return [inputString, helpTrigger] as const;
 };
