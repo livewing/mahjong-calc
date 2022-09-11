@@ -50,7 +50,7 @@ export const AppearanceSettings: FC = () => {
                   }
                 />
                 <div className="flex items-baseline gap-2">
-                  <div>
+                  <div lang={lng}>
                     {i18n.exists('locale:name', { lng, fallbackLng: [] })
                       ? `${t('locale:name', { lng })}`
                       : '???'}
