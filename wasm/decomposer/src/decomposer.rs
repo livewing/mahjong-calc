@@ -41,7 +41,7 @@ fn isolated(mut counts: Counts) -> (DecomposeResult, Counts) {
                 }
             }
             if i <= 6
-                && number_counts.get(i + 0) == 1
+                && number_counts.get(i) == 1
                 && number_counts.get(i + 1) == 1
                 && number_counts.get(i + 2) == 1
             {
@@ -56,7 +56,7 @@ fn isolated(mut counts: Counts) -> (DecomposeResult, Counts) {
                     }
                 }
                 if dec {
-                    number_counts.set_by(i + 0, |c| c - 1);
+                    number_counts.set_by(i, |c| c - 1);
                     number_counts.set_by(i + 1, |c| c - 1);
                     number_counts.set_by(i + 2, |c| c - 1);
                     blocks.push(Block {
@@ -146,7 +146,7 @@ fn mentsu_and_tatsu(counts: Counts) -> HashSet<DecomposeResult> {
             _ => unreachable!(),
         })
         .into_iter()
-        .map(move |r| r.to_decompose_result(t))
+        .map(move |r| r.into_decompose_result(t))
         .collect_vec()
     });
 

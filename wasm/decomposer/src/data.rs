@@ -31,7 +31,7 @@ pub struct NumberDecomposeResult {
 }
 
 impl NumberDecomposeResult {
-    pub fn to_decompose_result(self, t: u8) -> DecomposeResult {
+    pub fn into_decompose_result(self, t: u8) -> DecomposeResult {
         DecomposeResult {
             rest: {
                 let mut counts = Counts::new();

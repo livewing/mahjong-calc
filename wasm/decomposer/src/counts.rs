@@ -11,9 +11,9 @@ impl<const N: usize> PackedCounts<N> {
             panic!();
         }
         let mut d = 0;
-        for i in 0..N {
+        (0..N).for_each(|i| {
             d |= (counts[i] as u32 & 0b111) << (3 * i);
-        }
+        });
         Self(d)
     }
 

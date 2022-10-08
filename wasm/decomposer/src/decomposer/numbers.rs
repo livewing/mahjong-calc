@@ -12,7 +12,7 @@ fn kotsu(counts: PackedNumberCounts) -> HashSet<NumberDecomposeResult> {
         .collect();
     let mut ret = HashSet::new();
 
-    if candidates.len() == 0 {
+    if candidates.is_empty() {
         ret.insert(NumberDecomposeResult {
             rest: counts,
             blocks: vec![],
@@ -56,7 +56,7 @@ fn shuntsu(counts: PackedNumberCounts) -> HashSet<NumberDecomposeResult> {
         .collect();
     let mut ret = HashSet::new();
 
-    if candidates.len() == 0 {
+    if candidates.is_empty() {
         ret.insert(NumberDecomposeResult {
             rest: counts,
             blocks: vec![],
@@ -66,7 +66,7 @@ fn shuntsu(counts: PackedNumberCounts) -> HashSet<NumberDecomposeResult> {
 
     for candidate in candidates.into_iter() {
         let mut rest = counts;
-        rest.set_by(candidate + 0, |c| c - 1);
+        rest.set_by(candidate, |c| c - 1);
         rest.set_by(candidate + 1, |c| c - 1);
         rest.set_by(candidate + 2, |c| c - 1);
         for f in [kotsu, shuntsu] {
@@ -96,7 +96,7 @@ fn toitsu(counts: PackedNumberCounts, recurse: usize) -> HashSet<NumberDecompose
         .collect();
     let mut ret = HashSet::new();
 
-    if recurse == 0 || candidates.len() == 0 {
+    if recurse == 0 || candidates.is_empty() {
         ret.insert(NumberDecomposeResult {
             rest: counts,
             blocks: vec![],
@@ -143,7 +143,7 @@ fn ryammen_and_penchan(
         .collect();
     let mut ret = HashSet::new();
 
-    if recurse == 0 || candidates.len() == 0 {
+    if recurse == 0 || candidates.is_empty() {
         ret.insert(NumberDecomposeResult {
             rest: counts,
             blocks: vec![],
@@ -153,7 +153,7 @@ fn ryammen_and_penchan(
 
     for candidate in candidates.into_iter() {
         let mut rest = counts;
-        rest.set_by(candidate + 0, |c| c - 1);
+        rest.set_by(candidate, |c| c - 1);
         rest.set_by(candidate + 1, |c| c - 1);
         for f in [toitsu, ryammen_and_penchan, kanchan] {
             ret.extend(&mut f(rest, recurse - 1).into_iter().map(
@@ -192,7 +192,7 @@ fn kanchan(counts: PackedNumberCounts, recurse: usize) -> HashSet<NumberDecompos
         .collect();
     let mut ret = HashSet::new();
 
-    if recurse == 0 || candidates.len() == 0 {
+    if recurse == 0 || candidates.is_empty() {
         ret.insert(NumberDecomposeResult {
             rest: counts,
             blocks: vec![],
@@ -202,7 +202,7 @@ fn kanchan(counts: PackedNumberCounts, recurse: usize) -> HashSet<NumberDecompos
 
     for candidate in candidates.into_iter() {
         let mut rest = counts;
-        rest.set_by(candidate + 0, |c| c - 1);
+        rest.set_by(candidate, |c| c - 1);
         rest.set_by(candidate + 2, |c| c - 1);
         for f in [toitsu, ryammen_and_penchan, kanchan] {
             ret.extend(&mut f(rest, recurse - 1).into_iter().map(
@@ -228,7 +228,7 @@ fn tatsu(counts: PackedNumberCounts, recurse: usize) -> HashSet<NumberDecomposeR
     for f in [toitsu, ryammen_and_penchan, kanchan] {
         ret.extend(f(counts, recurse))
     }
-    return ret;
+    ret
 }
 
 pub fn mentsu_and_tatsu_numbers(counts: PackedNumberCounts) -> HashSet<NumberDecomposeResult> {
@@ -252,5 +252,5 @@ pub fn mentsu_and_tatsu_numbers(counts: PackedNumberCounts) -> HashSet<NumberDec
                 }),
         );
     });
-    return ret;
+    ret
 }
