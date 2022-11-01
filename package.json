@@ -36,7 +36,7 @@
     "copy-to-clipboard": "^3.3.2",
     "decomposer": "file:./wasm/decomposer/pkg",
     "i18next": "^21.10.0",
-    "i18next-browser-languagedetector": "^6.1.8",
+    "i18next-browser-languagedetector": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hotkeys-hook": "^3.4.7",
