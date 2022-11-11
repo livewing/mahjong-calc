@@ -104,10 +104,8 @@ translation:
     dealer-diff: "친과의 점수 차: {{count}}"
     non-dealer-diff: "자와의 점수 차: {{count}}"
     shanten: "{{count}} 텐파이"
-    type_one: "{{count}} 종"
-    type_other: "{{count}} 종"
-    tile_one: "{{count}} 패"
-    tile_other: "{{count}} 패"
+    type: "{{count}} 종"
+    tile: "{{count}} 패"
     tempai: 텐파이
     discard: 버리기
     waiting: 기다리기
