@@ -1,0 +1,254 @@
+locale:
+  name: 한국어
+translation:
+  header:
+    title: 마작 점수 계산기
+    update: 업데이트
+    help: 도움말
+    scoring-table: 점수표
+    settings: 설정
+  table-settings:
+    round-wind: 장풍
+    seat-wind: 자풍
+    east: 동
+    south: 남
+    west: 서
+    north: 북
+    deposit: 리치 봉
+    continue: 본장
+  tile-input:
+    dora-indicators: 도라 표시패
+    hand: 수패
+    clear-inputs: 초기화
+    random: "랜덤 {{count}} 패"
+    random-chinitsu: 랜덤 청일색
+    copy-hand-as-mpsz: 수패를 만-통-삭-자 형식으로 복사
+    keyboard-shortcuts: 키보드 단축키...
+    pon: 퐁
+    chii: 치
+    minkan: 밍깡
+    ankan: 안깡
+    toggle-red: 적패 전환
+  keyboard-shortcuts:
+    title: 키보드 단축키
+    switch-focus: 포커스 전환
+    delete-tile: 타일 지우기
+    pon: 퐁
+    chii: 치
+    minkan: 밍깡
+    ankan: 안깡
+    toggle-red: 적패 전환
+    close: 닫기
+  hand-options:
+    none: None
+    riichi: 리치
+    double-riichi: 더블 리치
+    ippatsu: 일발
+    rinshan: 영상개화
+    chankan: 창깡
+    haitei-hotei: 해저
+    tenho: 천화
+    chiho: 자화
+  input-glance:
+    round-east: 동장
+    round-south: 남장
+    round-west: 서장
+    round-north: 북장
+    seat-east: 동가
+    seat-south: 남가
+    seat-west: 서가
+    seat-north: 북가
+  result:
+    input-message: 패를 입력해주세요.
+    hora: 화료입니다. 패를 모두 입력하여 점수를 계산합니다.
+    no-hora-tiles: 화료패 없음
+    tsumo: 츠모
+    ron: 론
+    no-yaku: 역 없음
+    points: 점수
+    mangan: 만관
+    haneman: 하네만
+    baiman: 배만
+    sambaiman: 삼배만
+    yakuman: 역만
+    double-yakuman: 더블 역만
+    triple-yakuman: 세배 역만
+    quadruple-yakuman: 네배 역만
+    quintuple-yakuman: 네배 역만
+    sextuple-yakuman: 여섯배 역만
+    septuple-yakuman: 여섯배 역만
+    octuple-yakuman: 열배 역만
+    nonuple-yakuman: 열한배 역만
+    decuple-yakuman: 열두배 역만
+    more-yakuman: 추가 역만
+    ron-detail: "{{a}} - {{b}}"
+    tsumo-east-detail: "{{count}} All"
+    tsumo-east-continue-detail: "{{a}} - {{b}} All"
+    tsumo-other-detail: "{{a}}/{{b}}"
+    tsumo-other-continue-detail: "{{a}}/{{b}} - {{c}}/{{d}}"
+    han: "{{count}} 판"
+    fu-han: "{{a}} 부 {{b}} 판"
+    score: 점수
+    base-point: 기본 점수
+    fu-var: 부
+    han-var: 판
+    dealer-pays: 친의 지불
+    non-dealer-pay: 자의 지불
+    change-in-score: 점수 변화
+    plus-han: "+{{count}} 판"
+    plus-han-2: "+{{a}}, +{{b}} 판"
+    plus-han-range: "+{{a}} - +{{b}} 판"
+    plus-gte-han: "+ ≥ {{count}} 판"
+    point-diff: 점수 차
+    point: "{{count}} 점"
+    dealer-diff: "친과의 점수 차: {{count}}"
+    non-dealer-diff: "자와의 점수 차: {{count}}"
+    shanten: "{{count}} 텐파이"
+    type_one: "{{count}} 종"
+    type_other: "{{count}} 종"
+    tile_one: "{{count}} 패"
+    tile_other: "{{count}} 패"
+    tempai: 텐파이
+    discard: 버리기
+    waiting: 기다리기
+    acceptance: 받기
+    point-range: "{{a}} - {{b}} 점"
+  fu:
+    title: 부
+    fu: "{{count}} 부"
+    futei: 부저
+    head: 작두
+    double-wind-head: 연풍패 작두
+    round-wind-head: 장풍패 작두
+    seat-wind-head: 자풍패 작두
+    dragon-head: 삼원색 작두
+    shuntsu: 준코
+    chunchan-minko: 중장패 명각
+    chunchan-anko: 중장패 암각
+    chunchan-minkan: 중장패 명깡
+    chunchan-ankan: 중장패 안깡
+    yaochu-minko: 요구패 명각
+    yaochu-anko: 요구패 암각
+    yaochu-minkan: 요구패 명깡
+    yaochu-ankan: 요구패 안깡
+    ryammen: 양면 대기
+    kanchan: 간짱 대기
+    penchan: 변짱 대기
+    shampon: 샤보 대기
+    tanki: 단기 대기
+    menzen-ron: 멘젠 론
+    kui-pinfu: 쿠이핑후
+    tsumo: 츠포
+    pinfu-tsumo: 핑후츠모
+    chitoitsu: 치또이츠
+  yaku:
+    yaku: 역
+    riichi: 리치
+    ippatsu: 일발
+    tsumo: 멘젠 츠모
+    tanyao: 탕야오
+    pinfu: 핑후
+    iipeko: 이페코
+    field-wind: 장풍패
+    seat-wind: 자풍패
+    white: 백
+    green: 발
+    red: 중
+    rinshan: 영상개화
+    chankan: 창깡
+    haitei: 해저모월
+    hotei: 하저로어
+    sanshoku-dojun: 삼색동순
+    sanshoku-doko: 삼색동각
+    ittsu: 일기통관
+    chanta: 순전대요구
+    chitoitsu: 치또이츠
+    toitoi: 또이또이
+    sananko: 삼암각
+    honroto: 혼노두
+    sankantsu: 산깡즈
+    shosangen: 소삼원
+    double-riichi: 더블 리치
+    honitsu: 혼일색
+    junchan: 순전대요구
+    ryampeko: 랑페코
+    chinitsu: 청일색
+    dora: 도라
+    red-dora: 적도라
+    kokushi: 국사무쌍
+    kokushi-13: 국사무쌍 13면팅
+    suanko: 사암각
+    suanko-tanki: 사암각단기
+    daisangen: 대삼원
+    tsuiso: 자일색
+    shosushi: 소사희
+    daisushi: 대사희
+    ryuiso: 녹일색
+    chinroto: 청노두
+    sukantsu: 사공자
+    churen: 구련보등
+    pure-churen: 순정구련보등
+    tenho: 천화
+    chiho: 지화
+    bazoro: 바조로
+  scoring-table:
+    dealer: 친
+    non-dealer: 자
+    score: 점수
+    diff: 점수 차
+    fu: "{{count}} 부"
+    han: "{{count}} 판"
+    han-2: "{{a}}, {{b}} 판"
+    han-range: "{{a}} - {{b}} 판"
+    gte-han: "≥ {{count}} 판"
+    gte-han-yakuman: "≥ {{count}} 판, 역만"
+    yakuman: 역만
+    pinfu-tsumo: 핑후 츠모
+    chitoitsu: 치또이츠
+    ron-with-bonus: "{{a}} - {{b}}"
+    tsumo-with-bonus-dealer: "{{a}} - {{b}} All"
+    tsumo-with-bonus-non-dealer: "{{a}}/{{b}} - {{c}}/{{d}}"
+    tsumo-dealer: "{{count}} All"
+    tsumo-non-dealer: "{{a}}/{{b}}"
+    tsumo-non-dealer-diff: "{{a}}/{{b}}"
+  settings:
+    rule: 룰
+    empty: 공백
+    save-as: 저장
+    overwrite-save: 덮어쓰기
+    name: 이름
+    untitled-rule: 무제-룰
+    on: On
+    off: Off
+    red-m: 적 5만
+    red-p: 적 5통
+    red-s: 적 5삭
+    honba-bonus: 1 본장
+    point: "{{count}} 점"
+    rounded-mangan: 올림 만관
+    round-up-basic-point: "기본 점수: {{count}}"
+    double-wind-fu: 연풍패 작두
+    fu: "{{count}} 부"
+    accumlated-yakuman: 카조에 역만
+    gte-han: "≥ {{count}} 판"
+    multiple-yakuman: 역만 복합
+    kokushi-13: 국사무쌍 13면팅
+    suanko-tanki: 사암각 단기
+    daisushi: 대사희
+    pure-churen: 순정구련보등
+    yakuman: 역만
+    double-yakuman: 더블 역만
+    appearance: 표시
+    language: 언어
+    theme: 테마
+    auto: 자동
+    light: 라이트
+    dark: 다크
+    tile-color: 패 색상
+    auto-inverted: 자동 (반전)
+    score: 점수
+    show-bazoro: 바조로 표시
+    about: About
+  footer:
+    license: 이 앱은 <1>The MIT License</1>에 따라 라이센스가 부여되며, 우리는 이 앱에 대해 어떠한 책임도 지지 않습니다.
+    credit: 마작 타일 이미지는 <1>FluffyStuff/riichi-mahjong-tiles</1>에서 가져온 것입니다. (<2>CC BY</2>).
