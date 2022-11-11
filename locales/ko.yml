@@ -213,7 +213,7 @@ translation:
     tsumo-non-dealer-diff: "{{a}}/{{b}}"
   settings:
     rule: 룰
-    empty: Empty
+    empty: 공백
     save-as: 저장
     overwrite-save: 덮어쓰기
     name: 이름
@@ -250,5 +250,5 @@ translation:
     show-bazoro: 바조로 표시
     about: About
   footer:
-    license: This app is licensed under <1>The MIT License</1>. We assume no liability for this app.
-    credit: The mahjong tile images are from <1>FluffyStuff/riichi-mahjong-tiles</1> (<2>CC BY</2>).
+    license: 이 앱은 <1>The MIT License</1>에 따라 라이센스가 부여되며, 우리는 이 앱에 대해 어떠한 책임도 지지 않습니다.
+    credit: 마작 타일 이미지는 <1>FluffyStuff/riichi-mahjong-tiles</1>에서 가져온 것입니다. (<2>CC BY</2>).
