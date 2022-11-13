@@ -87,7 +87,7 @@ export const RuleSettings: FC = () => {
                   <input
                     type="text"
                     size={1}
-                    placeholder={t('settings.name')}
+                    placeholder={t('settings.name') as string}
                     className="w-full rounded-md border border-neutral-300 bg-white p-1 transition dark:border-neutral-700 dark:bg-black"
                     onInput={e => setNewRuleName(e.currentTarget.value)}
                     onKeyDown={e => {
@@ -121,7 +121,7 @@ export const RuleSettings: FC = () => {
         </Dropdown>
         <div
           className="truncate font-bold"
-          title={ruleName ?? t('settings.untitled-rule')}
+          title={ruleName ?? (t('settings.untitled-rule') as string)}
         >
           {ruleName ?? t('settings.untitled-rule')}
         </div>
