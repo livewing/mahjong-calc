@@ -13,7 +13,7 @@ Riichi-Mahjong score calculator app in the web browser.
 
 [麻雀得点計算機](https://mahjong-calc.livewing.net/)
 
-This app is available in Japanese, English, and Simplified Chinese. To translate the app to a new language, see [CONTRIBUTING.md](./CONTRIBUTING.md).
+This app is available in Japanese, English, Simplified Chinese, and Korean. To translate the app to a new language, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 <img src="https://user-images.githubusercontent.com/7447366/107044000-11f10500-6807-11eb-99c9-198b481f0f3e.png" width="185" alt="QR Code" />
 
