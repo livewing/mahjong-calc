@@ -33,7 +33,7 @@
     "*.{ts,tsx}": "eslint --fix"
   },
   "dependencies": {
-    "copy-to-clipboard": "^3.3.2",
+    "copy-to-clipboard": "^3.3.3",
     "decomposer": "file:./wasm/decomposer/pkg",
     "i18next": "^22.0.5",
     "i18next-browser-languagedetector": "^7.0.1",
