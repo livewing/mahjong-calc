@@ -1,14 +1,14 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import type { IconType } from 'react-icons';
 import { IoMdDesktop } from 'react-icons/io';
 import { MdChecklist, MdInfo } from 'react-icons/md';
 import { useStore } from '../contexts/store';
+import type { AppState } from '../lib/store/state';
 import { About } from './About';
 import { AppearanceSettings } from './AppearanceSettings';
 import { RuleSettings } from './RuleSettings';
 import { MenuTab } from './ui/MenuTab';
-import type { AppState } from '../lib/store/state';
-import type { FC } from 'react';
-import type { IconType } from 'react-icons';
 
 const tabItems: {
   id: AppState['currentSettingsTab'];
@@ -38,7 +38,7 @@ export const Settings: FC = () => {
           onSetIndex={i =>
             dispatch({
               type: 'set-current-settings-tab',
-              payload: (tabItems[i] as typeof tabItems[number]).id
+              payload: (tabItems[i] as (typeof tabItems)[number]).id
             })
           }
         />

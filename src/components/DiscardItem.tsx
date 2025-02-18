@@ -1,13 +1,13 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
 import { sumOfFu } from '../lib/fu';
+import type { Hora } from '../lib/hora';
+import type { Discard } from '../lib/result';
 import { calculateBasePoint, ceil100 } from '../lib/score';
 import { compareTiles, tilesToCounts } from '../lib/tile';
 import { countBy, sumBy, uniqueSorted } from '../lib/util';
 import { TileButton } from './ui/TileButton';
-import type { Hora } from '../lib/hora';
-import type { Discard } from '../lib/result';
-import type { FC } from 'react';
 
 const HoraSummary: FC<{ hora: Hora[] }> = ({ hora }) => {
   const [
@@ -34,21 +34,21 @@ const HoraSummary: FC<{ hora: Hora[] }> = ({ hora }) => {
               return Math.max(acc, p);
             }, 0) * 8000
           : cur.yaku.every(y => y.name === 'dora' || y.name === 'red-dora')
-          ? 0
-          : calculateBasePoint(
-              cur.type === 'mentsu' ? sumOfFu(cur.fu) : 25,
-              sumBy(cur.yaku, y => (y.type === 'yaku' ? y.han : 0)),
-              roundedMangan,
-              accumlatedYakuman
-            );
+            ? 0
+            : calculateBasePoint(
+                cur.type === 'mentsu' ? sumOfFu(cur.fu) : 25,
+                sumBy(cur.yaku, y => (y.type === 'yaku' ? y.han : 0)),
+                roundedMangan,
+                accumlatedYakuman
+              );
       const point =
         table.seat === 'east'
           ? cur.by === 'ron'
             ? ceil100(base * 6)
             : ceil100(base * 2) * 3
           : cur.by === 'ron'
-          ? ceil100(base * 4)
-          : ceil100(base) * 2 + ceil100(base * 2);
+            ? ceil100(base * 4)
+            : ceil100(base) * 2 + ceil100(base * 2);
       return {
         ...acc,
         min: Math.min(acc.min, point),
@@ -106,10 +106,10 @@ export const DiscardItem: FC<DiscardItemProps> = ({ discard }) => {
           a.count > 0 ? [a.tile] : []
         )
       : discard.next.info.type === 'hora'
-      ? discard.next.info.hora.map(h => h.horaTile)
-      : discard.next.info.tileAvailabilities.flatMap(a =>
-          a.count > 0 ? [a.tile] : []
-        )
+        ? discard.next.info.hora.map(h => h.horaTile)
+        : discard.next.info.tileAvailabilities.flatMap(a =>
+            a.count > 0 ? [a.tile] : []
+          )
     ).sort(compareTiles),
     (a, b) => compareTiles(a, b) === 0
   );

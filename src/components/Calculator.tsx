@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdNavigateNext } from 'react-icons/md';
 import { useStore } from '../contexts/store';
@@ -12,7 +13,6 @@ import { TableSettings } from './TableSettings';
 import { Button } from './ui/Button';
 import { ConfigItem } from './ui/ConfigItem';
 import { TileInput } from './ui/TileInput';
-import type { FC } from 'react';
 
 export const Calculator: FC = () => {
   const [ruleRef, ruleRect] = useBoundingClientRect<HTMLDivElement>();

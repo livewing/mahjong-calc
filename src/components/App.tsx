@@ -1,4 +1,4 @@
-import { useLayoutEffect, type FC } from 'react';
+import { type FC, useLayoutEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
 import { usePrefersColorScheme } from '../hooks/dom';
@@ -29,7 +29,7 @@ export const App: FC = () => {
   useLayoutEffect(() => {
     const html = document.querySelector('html');
     if (html === null) return;
-    html.lang = resolvedLanguage;
+    html.lang = resolvedLanguage ?? 'ja';
   }, [resolvedLanguage]);
   return (
     <div className={isDark ? wrapperClasses.dark : wrapperClasses.light}>

@@ -1,19 +1,19 @@
+import type { FC } from 'react';
+import type React from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineArrowForward } from 'react-icons/md';
 import { useStore } from '../contexts/store';
 import { sumOfFu } from '../lib/fu';
+import type { Fu } from '../lib/fu';
 import { ceil10 } from '../lib/score';
 import {
   countsIndexToTile,
   tileCountsFirstIndex,
   tileToCountsIndex
 } from '../lib/tile';
+import type { TileCountsIndex } from '../lib/tile';
 import { groupBy } from '../lib/util';
 import { Tile } from './tile';
-import type { Fu } from '../lib/fu';
-import type { TileCountsIndex } from '../lib/tile';
-import type { FC } from 'react';
-import type React from 'react';
 
 interface FuBadgeProps {
   l?: React.ReactNode;
@@ -104,12 +104,12 @@ const HandBlockFuBadge: FC<{ fu: Fu }> = ({ fu }) => {
           fu.tile >= tileCountsFirstIndex.z + 4
             ? 'fu.dragon-head'
             : seatIndex === fu.tile && roundIndex === fu.tile
-            ? 'fu.double-wind-head'
-            : seatIndex === fu.tile
-            ? 'fu.seat-wind-head'
-            : roundIndex === fu.tile
-            ? 'fu.round-wind-head'
-            : 'fu.head'
+              ? 'fu.double-wind-head'
+              : seatIndex === fu.tile
+                ? 'fu.seat-wind-head'
+                : roundIndex === fu.tile
+                  ? 'fu.round-wind-head'
+                  : 'fu.head'
         )}
         r={t('fu.fu', { count: fu.fu })}
       />

@@ -1,43 +1,42 @@
-/* eslint-disable import/order */
-import m1 from './1m.svg';
-import m2 from './2m.svg';
-import m3 from './3m.svg';
-import m4 from './4m.svg';
-import m5 from './5m.svg';
-import m6 from './6m.svg';
-import m7 from './7m.svg';
-import m8 from './8m.svg';
-import m9 from './9m.svg';
-import m0 from './0m.svg';
-import p1 from './1p.svg';
-import p2 from './2p.svg';
-import p3 from './3p.svg';
-import p4 from './4p.svg';
-import p5 from './5p.svg';
-import p6 from './6p.svg';
-import p7 from './7p.svg';
-import p8 from './8p.svg';
-import p9 from './9p.svg';
-import p0 from './0p.svg';
-import s1 from './1s.svg';
-import s2 from './2s.svg';
-import s3 from './3s.svg';
-import s4 from './4s.svg';
-import s5 from './5s.svg';
-import s6 from './6s.svg';
-import s7 from './7s.svg';
-import s8 from './8s.svg';
-import s9 from './9s.svg';
-import s0 from './0s.svg';
-import z1 from './1z.svg';
-import z2 from './2z.svg';
-import z3 from './3z.svg';
-import z4 from './4z.svg';
-import z5 from './5z.svg';
-import z6 from './6z.svg';
-import z7 from './7z.svg';
 import type { Tile } from '../../../../lib/tile';
-/* eslint-enable */
+import { unreachable } from '../../../../lib/util';
+import m0 from './0m.svg?react';
+import p0 from './0p.svg?react';
+import s0 from './0s.svg?react';
+import m1 from './1m.svg?react';
+import p1 from './1p.svg?react';
+import s1 from './1s.svg?react';
+import z1 from './1z.svg?react';
+import m2 from './2m.svg?react';
+import p2 from './2p.svg?react';
+import s2 from './2s.svg?react';
+import z2 from './2z.svg?react';
+import m3 from './3m.svg?react';
+import p3 from './3p.svg?react';
+import s3 from './3s.svg?react';
+import z3 from './3z.svg?react';
+import m4 from './4m.svg?react';
+import p4 from './4p.svg?react';
+import s4 from './4s.svg?react';
+import z4 from './4z.svg?react';
+import m5 from './5m.svg?react';
+import p5 from './5p.svg?react';
+import s5 from './5s.svg?react';
+import z5 from './5z.svg?react';
+import m6 from './6m.svg?react';
+import p6 from './6p.svg?react';
+import s6 from './6s.svg?react';
+import z6 from './6z.svg?react';
+import m7 from './7m.svg?react';
+import p7 from './7p.svg?react';
+import s7 from './7s.svg?react';
+import z7 from './7z.svg?react';
+import m8 from './8m.svg?react';
+import p8 from './8p.svg?react';
+import s8 from './8s.svg?react';
+import m9 from './9m.svg?react';
+import p9 from './9p.svg?react';
+import s9 from './9s.svg?react';
 
 export const tileImage = (tile: Tile) => {
   switch (tile.type) {
@@ -61,6 +60,8 @@ export const tileImage = (tile: Tile) => {
           return m8;
         case 9:
           return m9;
+        default:
+          return unreachable();
       }
     case 'p':
       switch (tile.n) {
@@ -82,6 +83,8 @@ export const tileImage = (tile: Tile) => {
           return p8;
         case 9:
           return p9;
+        default:
+          return unreachable();
       }
     case 's':
       switch (tile.n) {
@@ -103,6 +106,8 @@ export const tileImage = (tile: Tile) => {
           return s8;
         case 9:
           return s9;
+        default:
+          return unreachable();
       }
     case 'z':
       switch (tile.n) {

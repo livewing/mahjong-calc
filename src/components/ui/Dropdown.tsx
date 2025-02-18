@@ -1,7 +1,7 @@
-import { MdArrowDropDown } from 'react-icons/md';
-import { Button } from './Button';
 import type React from 'react';
 import type { FC } from 'react';
+import { MdArrowDropDown } from 'react-icons/md';
+import { Button } from './Button';
 
 interface DropdownProps {
   id?: string;
@@ -21,6 +21,7 @@ export const Dropdown: FC<DropdownProps> = ({
   <>
     {open && (
       <button
+        type="button"
         className="fixed inset-0 z-10 h-full w-full cursor-default select-none bg-transparent [-webkit-tap-highlight-color:transparent]"
         onClick={() => onSetOpen(false)}
       />

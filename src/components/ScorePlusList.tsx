@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { MdArrowForward } from 'react-icons/md';
 import { useStore } from '../contexts/store';
 import { sumOfFu } from '../lib/fu';
+import type { Hora } from '../lib/hora';
 import { calculateBasePoint, ceil100 } from '../lib/score';
 import { sumBy } from '../lib/util';
 import { LimitBadge } from './LimitBadge';
-import type { Hora } from '../lib/hora';
 
 interface ScorePlusListProps {
   info: Hora;
@@ -48,21 +48,21 @@ export const ScorePlusList: FC<ScorePlusListProps> = ({ info }) => {
         base === orig
           ? acc
           : acc.length === 0 || acc[acc.length - 1]?.base !== base
-          ? [...acc, { start: plus, end: plus, base }]
-          : acc.flatMap((e, i) =>
-              i === acc.length - 1 ? { ...e, end: plus } : e
-            ),
+            ? [...acc, { start: plus, end: plus, base }]
+            : acc.flatMap((e, i) =>
+                i === acc.length - 1 ? { ...e, end: plus } : e
+              ),
       [] as { start: number; end: number; base: number }[]
     );
   if (points.length === 0) return null;
-  (points[points.length - 1] as typeof points[number]).end =
+  (points[points.length - 1] as (typeof points)[number]).end =
     Number.POSITIVE_INFINITY;
 
   return (
     <div className="flex flex-col gap-2 p-2">
       <div className="text-xl font-bold">{t('result.change-in-score')}</div>
       <div className="overflow-x-auto">
-        <div className="grid grid-cols-[max-content,max-content,max-content] gap-2">
+        <div className="grid grid-cols-[max-content_max-content_max-content] gap-2">
           {points.map((p, i) => (
             <React.Fragment key={i}>
               <div className="text-right">

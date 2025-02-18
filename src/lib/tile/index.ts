@@ -1,5 +1,5 @@
-import { countBy } from '../util';
 import type { Rule } from '../rule';
+import { countBy } from '../util';
 
 export type NumberTile = {
   type: 'm' | 'p' | 's';
@@ -93,8 +93,8 @@ export const compareTiles = (a: Tile, b: Tile) =>
   a.type !== b.type
     ? a.type.localeCompare(b.type)
     : a.type !== 'z' && b.type !== 'z' && a.n === 5 && b.n === 5
-    ? (a.red ? 1 : 0) - (b.red ? 1 : 0)
-    : a.n - b.n;
+      ? (a.red ? 1 : 0) - (b.red ? 1 : 0)
+      : a.n - b.n;
 
 export const isAvailableTiles = (
   red: Rule['red'],
@@ -102,8 +102,10 @@ export const isAvailableTiles = (
   toUse: Tile[]
 ): boolean => {
   const merged = [...existing, ...toUse];
-  const counts = [...Array(34)].map(() => 0);
-  merged.forEach(t => (counts[tileToCountsIndex(t)] += 1));
+  const counts = [...Array(34)].map(() => 0) as TileCounts;
+  for (const t of merged) {
+    counts[tileToCountsIndex(t)] += 1;
+  }
   if (counts.some(c => c > 4)) return false;
   const fiveCounts = merged.reduce(
     (acc, cur) =>
@@ -157,7 +159,9 @@ export const countsIndexToTile = (index: TileCountsIndex): Tile => {
 
 export const tilesToCounts = (tiles: Tile[]): TileCounts => {
   const counts = [...Array(34)].map(() => 0) as TileCounts;
-  tiles.forEach(t => (counts[tileToCountsIndex(t)] += 1));
+  for (const t of tiles) {
+    counts[tileToCountsIndex(t)] += 1;
+  }
   if (counts.some(c => c > 4)) throw new Error();
   return counts;
 };
@@ -166,10 +170,10 @@ export const nextIndex = (index: TileCountsIndex): TileCountsIndex =>
   (index < tileCountsFirstIndex.z
     ? ((index + 1) % 9) + Math.floor(index / 9) * 9
     : index < tileCountsFirstIndex.z + 4
-    ? tileCountsFirstIndex.z + ((index - tileCountsFirstIndex.z + 1) % 4)
-    : tileCountsFirstIndex.z +
-      4 +
-      ((index - (tileCountsFirstIndex.z + 4) + 1) % 3)) as TileCountsIndex;
+      ? tileCountsFirstIndex.z + ((index - tileCountsFirstIndex.z + 1) % 4)
+      : tileCountsFirstIndex.z +
+        4 +
+        ((index - (tileCountsFirstIndex.z + 4) + 1) % 3)) as TileCountsIndex;
 
 export const colorStats = (counts: TileCounts): ColorStats =>
   counts.reduce(
@@ -177,10 +181,10 @@ export const colorStats = (counts: TileCounts): ColorStats =>
       i < tileCountsFirstIndex.p
         ? { ...acc, m: acc.m + cur }
         : i < tileCountsFirstIndex.s
-        ? { ...acc, p: acc.p + cur }
-        : i < tileCountsFirstIndex.z
-        ? { ...acc, s: acc.s + cur }
-        : { ...acc, z: acc.z + cur },
+          ? { ...acc, p: acc.p + cur }
+          : i < tileCountsFirstIndex.z
+            ? { ...acc, s: acc.s + cur }
+            : { ...acc, z: acc.z + cur },
     { m: 0, p: 0, s: 0, z: 0 }
   );
 

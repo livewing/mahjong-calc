@@ -1,8 +1,8 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
-import { TileButton } from './ui/TileButton';
 import type { TileAvailability } from '../lib/tile';
-import type { FC } from 'react';
+import { TileButton } from './ui/TileButton';
 
 interface TempaiProps {
   tileAvailabilities: TileAvailability[];

@@ -35,7 +35,7 @@ export const yakuNames = [
 
 export interface NormalYaku {
   type: 'yaku';
-  name: typeof yakuNames[number];
+  name: (typeof yakuNames)[number];
   han: number;
 }
 
@@ -59,7 +59,7 @@ export const yakumanNames = [
 
 export interface Yakuman {
   type: 'yakuman';
-  name: typeof yakumanNames[number];
+  name: (typeof yakumanNames)[number];
   point: number;
 }
 

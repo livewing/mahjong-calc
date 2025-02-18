@@ -1,8 +1,8 @@
+import type { FC } from 'react';
+import type React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { FaGithub } from 'react-icons/fa';
 import packageJSON from '../../package.json';
-import type { FC } from 'react';
-import type React from 'react';
 
 declare global {
   const COMMIT_HASH: string;

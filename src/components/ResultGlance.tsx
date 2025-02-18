@@ -1,10 +1,10 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useWindowSize } from '../hooks/dom';
+import type { Result } from '../lib/result';
 import { compareTiles } from '../lib/tile';
 import { uniqueSorted } from '../lib/util';
 import { Tile } from './tile';
-import type { Result } from '../lib/result';
-import type { FC } from 'react';
 
 const scrollMargin = 48;
 
@@ -55,8 +55,8 @@ export const ResultGlance: FC<ResultGlanceProps> = ({
                     cur.next.type === 'tempai'
                       ? 0
                       : cur.next.info.type === 'hora'
-                      ? 0
-                      : cur.next.info.shanten
+                        ? 0
+                        : cur.next.info.shanten
                   ),
                 Number.POSITIVE_INFINITY
               );

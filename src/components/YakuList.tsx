@@ -1,10 +1,10 @@
+import type React from 'react';
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
 import { yakumanTupleKey } from '../lib/score';
 import { sumBy } from '../lib/util';
 import type { Yaku } from '../lib/yaku';
-import type React from 'react';
-import type { FC } from 'react';
 
 interface YakuBadgeProps {
   l?: React.ReactNode;
@@ -69,7 +69,7 @@ export const YakuList: FC<YakuListProps> = ({ yaku }) => {
             />
           ))}
           {showBazoro && !isYakuman && (
-            <YakuBadge l={t(`yaku.bazoro`)} r={t('result.han', { count: 2 })} />
+            <YakuBadge l={t('yaku.bazoro')} r={t('result.han', { count: 2 })} />
           )}
         </div>
       )}

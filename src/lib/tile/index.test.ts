@@ -1,9 +1,10 @@
+import { describe, expect, test } from 'vitest';
 import {
-  countsIndexToTile,
-  tilesToCounts,
-  tileToCountsIndex,
   type Tile,
-  type TileCounts
+  type TileCounts,
+  countsIndexToTile,
+  tileToCountsIndex,
+  tilesToCounts
 } from '.';
 
 describe('tileToCountsIndex', () => {
@@ -45,7 +46,7 @@ describe('countsIndexToTile', () => {
 describe('tilesToCounts', () => {
   test('empty', () => {
     expect(tilesToCounts([])).toEqual<TileCounts>(
-      // prettier-ignore
+      // biome-ignore format:
       [
         0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -64,7 +65,7 @@ describe('tilesToCounts', () => {
         { type: 'z', n: 7 }
       ])
     ).toEqual<TileCounts>(
-      // prettier-ignore
+      // biome-ignore format:
       [
         1, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 1, 0, 0, 0, 0,
@@ -82,7 +83,7 @@ describe('tilesToCounts', () => {
         { type: 'm', n: 1 }
       ])
     ).toEqual<TileCounts>(
-      // prettier-ignore
+      // biome-ignore format:
       [
         4, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0,

@@ -5,7 +5,7 @@ import { IoMdCopy } from 'react-icons/io';
 import { MdKeyboard, MdMenu, MdRefresh, MdShuffle } from 'react-icons/md';
 import { useStore } from '../../contexts/store';
 import { useTileInputAreaHotkeys } from '../../hooks/hotkeys';
-import { instantiateMeld, type Meld } from '../../lib/input';
+import { type Meld, instantiateMeld } from '../../lib/input';
 import { formatKeys } from '../../lib/os';
 import { isAvailableTiles, tilesToMpsz } from '../../lib/tile';
 import { KeyboardHelp } from '../KeyboardHelp';
@@ -107,172 +107,162 @@ export const TileInputArea: FC = () => {
             {[...melds].reverse().map((meld, i) => (
               <React.Fragment key={i}>
                 <div className="basis-1/3" />
-                {meld.type === 'pon' && (
-                  <>
-                    {(meld.tile === null
-                      ? [...Array(3)].map(() => void 0)
-                      : instantiateMeld(meld, red)
-                    ).map((tile, j) => (
-                      <TileButton
-                        tile={tile}
-                        key={j}
-                        dim={meld.tile === null}
-                        focusIndicator={
+                {meld.type === 'pon' &&
+                  (meld.tile === null
+                    ? [...Array(3)].map(() => void 0)
+                    : instantiateMeld(meld, red)
+                  ).map((tile, j) => (
+                    <TileButton
+                      tile={tile}
+                      key={j}
+                      dim={meld.tile === null}
+                      focusIndicator={
+                        inputFocus.type === 'meld' &&
+                        inputFocus.i === melds.length - 1 - i
+                      }
+                      overlayText={
+                        inputFocus.type === 'meld' &&
+                        inputFocus.i === melds.length - 1 - i &&
+                        j === 0
+                          ? inputString[0]
+                          : void 0
+                      }
+                      onClick={() =>
+                        dispatch(
                           inputFocus.type === 'meld' &&
-                          inputFocus.i === melds.length - 1 - i
-                        }
-                        overlayText={
-                          inputFocus.type === 'meld' &&
-                          inputFocus.i === melds.length - 1 - i &&
-                          j === 0
-                            ? inputString[0]
-                            : void 0
-                        }
-                        onClick={() =>
-                          dispatch(
-                            inputFocus.type === 'meld' &&
-                              inputFocus.i === melds.length - 1 - i
-                              ? meld.tile === null
-                                ? {
-                                    type: 'remove-meld',
-                                    payload: melds.length - 1 - i
-                                  }
-                                : {
-                                    type: 'update-meld',
-                                    payload: {
-                                      i: inputFocus.i,
-                                      meld: { type: 'pon', tile: null }
-                                    }
-                                  }
+                            inputFocus.i === melds.length - 1 - i
+                            ? meld.tile === null
+                              ? {
+                                  type: 'remove-meld',
+                                  payload: melds.length - 1 - i
+                                }
                               : {
-                                  type: 'set-input-focus',
+                                  type: 'update-meld',
                                   payload: {
-                                    type: 'meld',
-                                    i: melds.length - 1 - i
+                                    i: inputFocus.i,
+                                    meld: { type: 'pon', tile: null }
                                   }
                                 }
-                          )
-                        }
-                      />
-                    ))}
-                  </>
-                )}
-                {meld.type === 'chii' && (
-                  <>
-                    {(meld.tile === null
-                      ? [...Array(3)].map(() => void 0)
-                      : instantiateMeld(meld, red)
-                    ).map((tile, j) => (
-                      <TileButton
-                        tile={tile}
-                        key={j}
-                        dim={meld.tile === null}
-                        focusIndicator={
+                            : {
+                                type: 'set-input-focus',
+                                payload: {
+                                  type: 'meld',
+                                  i: melds.length - 1 - i
+                                }
+                              }
+                        )
+                      }
+                    />
+                  ))}
+                {meld.type === 'chii' &&
+                  (meld.tile === null
+                    ? [...Array(3)].map(() => void 0)
+                    : instantiateMeld(meld, red)
+                  ).map((tile, j) => (
+                    <TileButton
+                      tile={tile}
+                      key={j}
+                      dim={meld.tile === null}
+                      focusIndicator={
+                        inputFocus.type === 'meld' &&
+                        inputFocus.i === melds.length - 1 - i &&
+                        ((meld.tile === null && j === 0) || meld.tile !== null)
+                      }
+                      overlayText={
+                        inputFocus.type === 'meld' &&
+                        inputFocus.i === melds.length - 1 - i &&
+                        j === 0
+                          ? inputString[0]
+                          : void 0
+                      }
+                      onClick={() =>
+                        dispatch(
                           inputFocus.type === 'meld' &&
-                          inputFocus.i === melds.length - 1 - i &&
-                          ((meld.tile === null && j === 0) ||
-                            meld.tile !== null)
-                        }
-                        overlayText={
-                          inputFocus.type === 'meld' &&
-                          inputFocus.i === melds.length - 1 - i &&
-                          j === 0
-                            ? inputString[0]
-                            : void 0
-                        }
-                        onClick={() =>
-                          dispatch(
-                            inputFocus.type === 'meld' &&
-                              inputFocus.i === melds.length - 1 - i
-                              ? meld.tile === null
-                                ? {
-                                    type: 'remove-meld',
-                                    payload: melds.length - 1 - i
-                                  }
-                                : {
-                                    type: 'update-meld',
-                                    payload: {
-                                      i: inputFocus.i,
-                                      meld: {
-                                        type: 'chii',
-                                        tile: null,
-                                        includeRed: false
-                                      }
+                            inputFocus.i === melds.length - 1 - i
+                            ? meld.tile === null
+                              ? {
+                                  type: 'remove-meld',
+                                  payload: melds.length - 1 - i
+                                }
+                              : {
+                                  type: 'update-meld',
+                                  payload: {
+                                    i: inputFocus.i,
+                                    meld: {
+                                      type: 'chii',
+                                      tile: null,
+                                      includeRed: false
                                     }
                                   }
-                              : {
-                                  type: 'set-input-focus',
-                                  payload: {
-                                    type: 'meld',
-                                    i: melds.length - 1 - i
-                                  }
                                 }
-                          )
-                        }
-                      />
-                    ))}
-                  </>
-                )}
-                {meld.type === 'kan' && (
-                  <>
-                    {(meld.tile === null
-                      ? [...Array(4)].map(() => void 0)
-                      : instantiateMeld(meld, red)
-                    ).map((tile, j, tiles) => (
-                      <TileButton
-                        tile={
-                          meld.closed && meld.tile !== null
-                            ? j === 0 || j === 3
-                              ? { type: 'back' }
-                              : tiles[j + 1]
-                            : tile
-                        }
-                        key={j}
-                        dim={meld.tile === null}
-                        focusIndicator={
+                            : {
+                                type: 'set-input-focus',
+                                payload: {
+                                  type: 'meld',
+                                  i: melds.length - 1 - i
+                                }
+                              }
+                        )
+                      }
+                    />
+                  ))}
+                {meld.type === 'kan' &&
+                  (meld.tile === null
+                    ? [...Array(4)].map(() => void 0)
+                    : instantiateMeld(meld, red)
+                  ).map((tile, j, tiles) => (
+                    <TileButton
+                      tile={
+                        meld.closed && meld.tile !== null
+                          ? j === 0 || j === 3
+                            ? { type: 'back' }
+                            : tiles[j + 1]
+                          : tile
+                      }
+                      key={j}
+                      dim={meld.tile === null}
+                      focusIndicator={
+                        inputFocus.type === 'meld' &&
+                        inputFocus.i === melds.length - 1 - i
+                      }
+                      overlayText={
+                        inputFocus.type === 'meld' &&
+                        inputFocus.i === melds.length - 1 - i &&
+                        j === 0
+                          ? inputString[0]
+                          : void 0
+                      }
+                      onClick={() =>
+                        dispatch(
                           inputFocus.type === 'meld' &&
-                          inputFocus.i === melds.length - 1 - i
-                        }
-                        overlayText={
-                          inputFocus.type === 'meld' &&
-                          inputFocus.i === melds.length - 1 - i &&
-                          j === 0
-                            ? inputString[0]
-                            : void 0
-                        }
-                        onClick={() =>
-                          dispatch(
-                            inputFocus.type === 'meld' &&
-                              inputFocus.i === melds.length - 1 - i
-                              ? meld.tile === null
-                                ? {
-                                    type: 'remove-meld',
-                                    payload: melds.length - 1 - i
-                                  }
-                                : {
-                                    type: 'update-meld',
-                                    payload: {
-                                      i: inputFocus.i,
-                                      meld: {
-                                        type: 'kan',
-                                        tile: null,
-                                        closed: meld.closed
-                                      }
+                            inputFocus.i === melds.length - 1 - i
+                            ? meld.tile === null
+                              ? {
+                                  type: 'remove-meld',
+                                  payload: melds.length - 1 - i
+                                }
+                              : {
+                                  type: 'update-meld',
+                                  payload: {
+                                    i: inputFocus.i,
+                                    meld: {
+                                      type: 'kan',
+                                      tile: null,
+                                      closed: meld.closed
                                     }
                                   }
-                              : {
-                                  type: 'set-input-focus',
-                                  payload: {
-                                    type: 'meld',
-                                    i: melds.length - 1 - i
-                                  }
                                 }
-                          )
-                        }
-                      />
-                    ))}
-                  </>
-                )}
+                            : {
+                                type: 'set-input-focus',
+                                payload: {
+                                  type: 'meld',
+                                  i: melds.length - 1 - i
+                                }
+                              }
+                        )
+                      }
+                    />
+                  ))}
               </React.Fragment>
             ))}
           </div>
@@ -289,6 +279,7 @@ export const TileInputArea: FC = () => {
           >
             <div className="flex flex-col py-1">
               <button
+                type="button"
                 className="flex flex-1 items-center gap-2 overflow-hidden p-2 hover:bg-red-500 hover:text-white disabled:cursor-not-allowed disabled:text-neutral-500 disabled:hover:bg-transparent"
                 onClick={() => {
                   dispatch({ type: 'clear-input', payload: null });
@@ -309,6 +300,7 @@ export const TileInputArea: FC = () => {
               <div className="my-1 border-t border-neutral-300 dark:border-neutral-700" />
               {([5, 8, 11, 14] as const).map(n => (
                 <button
+                  type="button"
                   key={n}
                   className="flex flex-1 items-center gap-2 overflow-hidden p-2 hover:bg-blue-500 hover:text-white"
                   onClick={() => {
@@ -325,15 +317,16 @@ export const TileInputArea: FC = () => {
                       n === 5
                         ? 'Shift+S'
                         : n === 8
-                        ? 'Shift+D'
-                        : n === 11
-                        ? 'Shift+F'
-                        : 'Shift+G'
+                          ? 'Shift+D'
+                          : n === 11
+                            ? 'Shift+F'
+                            : 'Shift+G'
                     )}
                   </div>
                 </button>
               ))}
               <button
+                type="button"
                 className="flex flex-1 items-center gap-2 overflow-hidden p-2 hover:bg-blue-500 hover:text-white"
                 onClick={() => {
                   dispatch({ type: 'set-input-random', payload: 'chinitsu' });
@@ -350,6 +343,7 @@ export const TileInputArea: FC = () => {
               </button>
               <div className="my-1 border-t border-neutral-300 dark:border-neutral-700" />
               <button
+                type="button"
                 className="flex flex-1 items-center gap-2 overflow-hidden p-2 hover:bg-blue-500 hover:text-white disabled:cursor-not-allowed disabled:text-neutral-500 disabled:hover:bg-transparent"
                 onClick={() => {
                   if (hand.length % 3 === 2) {
@@ -368,6 +362,7 @@ export const TileInputArea: FC = () => {
               </button>
               <div className="my-1 border-t border-neutral-300 dark:border-neutral-700" />
               <button
+                type="button"
                 className="flex flex-1 items-center gap-2 overflow-hidden p-2 hover:bg-blue-500 hover:text-white disabled:cursor-not-allowed disabled:text-neutral-500 disabled:hover:bg-transparent"
                 onClick={() => {
                   setOpenTileMenu(false);
@@ -458,15 +453,15 @@ export const TileInputArea: FC = () => {
                         tile: { ...meld.tile, red: !meld.tile.red }
                       }
                     : meld.type === 'chii'
-                    ? meld.tile.n === 5
-                      ? {
-                          ...meld,
-                          tile: { ...meld.tile, red: !meld.tile.red }
-                        }
-                      : meld.tile.n === 3 || meld.tile.n === 4
-                      ? { ...meld, includeRed: !meld.includeRed }
-                      : null
-                    : null;
+                      ? meld.tile.n === 5
+                        ? {
+                            ...meld,
+                            tile: { ...meld.tile, red: !meld.tile.red }
+                          }
+                        : meld.tile.n === 3 || meld.tile.n === 4
+                          ? { ...meld, includeRed: !meld.includeRed }
+                          : null
+                      : null;
                 return (
                   toSwap === null ||
                   !isAvailableTiles(

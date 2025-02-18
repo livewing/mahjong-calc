@@ -1,12 +1,18 @@
-import { fu, sumOfFu, type Fu } from './fu';
+import { type Fu, fu, sumOfFu } from './fu';
 import {
-  instantiateMeld,
   type HandOptions,
   type Input,
-  type Meld
+  type Meld,
+  instantiateMeld
 } from './input';
+import type { Rule } from './rule';
 import { calculateBasePoint } from './score';
+import type { Table } from './table';
 import {
+  type NumberTileCounts,
+  type Tile,
+  type TileCounts,
+  type TileCountsIndex,
   chinitsuColor,
   colorStats,
   compareTiles,
@@ -14,18 +20,12 @@ import {
   honitsuColor,
   nextIndex,
   tileCountsFirstIndex,
-  tilesToCounts,
   tileToCountsIndex,
-  type NumberTileCounts,
-  type Tile,
-  type TileCounts,
-  type TileCountsIndex
+  tilesToCounts
 } from './tile';
-import { countBy, countGroupBy, product2, sumBy, uniqueSorted } from './util';
-import type { Rule } from './rule';
-import type { Table } from './table';
 import type { Block } from './tile/block';
 import type { DecomposeResult } from './tile/shanten';
+import { countBy, countGroupBy, product2, sumBy, uniqueSorted } from './util';
 import type { Yaku, Yakuman } from './yaku';
 
 interface MentsuHora {
@@ -152,17 +152,17 @@ export const generateHora = (
           ...(typeof tatsu === 'number'
             ? []
             : tatsu.type === 'kanchan'
-            ? [{ type: 'shuntsu', tile: tatsu.tile }]
-            : tatsu.type === 'ryammen' || tatsu.type === 'penchan'
-            ? [
-                {
-                  type: 'shuntsu',
-                  tile: Math.min(tatsu.tile, tileToCountsIndex(horaTile))
-                }
-              ]
-            : tatsu.type === 'toitsu'
-            ? [{ type: 'kotsu', tile: tatsu.tile }]
-            : [])
+              ? [{ type: 'shuntsu', tile: tatsu.tile }]
+              : tatsu.type === 'ryammen' || tatsu.type === 'penchan'
+                ? [
+                    {
+                      type: 'shuntsu',
+                      tile: Math.min(tatsu.tile, tileToCountsIndex(horaTile))
+                    }
+                  ]
+                : tatsu.type === 'toitsu'
+                  ? [{ type: 'kotsu', tile: tatsu.tile }]
+                  : [])
         ] as { type: 'kotsu' | 'shuntsu'; tile: TileCountsIndex }[];
         const head =
           decomposeResult.blocks.find(
@@ -300,7 +300,8 @@ export const generateHora = (
             cc[7] >= 1 &&
             cc[8] >= 3
           ) {
-            cc[horaTile.n - 1] -= 1;
+            // biome-ignore lint/style/noNonNullAssertion:
+            cc[horaTile.n - 1]! -= 1;
 
             if (
               cc[0] === 3 &&

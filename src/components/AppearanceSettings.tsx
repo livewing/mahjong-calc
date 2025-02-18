@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react';
+import { type FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdCheck } from 'react-icons/md';
 import { useStore } from '../contexts/store';
@@ -35,6 +35,7 @@ export const AppearanceSettings: FC = () => {
           <div className="flex flex-col py-1">
             {languages.map(lng => (
               <button
+                type="button"
                 key={lng}
                 className="group flex items-center gap-2 p-2 hover:bg-blue-500 hover:text-white"
                 onClick={() => {

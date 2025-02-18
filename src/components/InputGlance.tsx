@@ -1,12 +1,12 @@
 import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
-import Stick100 from '../images/point-stick/100.svg';
-import Stick1000 from '../images/point-stick/1000.svg';
+import Stick100 from '../images/point-stick/100.svg?react';
+import Stick1000 from '../images/point-stick/1000.svg?react';
 import { instantiateMeld } from '../lib/input';
 import { compareRules } from '../lib/rule';
-import { Tile } from './tile';
 import type { Tile as TileType } from '../lib/tile';
+import { Tile } from './tile';
 
 const scrollMargin = 48;
 const headerHeight = 48;
@@ -64,8 +64,8 @@ export const InputGlance: FC<InputGlanceProps> = ({
     (handOptions.riichi === 'riichi'
       ? melds.every(m => m.type === 'kan' && m.closed)
       : handOptions.riichi === 'double-riichi'
-      ? !handOptions.ippatsu && melds.every(m => m.type === 'kan' && m.closed)
-      : true)
+        ? !handOptions.ippatsu && melds.every(m => m.type === 'kan' && m.closed)
+        : true)
       ? [t('hand-options.haitei-hotei')]
       : []),
     ...(handOptions.tenho && melds.length === 0
@@ -117,57 +117,48 @@ export const InputGlance: FC<InputGlanceProps> = ({
             {[...melds].reverse().map((meld, i) => (
               <React.Fragment key={i}>
                 <div className="basis-1/3" />
-                {meld.type === 'pon' && (
-                  <>
-                    {(meld.tile === null
-                      ? [...Array(3)].map(() => void 0)
-                      : instantiateMeld(meld, currentRule.red)
-                    ).map((tile, j) => (
-                      <div key={j} className="w-full">
-                        {typeof tile !== 'undefined' && (
-                          <Tile tile={tile} key={j} />
-                        )}
-                      </div>
-                    ))}
-                  </>
-                )}
-                {meld.type === 'chii' && (
-                  <>
-                    {(meld.tile === null
-                      ? [...Array(3)].map(() => void 0)
-                      : instantiateMeld(meld, currentRule.red)
-                    ).map((tile, j) => (
-                      <div key={j} className="w-full">
-                        {typeof tile !== 'undefined' && (
-                          <Tile tile={tile} key={j} />
-                        )}
-                      </div>
-                    ))}
-                  </>
-                )}
-                {meld.type === 'kan' && (
-                  <>
-                    {(meld.tile === null
-                      ? [...Array(4)].map(() => void 0)
-                      : instantiateMeld(meld, currentRule.red)
-                    ).map((tile, j, tiles) => (
-                      <div key={j} className="w-full">
-                        {typeof tile !== 'undefined' && (
-                          <Tile
-                            tile={
-                              meld.closed && meld.tile !== null
-                                ? j === 0 || j === 3
-                                  ? { type: 'back' }
-                                  : tiles[j + 1] ?? { type: 'back' }
-                                : tile
-                            }
-                            key={j}
-                          />
-                        )}
-                      </div>
-                    ))}
-                  </>
-                )}
+                {meld.type === 'pon' &&
+                  (meld.tile === null
+                    ? [...Array(3)].map(() => void 0)
+                    : instantiateMeld(meld, currentRule.red)
+                  ).map((tile, j) => (
+                    <div key={j} className="w-full">
+                      {typeof tile !== 'undefined' && (
+                        <Tile tile={tile} key={j} />
+                      )}
+                    </div>
+                  ))}
+                {meld.type === 'chii' &&
+                  (meld.tile === null
+                    ? [...Array(3)].map(() => void 0)
+                    : instantiateMeld(meld, currentRule.red)
+                  ).map((tile, j) => (
+                    <div key={j} className="w-full">
+                      {typeof tile !== 'undefined' && (
+                        <Tile tile={tile} key={j} />
+                      )}
+                    </div>
+                  ))}
+                {meld.type === 'kan' &&
+                  (meld.tile === null
+                    ? [...Array(4)].map(() => void 0)
+                    : instantiateMeld(meld, currentRule.red)
+                  ).map((tile, j, tiles) => (
+                    <div key={j} className="w-full">
+                      {typeof tile !== 'undefined' && (
+                        <Tile
+                          tile={
+                            meld.closed && meld.tile !== null
+                              ? j === 0 || j === 3
+                                ? { type: 'back' }
+                                : (tiles[j + 1] ?? { type: 'back' })
+                              : tile
+                          }
+                          key={j}
+                        />
+                      )}
+                    </div>
+                  ))}
               </React.Fragment>
             ))}
           </div>

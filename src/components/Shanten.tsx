@@ -1,9 +1,9 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
-import { tilesToCounts, type TileAvailability } from '../lib/tile';
+import { type TileAvailability, tilesToCounts } from '../lib/tile';
 import { countBy, sumBy } from '../lib/util';
 import { TileButton } from './ui/TileButton';
-import type { FC } from 'react';
 
 interface ShantenProps {
   shanten: number;

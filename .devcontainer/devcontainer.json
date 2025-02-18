@@ -3,21 +3,18 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "settings": {
-    "terminal.integrated.defaultProfile.linux": "bash",
-    "terminal.integrated.profiles.linux": {
-      "bash": {
-        "path": "bash"
+  "customizations": {
+    "settings": {
+      "terminal.integrated.defaultProfile.linux": "bash",
+      "terminal.integrated.profiles.linux": {
+        "bash": {
+          "path": "bash"
+        }
       }
-    }
+    },
+    "extensions": ["biomejs.biome", "EditorConfig.EditorConfig"]
   },
-  "extensions": [
-    "dbaeumer.vscode-eslint",
-    "EditorConfig.EditorConfig",
-    "eg2.vscode-npm-script",
-    "esbenp.prettier-vscode"
-  ],
-  "forwardPorts": [8080],
+  "forwardPorts": [5173],
   "postCreateCommand": "npm i && npm run build:wasm",
   "remoteUser": "node"
 }

@@ -41,11 +41,14 @@ export const groupBy = <T, U extends string | number>(
   a: T[],
   f: (e: T, i: number) => U | null
 ) =>
-  a.reduce((acc, cur, i) => {
-    const key = f(cur, i);
-    if (key === null) return acc;
-    return { ...acc, [key]: [...(acc[key] ?? []), cur] };
-  }, {} as { [_ in U]?: T[] });
+  a.reduce(
+    (acc, cur, i) => {
+      const key = f(cur, i);
+      if (key === null) return acc;
+      return { ...acc, [key]: [...(acc[key] ?? []), cur] };
+    },
+    {} as { [_ in U]?: T[] }
+  );
 
 export const countBy = <T>(a: T[], f: (e: T, i: number) => boolean) =>
   a.reduce((acc, cur, i) => acc + (f(cur, i) ? 1 : 0), 0);
@@ -54,11 +57,14 @@ export const countGroupBy = <T, U extends string | number>(
   a: T[],
   f: (e: T, i: number) => U | null
 ) =>
-  a.reduce((acc, cur, i) => {
-    const key = f(cur, i);
-    if (key === null) return acc;
-    return { ...acc, [key]: (acc[key] ?? 0) + 1 };
-  }, {} as { [_ in U]?: number });
+  a.reduce(
+    (acc, cur, i) => {
+      const key = f(cur, i);
+      if (key === null) return acc;
+      return { ...acc, [key]: (acc[key] ?? 0) + 1 };
+    },
+    {} as { [_ in U]?: number }
+  );
 
 export const sumBy = <T>(
   a: T[],
@@ -84,4 +90,8 @@ export const shuffle = <T>(a: T[]) => {
     [ret[i], ret[j]] = [ret[j] as T, ret[i] as T];
   }
   return ret;
+};
+
+export const unreachable = (message?: string) => {
+  throw new Error(message ?? 'Entered unreachable code');
 };

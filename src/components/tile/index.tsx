@@ -1,12 +1,12 @@
+import type { FC } from 'react';
 import { useStore } from '../../contexts/store';
 import { usePrefersColorScheme } from '../../hooks/dom';
-import Back from './images/back.svg';
-import { tileImage as darkTileImage } from './images/dark';
-import DarkBG from './images/dark/bg.svg';
-import { tileImage as lightTileImage } from './images/light';
-import LightBG from './images/light/bg.svg';
 import type { TileOrBack } from '../../lib/tile';
-import type { FC } from 'react';
+import Back from './images/back.svg?react';
+import { tileImage as darkTileImage } from './images/dark';
+import DarkBG from './images/dark/bg.svg?react';
+import { tileImage as lightTileImage } from './images/light';
+import LightBG from './images/light/bg.svg?react';
 
 interface TileProps {
   tile: TileOrBack;
@@ -27,10 +27,10 @@ export const Tile: FC<TileProps> = ({ tile, color, dim = false }) => {
     (tileConfigColor === 'light' || tileConfigColor === 'dark'
       ? tileConfigColor
       : tileConfigColor === 'auto'
-      ? appColor
-      : appColor === 'light'
-      ? 'dark'
-      : 'light');
+        ? appColor
+        : appColor === 'light'
+          ? 'dark'
+          : 'light');
 
   const Background =
     tile.type === 'back' ? Back : tileColor === 'light' ? LightBG : DarkBG;
@@ -38,8 +38,8 @@ export const Tile: FC<TileProps> = ({ tile, color, dim = false }) => {
     tile.type === 'back'
       ? null
       : tileColor === 'light'
-      ? lightTileImage(tile)
-      : darkTileImage(tile);
+        ? lightTileImage(tile)
+        : darkTileImage(tile);
   return (
     <div
       className={

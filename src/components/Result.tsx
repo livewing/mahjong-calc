@@ -1,13 +1,13 @@
+import type React from 'react';
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import type { Result as ResultType } from '../lib/result';
 import { compareTiles } from '../lib/tile';
 import { sumBy } from '../lib/util';
 import { DiscardItem } from './DiscardItem';
 import { HoraItem } from './HoraItem';
 import { Shanten } from './Shanten';
 import { Tempai } from './Tempai';
-import type { Result as ResultType } from '../lib/result';
-import type React from 'react';
-import type { FC } from 'react';
 
 const Message: FC<{ children?: React.ReactNode }> = ({ children }) => (
   <div className="flex justify-center py-4 text-neutral-700 dark:text-neutral-300">
@@ -44,14 +44,13 @@ export const Result: FC<ResultProps> = ({ result }) => {
           ))}
         </div>
       );
-    } else {
-      return (
-        <Shanten
-          shanten={result.info.shanten}
-          tileAvailabilities={result.info.tileAvailabilities}
-        />
-      );
     }
+    return (
+      <Shanten
+        shanten={result.info.shanten}
+        tileAvailabilities={result.info.tileAvailabilities}
+      />
+    );
   }
 
   if (result.type === 'tempai') {
@@ -69,8 +68,8 @@ export const Result: FC<ResultProps> = ({ result }) => {
           cur.next.type === 'tempai'
             ? 0
             : cur.next.info.type === 'hora'
-            ? 0
-            : cur.next.info.shanten
+              ? 0
+              : cur.next.info.shanten
         ),
       Number.POSITIVE_INFINITY
     );

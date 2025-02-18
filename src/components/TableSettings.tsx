@@ -1,12 +1,12 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
-import Stick100 from '../images/point-stick/100.svg';
-import Stick1000 from '../images/point-stick/1000.svg';
+import Stick100 from '../images/point-stick/100.svg?react';
+import Stick1000 from '../images/point-stick/1000.svg?react';
+import type { Wind } from '../lib/table';
 import { ConfigItem } from './ui/ConfigItem';
 import { Segment } from './ui/Segment';
 import { Stepper } from './ui/Stepper';
-import type { Wind } from '../lib/table';
-import type { FC } from 'react';
 
 const winds: Wind[] = ['east', 'south', 'west', 'north'];
 

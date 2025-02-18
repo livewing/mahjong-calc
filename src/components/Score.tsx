@@ -1,7 +1,9 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdArrowForward } from 'react-icons/md';
 import { useStore } from '../contexts/store';
 import { sumOfFu } from '../lib/fu';
+import type { Hora } from '../lib/hora';
 import {
   calculateBasePoint,
   ceil10,
@@ -9,19 +11,17 @@ import {
   yakumanTupleKey
 } from '../lib/score';
 import { sumBy } from '../lib/util';
-import type { Hora } from '../lib/hora';
-import type { FC } from 'react';
 
 const limitTextKey = (base: number) =>
   base < 3000
     ? 'result.mangan'
     : base < 4000
-    ? 'result.haneman'
-    : base < 6000
-    ? 'result.baiman'
-    : base < 8000
-    ? 'result.sambaiman'
-    : yakumanTupleKey(Math.floor(base / 8000));
+      ? 'result.haneman'
+      : base < 6000
+        ? 'result.baiman'
+        : base < 8000
+          ? 'result.sambaiman'
+          : yakumanTupleKey(Math.floor(base / 8000));
 
 interface ScoreProps {
   info: Hora;
@@ -48,13 +48,13 @@ export const Score: FC<ScoreProps> = ({ info }) => {
           return Math.max(acc, p);
         }, 0) * 8000
       : info.yaku.every(y => y.name === 'dora' || y.name === 'red-dora')
-      ? 0
-      : calculateBasePoint(
-          info.type === 'mentsu' ? sumOfFu(info.fu) : 25,
-          sumBy(info.yaku, y => (y.type === 'yaku' ? y.han : 0)),
-          roundedMangan,
-          accumlatedYakuman
-        );
+        ? 0
+        : calculateBasePoint(
+            info.type === 'mentsu' ? sumOfFu(info.fu) : 25,
+            sumBy(info.yaku, y => (y.type === 'yaku' ? y.han : 0)),
+            roundedMangan,
+            accumlatedYakuman
+          );
   const isDealer = table.seat === 'east';
 
   return (

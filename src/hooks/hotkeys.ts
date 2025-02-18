@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { useStore } from '../contexts/store';
 import { instantiateMeld } from '../lib/input';
-import { compareTiles, isAvailableTiles, type Tile } from '../lib/tile';
 import type { Meld } from '../lib/input';
+import { type Tile, compareTiles, isAvailableTiles } from '../lib/tile';
 
 export const useTileInputAreaHotkeys = () => {
   const [inputString, setInputString] = useState('');
@@ -16,6 +16,7 @@ export const useTileInputAreaHotkeys = () => {
     },
     dispatch
   ] = useStore();
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => setInputString(''), [inputFocus, dora, hand, melds]);
   useHotkeys('ctrl+backspace, cmd+backspace', () =>
     dispatch({ type: 'clear-input', payload: null })
@@ -90,7 +91,7 @@ export const useTileInputAreaHotkeys = () => {
         dispatch({ type: 'remove-hand-tile', payload: hand.length - 1 });
         e.preventDefault();
       } else if (inputFocus.type === 'meld') {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        // biome-ignore lint/style/noNonNullAssertion:
         const meld = melds[inputFocus.i]!;
         if (meld.tile === null) {
           dispatch({ type: 'remove-meld', payload: inputFocus.i });
@@ -171,7 +172,7 @@ export const useTileInputAreaHotkeys = () => {
             hand: (h.length % 3 === 2
               ? [
                   ...h.slice(0, h.length - 1).sort(compareTiles),
-                  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                  // biome-ignore lint/style/noNonNullAssertion:
                   h[h.length - 1]!
                 ]
               : h.sort(compareTiles)
@@ -181,9 +182,9 @@ export const useTileInputAreaHotkeys = () => {
         });
         e.preventDefault();
       } else if (inputFocus.type === 'meld') {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        // biome-ignore lint/style/noNonNullAssertion:
         const meld = melds[inputFocus.i]!;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        // biome-ignore lint/style/noNonNullAssertion:
         const tile = addTiles[0]!;
 
         if (meld.tile !== null) return;

@@ -1,8 +1,8 @@
+import type { FC } from 'react';
 import { useStore } from '../../contexts/store';
 import { usePrefersColorScheme } from '../../hooks/dom';
-import { Tile as TileImage } from '../tile';
 import type { TileOrBack } from '../../lib/tile';
-import type { FC } from 'react';
+import { Tile as TileImage } from '../tile';
 
 interface TileButtonProps {
   tile?: TileOrBack | undefined;
@@ -11,7 +11,7 @@ interface TileButtonProps {
   focusIndicator?: boolean | undefined;
   tsumoIndicator?: boolean | undefined;
   overlayText?: string | undefined;
-  onClick?: () => void | undefined;
+  onClick?: (() => void) | undefined;
 }
 
 export const TileButton: FC<TileButtonProps> = ({
@@ -33,6 +33,7 @@ export const TileButton: FC<TileButtonProps> = ({
 
   return (
     <button
+      type="button"
       disabled={disabled}
       className="relative flex w-full drop-shadow transition focus:drop-shadow-md disabled:cursor-not-allowed disabled:focus:drop-shadow"
       onClick={onClick}

@@ -1,6 +1,6 @@
-import { Trans, useTranslation } from 'react-i18next';
 import type React from 'react';
 import type { FC } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 
 const Link: FC<{ href: string; children?: React.ReactNode }> = ({
   href,

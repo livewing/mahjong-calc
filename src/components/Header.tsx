@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdHelp, MdSettings, MdTableView, MdUpdate } from 'react-icons/md';
 import { useStore } from '../contexts/store';
@@ -26,6 +26,7 @@ export const Header: FC = () => {
   return (
     <header className="sticky top-0 z-30 flex h-12 items-center justify-between bg-blue-600 p-2 pr-[max(0.5rem,env(safe-area-inset-right))] pl-[max(0.5rem,env(safe-area-inset-left))] text-white">
       <button
+        type="button"
         disabled={currentScreen === 'main'}
         className="overflow-hidden"
         onClick={() =>
@@ -37,6 +38,7 @@ export const Header: FC = () => {
       <div className="flex items-center gap-1">
         {showUpdateButton && (
           <button
+            type="button"
             className="flex items-center gap-1 rounded bg-emerald-600 p-1 transition hover:bg-emerald-500"
             onClick={() => location.reload()}
           >
@@ -54,6 +56,7 @@ export const Header: FC = () => {
           <div className="hidden sm:block">{t('header.help')}</div>
         </a>
         <button
+          type="button"
           className={
             currentScreen === 'scoring-table'
               ? buttonClasses.active
@@ -71,6 +74,7 @@ export const Header: FC = () => {
           <div className="hidden sm:block">{t('header.scoring-table')}</div>
         </button>
         <button
+          type="button"
           className={
             currentScreen === 'settings'
               ? buttonClasses.active

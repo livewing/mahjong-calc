@@ -1,6 +1,6 @@
+import type { FC } from 'react';
 import { TileInputArea } from './TileInputArea';
 import { TileKeyboard } from './TileKeyboard';
-import type { FC } from 'react';
 
 export const TileInput: FC = () => {
   return (

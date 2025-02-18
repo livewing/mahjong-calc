@@ -13,7 +13,7 @@ interface ButtonProps {
   color?: 'none' | 'danger' | undefined;
   disabled?: boolean | undefined;
   title?: string | undefined;
-  onClick?: () => void | undefined;
+  onClick?: (() => void) | undefined;
 }
 export const Button: FC<ButtonProps> = ({
   id,
@@ -24,6 +24,7 @@ export const Button: FC<ButtonProps> = ({
   onClick = () => void 0
 }) => (
   <button
+    type="button"
     id={id}
     className={buttonClasses[color]}
     disabled={disabled}

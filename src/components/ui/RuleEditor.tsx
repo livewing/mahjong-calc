@@ -1,9 +1,9 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../../contexts/store';
+import type { Rule } from '../../lib/rule';
 import { ConfigItem } from './ConfigItem';
 import { Segment } from './Segment';
-import type { Rule } from '../../lib/rule';
-import type { FC } from 'react';
 
 interface RuleEditorProps {
   rule: Rule;

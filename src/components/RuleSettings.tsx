@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react';
+import { type FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdCheck, MdDelete, MdMenu, MdSave } from 'react-icons/md';
 import { useStore } from '../contexts/store';
@@ -42,6 +42,7 @@ export const RuleSettings: FC = () => {
               .map(([name, rule]) => (
                 <div key={name} className="flex">
                   <button
+                    type="button"
                     className="group peer flex flex-1 items-center gap-2 overflow-hidden p-2 hover:bg-blue-500 hover:text-white"
                     onClick={() => {
                       dispatch({ type: 'set-current-rule', payload: rule });
@@ -60,6 +61,7 @@ export const RuleSettings: FC = () => {
                     </div>
                   </button>
                   <button
+                    type="button"
                     className="flex items-center justify-center px-3 hover:bg-red-500 hover:text-white peer-hover:bg-blue-500 peer-hover:text-white"
                     onClick={() =>
                       dispatch({ type: 'delete-saved-rule', payload: name })
@@ -102,6 +104,7 @@ export const RuleSettings: FC = () => {
                     }}
                   />
                   <button
+                    type="button"
                     className="flex items-center justify-center rounded-md p-2 hover:bg-blue-500 hover:text-white disabled:text-neutral-500 disabled:hover:bg-transparent disabled:hover:text-neutral-500"
                     disabled={newRuleName.length === 0}
                     onClick={() => {

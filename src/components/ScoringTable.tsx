@@ -1,12 +1,12 @@
 import React, { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import type { IconType } from 'react-icons';
 import { MdAddChart, MdCalculate } from 'react-icons/md';
 import { useStore } from '../contexts/store';
 import { calculateBasePoint, ceil100 } from '../lib/score';
+import type { AppState } from '../lib/store/state';
 import { MenuTab } from './ui/MenuTab';
 import { ScoringTableHeader } from './ui/ScoringTableHeader';
-import type { AppState } from '../lib/store/state';
-import type { IconType } from 'react-icons';
 
 const Header: FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="flex items-center justify-center p-2 text-center">
@@ -37,74 +37,75 @@ const Content: FC<ContentProps> = ({ fu, han }) => {
     fu === 20
       ? '-'
       : currentScoringTableTab === 'diff'
-      ? `${-(
-          (ceil100(base * (isDealer ? 6 : 4)) +
-            table.continue * 3 * honbaBonus) *
-            2 +
-          1000 * table.deposit
-        )}`
-      : table.continue > 0
-      ? `${t('scoring-table.ron-with-bonus', {
-          a: ceil100(base * (isDealer ? 6 : 4)),
-          b:
-            ceil100(base * (isDealer ? 6 : 4)) + table.continue * 3 * honbaBonus
-        })}`
-      : `${ceil100(base * (isDealer ? 6 : 4))}`;
+        ? `${-(
+            (ceil100(base * (isDealer ? 6 : 4)) +
+              table.continue * 3 * honbaBonus) *
+              2 +
+            1000 * table.deposit
+          )}`
+        : table.continue > 0
+          ? `${t('scoring-table.ron-with-bonus', {
+              a: ceil100(base * (isDealer ? 6 : 4)),
+              b:
+                ceil100(base * (isDealer ? 6 : 4)) +
+                table.continue * 3 * honbaBonus
+            })}`
+          : `${ceil100(base * (isDealer ? 6 : 4))}`;
   const tsumo =
     (fu === 25 && han === 2) || (fu === 110 && han === 1)
       ? '-'
       : isDealer
-      ? currentScoringTableTab === 'diff'
-        ? `${-(
-            (ceil100(base * 2) + table.continue * honbaBonus) * 4 +
-            1000 * table.deposit
-          )}`
-        : table.continue > 0
-        ? t('scoring-table.tsumo-with-bonus-dealer', {
-            a: ceil100(base * 2),
-            b: ceil100(base * 2) + table.continue * honbaBonus
-          })
-        : t('scoring-table.tsumo-dealer', { count: ceil100(base * 2) })
-      : currentScoringTableTab === 'diff'
-      ? t('scoring-table.tsumo-non-dealer-diff', {
-          a: -(
-            ceil100(base) * 3 +
-            ceil100(base * 2) +
-            table.continue * honbaBonus * 4 +
-            1000 * table.deposit
-          ),
-          b: -(
-            ceil100(base) * 2 +
-            ceil100(base * 2) * 2 +
-            table.continue * honbaBonus * 4 +
-            1000 * table.deposit
-          )
-        })
-      : table.continue > 0
-      ? t('scoring-table.tsumo-with-bonus-non-dealer', {
-          a: ceil100(base),
-          b: ceil100(base * 2),
-          c: ceil100(base) + table.continue * honbaBonus,
-          d: ceil100(base * 2) + table.continue * honbaBonus
-        })
-      : t('scoring-table.tsumo-non-dealer', {
-          a: ceil100(base),
-          b: ceil100(base * 2)
-        });
+        ? currentScoringTableTab === 'diff'
+          ? `${-(
+              (ceil100(base * 2) + table.continue * honbaBonus) * 4 +
+              1000 * table.deposit
+            )}`
+          : table.continue > 0
+            ? t('scoring-table.tsumo-with-bonus-dealer', {
+                a: ceil100(base * 2),
+                b: ceil100(base * 2) + table.continue * honbaBonus
+              })
+            : t('scoring-table.tsumo-dealer', { count: ceil100(base * 2) })
+        : currentScoringTableTab === 'diff'
+          ? t('scoring-table.tsumo-non-dealer-diff', {
+              a: -(
+                ceil100(base) * 3 +
+                ceil100(base * 2) +
+                table.continue * honbaBonus * 4 +
+                1000 * table.deposit
+              ),
+              b: -(
+                ceil100(base) * 2 +
+                ceil100(base * 2) * 2 +
+                table.continue * honbaBonus * 4 +
+                1000 * table.deposit
+              )
+            })
+          : table.continue > 0
+            ? t('scoring-table.tsumo-with-bonus-non-dealer', {
+                a: ceil100(base),
+                b: ceil100(base * 2),
+                c: ceil100(base) + table.continue * honbaBonus,
+                d: ceil100(base * 2) + table.continue * honbaBonus
+              })
+            : t('scoring-table.tsumo-non-dealer', {
+                a: ceil100(base),
+                b: ceil100(base * 2)
+              });
   const className =
     base >= 8000
       ? 'flex-1 px-2 py-1 bg-purple-600 text-white flex flex-col justify-center items-center'
       : base >= 6000
-      ? 'flex-1 px-2 py-1 bg-red-600 text-white flex flex-col justify-center items-center'
-      : base >= 4000
-      ? 'flex-1 px-2 py-1 bg-orange-600 text-white flex flex-col justify-center items-center'
-      : base >= 3000
-      ? 'flex-1 px-2 py-1 bg-green-600 text-white flex flex-col justify-center items-center'
-      : base >= 2000
-      ? 'flex-1 px-2 py-1 bg-blue-600 text-white flex flex-col justify-center items-center'
-      : base >= 1920
-      ? 'flex-1 px-2 py-1 bg-blue-100 dark:bg-blue-900 text-natural-900 dark:bg-natural-100 flex flex-col justify-center items-center'
-      : 'flex-1 px-2 py-1 flex flex-col justify-center items-center';
+        ? 'flex-1 px-2 py-1 bg-red-600 text-white flex flex-col justify-center items-center'
+        : base >= 4000
+          ? 'flex-1 px-2 py-1 bg-orange-600 text-white flex flex-col justify-center items-center'
+          : base >= 3000
+            ? 'flex-1 px-2 py-1 bg-green-600 text-white flex flex-col justify-center items-center'
+            : base >= 2000
+              ? 'flex-1 px-2 py-1 bg-blue-600 text-white flex flex-col justify-center items-center'
+              : base >= 1920
+                ? 'flex-1 px-2 py-1 bg-blue-100 dark:bg-blue-900 text-natural-900 dark:bg-natural-100 flex flex-col justify-center items-center'
+                : 'flex-1 px-2 py-1 flex flex-col justify-center items-center';
 
   return (
     <div className="flex flex-col overflow-hidden rounded-md bg-neutral-200 dark:bg-neutral-800">
@@ -167,7 +168,7 @@ export const ScoringTable: FC = () => {
             onSetIndex={i =>
               dispatch({
                 type: 'set-current-scoring-table-tab',
-                payload: (tabItems[i] as typeof tabItems[number]).id
+                payload: (tabItems[i] as (typeof tabItems)[number]).id
               })
             }
           />

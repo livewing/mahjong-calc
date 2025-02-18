@@ -18,7 +18,7 @@ $ npm run build:wasm
 $ npm run dev
 ```
 
-`webpack-dev-server` runs on `PORT=8080`.
+Vite dev server runs on `PORT=5173`. If you are using Dev Container, run `npm run dev -- --host` instead of `npm run dev`.
 
 ## Lint
 

@@ -1,11 +1,11 @@
-import { instantiateMeld, type Meld } from '../input';
-import { compareTiles, isAvailableTiles } from '../tile';
-import { product2, shuffle } from '../util';
+import type { Reducer } from 'react';
+import { type Meld, instantiateMeld } from '../input';
 import type { Rule } from '../rule';
+import { compareTiles, isAvailableTiles } from '../tile';
 import type { Tile } from '../tile';
+import { product2, shuffle, unreachable } from '../util';
 import type { Action } from './action';
 import type { AppState } from './state';
-import type { Reducer } from 'react';
 
 const reducerImpl: Reducer<AppState, Action> = (state, { type, payload }) => {
   switch (type) {
@@ -41,14 +41,14 @@ const reducerImpl: Reducer<AppState, Action> = (state, { type, payload }) => {
                     type,
                     n,
                     red: i < state.currentRule.red[type as keyof Rule['red']]
-                  } as Tile)
+                  }) as Tile
               );
             }
-            return [...Array(4)].map(() => ({ type, n } as Tile));
+            return [...Array(4)].map(() => ({ type, n }) as Tile);
           }
         ),
         ...[1, 2, 3, 4, 5, 6, 7].flatMap(n =>
-          [...Array(4)].flatMap(() => ({ type: 'z', n } as Tile))
+          [...Array(4)].flatMap(() => ({ type: 'z', n }) as Tile)
         )
       ]);
       const hand = (
@@ -105,7 +105,7 @@ const reducerImpl: Reducer<AppState, Action> = (state, { type, payload }) => {
           input: { ...state.input, melds: [...state.input.melds, payload] },
           inputFocus: { type: 'meld', i: state.input.melds.length }
         };
-      else return state;
+      return state;
     case 'update-meld':
       return {
         ...state,
@@ -140,15 +140,15 @@ const reducerImpl: Reducer<AppState, Action> = (state, { type, payload }) => {
               tile: { ...meld.tile, red: !meld.tile.red }
             }
           : meld.type === 'chii'
-          ? meld.tile.n === 5
-            ? {
-                ...meld,
-                tile: { ...meld.tile, red: !meld.tile.red }
-              }
-            : meld.tile.n === 3 || meld.tile.n === 4
-            ? { ...meld, includeRed: !meld.includeRed }
-            : null
-          : null;
+            ? meld.tile.n === 5
+              ? {
+                  ...meld,
+                  tile: { ...meld.tile, red: !meld.tile.red }
+                }
+              : meld.tile.n === 3 || meld.tile.n === 4
+                ? { ...meld, includeRed: !meld.includeRed }
+                : null
+            : null;
       if (
         toSwap !== null &&
         isAvailableTiles(
@@ -245,7 +245,8 @@ const reducerImpl: Reducer<AppState, Action> = (state, { type, payload }) => {
                     type: 'update-meld',
                     payload: { i: state.inputFocus.i, meld: toAddNonRed }
                   });
-                } else if (
+                }
+                if (
                   isAvailableTiles(
                     state.currentRule.red,
                     allInputTiles,
@@ -297,6 +298,8 @@ const reducerImpl: Reducer<AppState, Action> = (state, { type, payload }) => {
             };
           }
           return state;
+        default:
+          return unreachable();
       }
     }
     case 'set-hand-options':

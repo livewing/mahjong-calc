@@ -1,6 +1,6 @@
-import { MdAdd, MdRemove } from 'react-icons/md';
 import type React from 'react';
 import type { FC } from 'react';
+import { MdAdd, MdRemove } from 'react-icons/md';
 
 interface StepperButtonProps {
   children?: React.ReactNode;
@@ -13,6 +13,7 @@ const StepperButton: FC<StepperButtonProps> = ({
   onClick = () => void 0
 }) => (
   <button
+    type="button"
     disabled={disabled}
     onClick={onClick}
     className="flex flex-1 items-center justify-center bg-white p-2 text-blue-600 transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:text-neutral-300 disabled:hover:bg-white dark:bg-black dark:text-blue-400 dark:hover:bg-neutral-800 dark:disabled:text-neutral-700 dark:disabled:hover:bg-black"

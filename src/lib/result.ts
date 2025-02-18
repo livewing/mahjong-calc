@@ -1,19 +1,21 @@
 import {
+  type Hora,
   generateChitoitsuHora,
   generateHora,
   generateKokushiHora,
-  uniqueHoras,
-  type Hora
+  uniqueHoras
 } from './hora';
-import { instantiateMeld, type HandOptions, type Input } from './input';
+import { type HandOptions, type Input, instantiateMeld } from './input';
+import type { Rule } from './rule';
+import type { Table } from './table';
 import {
+  type Tile,
+  type TileAvailability,
+  type TileCountsIndex,
   compareTiles,
   countsIndexToTile,
   tileAvailableCount,
-  tilesToCounts,
-  type Tile,
-  type TileAvailability,
-  type TileCountsIndex
+  tilesToCounts
 } from './tile';
 import {
   chitoitsuShantenTiles,
@@ -25,8 +27,6 @@ import {
   waitingTiles
 } from './tile/shanten';
 import { countBy, minsBy, uniqueSorted } from './util';
-import type { Rule } from './rule';
-import type { Table } from './table';
 
 interface HoraInfo {
   type: 'hora';

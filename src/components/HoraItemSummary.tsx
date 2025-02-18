@@ -1,12 +1,12 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
 import { sumOfFu } from '../lib/fu';
+import type { Hora } from '../lib/hora';
 import { calculateBasePoint, ceil10, ceil100 } from '../lib/score';
 import { sumBy } from '../lib/util';
 import { LimitBadge } from './LimitBadge';
 import { Tile } from './tile';
-import type { Hora } from '../lib/hora';
-import type { FC } from 'react';
 
 interface HoraItemProps {
   info: Hora;
@@ -35,21 +35,21 @@ export const HoraItemSummary: FC<HoraItemProps> = ({ info }) => {
           return Math.max(acc, p);
         }, 0) * 8000
       : info.yaku.every(y => y.name === 'dora' || y.name === 'red-dora')
-      ? 0
-      : calculateBasePoint(
-          info.type === 'mentsu' ? sumOfFu(info.fu) : 25,
-          sumBy(info.yaku, y => (y.type === 'yaku' ? y.han : 0)),
-          roundedMangan,
-          accumlatedYakuman
-        );
+        ? 0
+        : calculateBasePoint(
+            info.type === 'mentsu' ? sumOfFu(info.fu) : 25,
+            sumBy(info.yaku, y => (y.type === 'yaku' ? y.han : 0)),
+            roundedMangan,
+            accumlatedYakuman
+          );
   const point =
     table.seat === 'east'
       ? info.by === 'ron'
         ? ceil100(base * 6)
         : ceil100(base * 2) * 3
       : info.by === 'ron'
-      ? ceil100(base * 4)
-      : ceil100(base) * 2 + ceil100(base * 2);
+        ? ceil100(base * 4)
+        : ceil100(base) * 2 + ceil100(base * 2);
 
   return (
     <div className="flex items-center gap-2 rounded-md p-2 transition hover:bg-neutral-200 dark:hover:bg-neutral-800">
@@ -101,14 +101,16 @@ export const HoraItemSummary: FC<HoraItemProps> = ({ info }) => {
                 {t('result.tsumo-east-detail', { count: ceil100(base * 2) })}
               </div>
             )}
-          {info.by === 'tsumo' && table.continue > 0 && table.seat === 'east' && (
-            <div>
-              {t('result.tsumo-east-continue-detail', {
-                a: ceil100(base * 2),
-                b: ceil100(base * 2) + table.continue * honbaBonus
-              })}
-            </div>
-          )}
+          {info.by === 'tsumo' &&
+            table.continue > 0 &&
+            table.seat === 'east' && (
+              <div>
+                {t('result.tsumo-east-continue-detail', {
+                  a: ceil100(base * 2),
+                  b: ceil100(base * 2) + table.continue * honbaBonus
+                })}
+              </div>
+            )}
           {info.by === 'tsumo' &&
             table.continue === 0 &&
             table.seat !== 'east' && (
@@ -119,16 +121,18 @@ export const HoraItemSummary: FC<HoraItemProps> = ({ info }) => {
                 })}
               </div>
             )}
-          {info.by === 'tsumo' && table.continue > 0 && table.seat !== 'east' && (
-            <div>
-              {t('result.tsumo-other-continue-detail', {
-                a: ceil100(base),
-                b: ceil100(base * 2),
-                c: ceil100(base) + table.continue * honbaBonus,
-                d: ceil100(base * 2) + table.continue * honbaBonus
-              })}
-            </div>
-          )}
+          {info.by === 'tsumo' &&
+            table.continue > 0 &&
+            table.seat !== 'east' && (
+              <div>
+                {t('result.tsumo-other-continue-detail', {
+                  a: ceil100(base),
+                  b: ceil100(base * 2),
+                  c: ceil100(base) + table.continue * honbaBonus,
+                  d: ceil100(base * 2) + table.continue * honbaBonus
+                })}
+              </div>
+            )}
         </div>
       )}
       {base > 0 && info.yaku.every(y => y.type !== 'yakuman') && (

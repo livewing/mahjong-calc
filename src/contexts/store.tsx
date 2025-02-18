@@ -1,14 +1,14 @@
 import {
+  type Dispatch,
+  type FC,
   createContext,
   useContext,
-  useReducer,
-  type Dispatch,
-  type FC
+  useReducer
 } from 'react';
-import { reducer } from '../lib/store';
-import { defaultState, type AppState } from '../lib/store/state';
-import type { Action } from '../lib/store/action';
 import type React from 'react';
+import { reducer } from '../lib/store';
+import type { Action } from '../lib/store/action';
+import { type AppState, defaultState } from '../lib/store/state';
 
 export const StoreContext = createContext<[AppState, Dispatch<Action>]>([
   defaultState(),

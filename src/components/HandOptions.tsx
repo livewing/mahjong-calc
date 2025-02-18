@@ -1,8 +1,8 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../contexts/store';
 import { ConfigItem } from './ui/ConfigItem';
 import { Segment } from './ui/Segment';
-import type { FC } from 'react';
 
 const riichiOptions = ['none', 'riichi', 'double-riichi'] as const;
 

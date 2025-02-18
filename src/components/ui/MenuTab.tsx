@@ -23,6 +23,7 @@ export const MenuTab: FC<MenuTabProps> = ({
   >
     {items.map((item, i) => (
       <button
+        type="button"
         key={i}
         className={
           row

@@ -1,10 +1,10 @@
-import { useState, type FC } from 'react';
+import { type FC, useState } from 'react';
+import type React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '../../contexts/store';
-import Stick100 from '../../images/point-stick/100.svg';
-import Stick1000 from '../../images/point-stick/1000.svg';
+import Stick100 from '../../images/point-stick/100.svg?react';
+import Stick1000 from '../../images/point-stick/1000.svg?react';
 import { SimpleStepper } from './SimpleStepper';
-import type React from 'react';
 
 const HeaderButton: FC<{
   children?: React.ReactNode;
@@ -12,6 +12,7 @@ const HeaderButton: FC<{
   onClick?: () => void;
 }> = ({ children, active = false, onClick }) => (
   <button
+    type="button"
     className={
       active
         ? 'bg-neutral-200 px-4 py-2 transition hover:bg-neutral-300 dark:bg-neutral-700 dark:hover:bg-neutral-600'

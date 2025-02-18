@@ -1,7 +1,7 @@
 import React, { type FC } from 'react';
 import { useStore } from '../../contexts/store';
 import { instantiateMeld } from '../../lib/input';
-import { isAvailableTiles, type Tile } from '../../lib/tile';
+import { type Tile, isAvailableTiles } from '../../lib/tile';
 import { TileButton } from './TileButton';
 
 export const TileKeyboard: FC = () => {
@@ -27,29 +27,30 @@ export const TileKeyboard: FC = () => {
       ? !isAvailableTiles(red, allInputTiles, [tile]) ||
         input.hand.length >= 14 - input.melds.length * 3
       : inputFocus.type === 'dora'
-      ? !isAvailableTiles(red, allInputTiles, [tile]) || input.dora.length >= 10
-      : input.melds[inputFocus.i]?.tile !== null ||
-        (input.melds[inputFocus.i]?.type === 'chii'
-          ? tile.type === 'z' ||
-            tile.n >= 8 ||
-            !isAvailableTiles(
-              red,
-              allInputTiles,
-              instantiateMeld({ type: 'chii', tile, includeRed: false }, red)
-            )
-          : input.melds[inputFocus.i]?.type === 'pon'
-          ? !isAvailableTiles(
-              red,
-              allInputTiles,
-              instantiateMeld({ type: 'pon', tile }, red)
-            )
-          : input.melds[inputFocus.i]?.type === 'kan'
-          ? !isAvailableTiles(
-              red,
-              allInputTiles,
-              instantiateMeld({ type: 'kan', tile, closed: true }, red)
-            )
-          : true);
+        ? !isAvailableTiles(red, allInputTiles, [tile]) ||
+          input.dora.length >= 10
+        : input.melds[inputFocus.i]?.tile !== null ||
+          (input.melds[inputFocus.i]?.type === 'chii'
+            ? tile.type === 'z' ||
+              tile.n >= 8 ||
+              !isAvailableTiles(
+                red,
+                allInputTiles,
+                instantiateMeld({ type: 'chii', tile, includeRed: false }, red)
+              )
+            : input.melds[inputFocus.i]?.type === 'pon'
+              ? !isAvailableTiles(
+                  red,
+                  allInputTiles,
+                  instantiateMeld({ type: 'pon', tile }, red)
+                )
+              : input.melds[inputFocus.i]?.type === 'kan'
+                ? !isAvailableTiles(
+                    red,
+                    allInputTiles,
+                    instantiateMeld({ type: 'kan', tile, closed: true }, red)
+                  )
+                : true);
   return (
     <div className="flex max-w-lg select-none flex-col gap-px">
       {(['m', 'p', 's'] as const).map(type => (

@@ -1,12 +1,13 @@
-import { countBy, groupBy, memoize, uniqueSorted } from '../util';
+import { decompose_from_counts } from 'decomposer';
 import {
-  tileCountsFirstIndex,
   type TileCount,
   type TileCounts,
-  type TileCountsIndex
+  type TileCountsIndex,
+  tileCountsFirstIndex
 } from '.';
+import { countBy, groupBy, memoize, uniqueSorted } from '../util';
 import type { Block } from './block';
-const decomposer = await import('decomposer');
+// const decomposer = await import('decomposer');
 
 export interface DecomposeResult {
   rest: TileCounts;
@@ -40,7 +41,7 @@ export const minShanten = memoize(
     counts: TileCounts,
     meldCount: MeldCount
   ): { shanten: number; results: DecomposeResult[] } =>
-    decomposer.decompose_from_counts(Uint8Array.from(counts), meldCount),
+    decompose_from_counts(Uint8Array.from(counts), meldCount),
   (counts, meldCount) => `${counts.join('')}/${meldCount}`
 );
 
@@ -64,13 +65,14 @@ export const waitingTiles = (
         ];
       if (tatsu.type === 'ryammen') {
         return [tatsu.tile - 1, tatsu.tile + 2] as TileCountsIndex[];
-      } else if (tatsu.type === 'penchan') {
+      }
+      if (tatsu.type === 'penchan') {
         if (tatsu.tile % 9 === 0) {
           return [(tatsu.tile + 2) as TileCountsIndex];
-        } else {
-          return [(tatsu.tile - 1) as TileCountsIndex];
         }
-      } else if (tatsu.type === 'kanchan') {
+        return [(tatsu.tile - 1) as TileCountsIndex];
+      }
+      if (tatsu.type === 'kanchan') {
         return [(tatsu.tile + 1) as TileCountsIndex];
       }
       throw new Error();
@@ -85,7 +87,7 @@ export const shantenTiles = (
   meldCount: MeldCount
 ): TileCountsIndex[] => {
   const ret = [...Array(34)].map(() => false);
-  decomposeResults.forEach(result => {
+  for (const result of decomposeResults) {
     const {
       toitsu = [],
       tatsu = [],
@@ -94,10 +96,10 @@ export const shantenTiles = (
       b.type === 'toitsu'
         ? 'toitsu'
         : b.type === 'kotsu' || b.type === 'shuntsu'
-        ? 'mentsu'
-        : 'tatsu'
+          ? 'mentsu'
+          : 'tatsu'
     );
-    tatsu.forEach(t => {
+    for (const t of tatsu) {
       if (t.type === 'ryammen') {
         ret[t.tile - 1] = true;
         ret[t.tile + 2] = true;
@@ -108,7 +110,7 @@ export const shantenTiles = (
       if (t.type === 'penchan') {
         ret[t.tile % 9 === 0 ? t.tile + 2 : t.tile - 1] = true;
       }
-    });
+    }
     if (toitsu.length === 0) {
       if (mentsu.length + meldCount + tatsu.length < 4) {
         result.rest.forEach((c, tile) => {
@@ -155,7 +157,9 @@ export const shantenTiles = (
       }
     }
     if (toitsu.length >= 2) {
-      toitsu.forEach(t => (ret[t.tile] = true));
+      for (const t of toitsu) {
+        ret[t.tile] = true;
+      }
       if (mentsu.length + meldCount + tatsu.length + toitsu.length < 5) {
         result.rest.forEach((c, tile) => {
           if (c === 0) return;
@@ -175,7 +179,7 @@ export const shantenTiles = (
         });
       }
     }
-  });
+  }
   return ret.flatMap((a, i) =>
     a && (handAndMeldsCounts[i] as TileCount) < 4 ? [i] : []
   ) as TileCountsIndex[];

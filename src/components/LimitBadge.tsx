@@ -1,6 +1,6 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { yakumanTupleKey } from '../lib/score';
-import type { FC } from 'react';
 
 interface LimitBadgeProps {
   base: number;

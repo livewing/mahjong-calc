@@ -1,8 +1,8 @@
+import type { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatKeys } from '../lib/os';
 import { Tile } from './tile';
 import { Button } from './ui/Button';
-import type { FC } from 'react';
 
 interface KeyboardHelpProps {
   onClose?: () => void;
@@ -15,6 +15,7 @@ export const KeyboardHelp: FC<KeyboardHelpProps> = ({
   return (
     <div className="fixed inset-0 z-10 h-full w-full">
       <button
+        type="button"
         className="absolute inset-0 h-full w-full cursor-default select-none bg-transparent backdrop-blur-sm [-webkit-tap-highlight-color:transparent]"
         onClick={onClose}
       />

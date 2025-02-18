@@ -1,13 +1,13 @@
-import {
-  tileCountsFirstIndex,
-  tileToCountsIndex,
-  type TileCountsIndex
-} from './tile';
-import { sumBy } from './util';
 import type { Meld } from './input';
 import type { Rule } from './rule';
 import type { Table } from './table';
+import {
+  type TileCountsIndex,
+  tileCountsFirstIndex,
+  tileToCountsIndex
+} from './tile';
 import type { DecomposeResult } from './tile/shanten';
+import { sumBy } from './util';
 
 interface Futei {
   type: 'futei';
@@ -102,20 +102,20 @@ export const fu = (
       b.type === 'shuntsu'
         ? [{ type: 'shuntsu', tile: b.tile, fu: 0 } as Fu]
         : b.type === 'kotsu'
-        ? [
-            {
-              type: 'kotsu',
-              tile: b.tile,
-              kotsuType: 'anko',
-              fu:
-                b.tile >= tileCountsFirstIndex.z ||
-                b.tile % 9 === 0 ||
-                b.tile % 9 === 8
-                  ? 8
-                  : 4
-            } as KotsuFu
-          ]
-        : []
+          ? [
+              {
+                type: 'kotsu',
+                tile: b.tile,
+                kotsuType: 'anko',
+                fu:
+                  b.tile >= tileCountsFirstIndex.z ||
+                  b.tile % 9 === 0 ||
+                  b.tile % 9 === 8
+                    ? 8
+                    : 4
+              } as KotsuFu
+            ]
+          : []
     )
   );
   ret.push(
@@ -123,27 +123,27 @@ export const fu = (
       m.tile === null
         ? []
         : m.type === 'chii'
-        ? [{ type: 'shuntsu', tile: tileToCountsIndex(m.tile), fu: 0 } as Fu]
-        : [
-            {
-              type: 'kotsu',
-              tile: tileToCountsIndex(m.tile),
-              kotsuType:
-                m.type === 'pon' ? 'minko' : m.closed ? 'ankan' : 'minkan',
-              fu:
-                m.tile.type === 'z' || m.tile.n === 1 || m.tile.n === 9
-                  ? m.type === 'pon'
-                    ? 4
-                    : m.closed
-                    ? 32
-                    : 16
-                  : m.type === 'pon'
-                  ? 2
-                  : m.closed
-                  ? 16
-                  : 8
-            } as KotsuFu
-          ]
+          ? [{ type: 'shuntsu', tile: tileToCountsIndex(m.tile), fu: 0 } as Fu]
+          : [
+              {
+                type: 'kotsu',
+                tile: tileToCountsIndex(m.tile),
+                kotsuType:
+                  m.type === 'pon' ? 'minko' : m.closed ? 'ankan' : 'minkan',
+                fu:
+                  m.tile.type === 'z' || m.tile.n === 1 || m.tile.n === 9
+                    ? m.type === 'pon'
+                      ? 4
+                      : m.closed
+                        ? 32
+                        : 16
+                    : m.type === 'pon'
+                      ? 2
+                      : m.closed
+                        ? 16
+                        : 8
+              } as KotsuFu
+            ]
     )
   );
   if (typeof tatsu !== 'number') {
@@ -154,10 +154,10 @@ export const fu = (
         head >= tileCountsFirstIndex.z + 4
           ? 2
           : roundHead && seatHead
-          ? doubleWindFu
-          : roundHead || seatHead
-          ? 2
-          : 0
+            ? doubleWindFu
+            : roundHead || seatHead
+              ? 2
+              : 0
     });
   }
   ret.push({
@@ -166,8 +166,8 @@ export const fu = (
       typeof tatsu === 'number'
         ? 'tanki'
         : tatsu.type === 'toitsu'
-        ? 'shampon'
-        : (tatsu.type as 'ryammen' | 'kanchan' | 'penchan'),
+          ? 'shampon'
+          : (tatsu.type as 'ryammen' | 'kanchan' | 'penchan'),
     block:
       typeof tatsu === 'number'
         ? ({
@@ -177,34 +177,34 @@ export const fu = (
               head >= tileCountsFirstIndex.z + 4
                 ? 2
                 : roundHead && seatHead
-                ? doubleWindFu
-                : roundHead || seatHead
-                ? 2
-                : 0
+                  ? doubleWindFu
+                  : roundHead || seatHead
+                    ? 2
+                    : 0
           } as HeadFu)
         : tatsu.type === 'kanchan'
-        ? ({ type: 'shuntsu', tile: tatsu.tile, fu: 0 } as ShuntsuFu)
-        : tatsu.type === 'penchan' || tatsu.type === 'ryammen'
-        ? ({
-            type: 'shuntsu',
-            tile: Math.min(tatsu.tile, waiting),
-            fu: 0
-          } as ShuntsuFu)
-        : ({
-            type: 'kotsu',
-            kotsuType: by === 'tsumo' ? 'anko' : 'minko',
-            tile: waiting,
-            fu:
-              waiting >= tileCountsFirstIndex.z ||
-              waiting % 9 === 0 ||
-              waiting % 9 === 8
-                ? by === 'tsumo'
-                  ? 8
-                  : 4
-                : by === 'tsumo'
-                ? 4
-                : 2
-          } as KotsuFu),
+          ? ({ type: 'shuntsu', tile: tatsu.tile, fu: 0 } as ShuntsuFu)
+          : tatsu.type === 'penchan' || tatsu.type === 'ryammen'
+            ? ({
+                type: 'shuntsu',
+                tile: Math.min(tatsu.tile, waiting),
+                fu: 0
+              } as ShuntsuFu)
+            : ({
+                type: 'kotsu',
+                kotsuType: by === 'tsumo' ? 'anko' : 'minko',
+                tile: waiting,
+                fu:
+                  waiting >= tileCountsFirstIndex.z ||
+                  waiting % 9 === 0 ||
+                  waiting % 9 === 8
+                    ? by === 'tsumo'
+                      ? 8
+                      : 4
+                    : by === 'tsumo'
+                      ? 4
+                      : 2
+              } as KotsuFu),
     fu:
       typeof tatsu === 'number' ||
       tatsu.type === 'kanchan' ||

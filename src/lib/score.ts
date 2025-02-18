@@ -10,14 +10,14 @@ export const calculateBasePoint = (
   return accumlatedYakuman && han >= 13
     ? 8000
     : han >= 11
-    ? 6000
-    : han >= 8
-    ? 4000
-    : han >= 6
-    ? 3000
-    : han >= 5 || bp >= (roundedMangan ? 1920 : 2000)
-    ? 2000
-    : bp;
+      ? 6000
+      : han >= 8
+        ? 4000
+        : han >= 6
+          ? 3000
+          : han >= 5 || bp >= (roundedMangan ? 1920 : 2000)
+            ? 2000
+            : bp;
 };
 
 const ceil = (r: number) => (n: number) => Math.ceil(n / r) * r;

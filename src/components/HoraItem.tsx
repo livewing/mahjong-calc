@@ -1,11 +1,11 @@
-import { useState, type FC } from 'react';
+import { type FC, useState } from 'react';
+import type { Hora } from '../lib/hora';
 import { FuDetail } from './FuDetail';
 import { HoraItemSummary } from './HoraItemSummary';
 import { PointDiff } from './PointDiff';
 import { Score } from './Score';
 import { ScorePlusList } from './ScorePlusList';
 import { YakuList } from './YakuList';
-import type { Hora } from '../lib/hora';
 
 interface HoraItemProps {
   info: Hora;
@@ -16,7 +16,11 @@ export const HoraItem: FC<HoraItemProps> = ({ info }) => {
 
   return (
     <div className="flex flex-col rounded-md bg-white shadow dark:bg-black">
-      <button onClick={() => setOpen(open => !open)} className="peer ">
+      <button
+        type="button"
+        onClick={() => setOpen(open => !open)}
+        className="peer"
+      >
         <HoraItemSummary info={info} />
       </button>
       {open && (
@@ -27,8 +31,8 @@ export const HoraItem: FC<HoraItemProps> = ({ info }) => {
               info.type === 'mentsu'
                 ? info.fu
                 : info.type === 'chitoitsu'
-                ? 'chitoitsu'
-                : void 0
+                  ? 'chitoitsu'
+                  : void 0
             }
           />
           <YakuList yaku={info.yaku} />
