@@ -1,6 +1,6 @@
 {
   "name": "mahjong-calc",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Mahjong score calculator",
   "type": "module",
   "scripts": {
